@@ -592,7 +592,7 @@ body {
 <div class=clear></div>
 
 
-      <p class="bodytext">Louisiana State University FM-114 (GPSPW, 1 level). Note that the PW information itself was stored in the "header" record, so only other observations from this station (such as surface pressure) can be found in the data record:</p>
+      <p class="bodytext">Louisiana State University FM-111 (GPSPW, 1 level). Note that the PW information itself was stored in the "header" record, so only other observations from this station (such as surface pressure) can be found in the data record:</p>
       <p class=bodytext><table style="background-color:#DDFFDD;" width="100%" class="bodytable">
          <tr>
             <td colspan=20><kbd>
@@ -754,6 +754,152 @@ body {
                 <td>T</td>
                 <td>This field is only used for some internal quality control checks that should not apply to "bogus" type observations.</td>
               </tr> 
+              <tr style="background-color:#FFFF99;">
+                <td><b>Discard</b></td>
+                <td>L10</td>
+                <td>Logical flag: true if observation should be discarded</td>
+                <td>Optional</td>
+                <td>F</td>
+                <td>This field can be used to specify the observation should not be used. Will not be written to WRFDA-format ASCII file.</td>
+              </tr>
+              <tr style="background-color:#FFFF99;">
+                <td><b>Unix Time</b></td>
+                <td>I10</td>
+                <td>Unix Time in seconds</td>
+                <td>Optional</td>
+                <td>1497388306</td>
+                <td>This field is only used as one of the "tiebreakers" for deciding which observation header will be kept when merging duplicate obs.</td>
+              </tr>
+              <tr style="background-color:#FFFF99;">
+                <td><b>Julian Day</b></td>
+                <td>I10</td>
+                <td>Julian Day</td>
+                <td>Optional</td>
+                <td>2457918</td>
+                <td>This field is only used as one of the "tiebreakers" for deciding which observation header will be kept when merging duplicate obs.</td>
+              </tr>
+              <tr style="background-color:#AAAADD;">
+                <td><b>Date string</b></td>
+                <td>A20</td>
+                <td>The date as a string of numerical characters (YYYYMMDDhhmmss)</td>
+                <td>Mandatory</td>
+                <td>20080205120000</td>
+                <td>This is the date used for checking against the namelist-specified time window. Observations outside of the specified time window will be rejected.</td>
+              </tr>
+              <tr style="background-color:#FFFF99;">
+                <td><b>Sea level pressure/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Sea level pressure (Pa) and quality control flag</td>
+                <td>Optional</td>
+                <td>100459.85900<br>0</td>
+                <td>Optional for bogus observations (FM-135), unused for all others</td>
+              </tr>
+              <tr style="background-color:#AADDCC;">
+                <td><b>Reference pressure/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Reference pressure (Pa) and quality control flag</td>
+                <td>Mandatory for some observations</td>
+                <td>100000.00000<br>0</td>
+                <td>Mandatory for SATEM observations (FM-86): reference pressure for geopotential thickness. Unused for all other observation types</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Ground temperature/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Ground temperature (K) and quality control flag</td>
+                <td>Unused</td>
+                <td>288.50000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>SST/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Sea surface temperature (K) and quality control flag</td>
+                <td>Unused</td>
+                <td>275.80000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="background-color:#FFFF99;">
+                <td><b>PSFC/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Surface pressure (Pa) and quality control flag</td>
+                <td>Optional</td>
+                <td>98150.00000<br>0</td>
+                <td>Optional for METAR (FM-15,16) if calc_psfc_from_QNH=true; this entry should be the altimeter setting (<a href=https://en.wikipedia.org/wiki/QNH>QNH</a>, and OBSPROC will calculate the surface pressure from that value. Also used for consistency checks for sounding-type observations (FM-32 through 38). Unused for other observation types.</td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Precipitation/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Precipitation accumulation (cm) and quality control flag</td>
+                <td>Unused</td>
+                <td>1.80000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Max temp/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Maximum daily temperature (K) and quality control flag</td>
+                <td>Unused</td>
+                <td>305.10000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Min temp/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Minimum daily temperature (K) and quality control flag</td>
+                <td>Unused</td>
+                <td>249.00000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Min night temp/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Minimum overnight temperature (K) and quality control flag</td>
+                <td>Unused</td>
+                <td>249.00000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>3H pressure tendancy/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>3-hour pressure tendency (Pa) and quality control flag</td>
+                <td>Unused</td>
+                <td>150.00000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>24H pressure tendancy/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>24-hour pressure tendency (Pa) and quality control flag</td>
+                <td>Unused</td>
+                <td>-400.00000<br>0</td>
+                <td></td>
+              </tr>
+              </tr>
+              <tr style="background-color:#FFFF99;">
+                <td><b>Cloud cover/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Cloud cover and quality control flag</td>
+                <td>Optional</td>
+                <td>0.00000<br>0</td>
+                <td>Optional for SATEM observations (FM-86): Values greater than 10 will be rejected as cloudy observations. Unused for all other observation types</td>
+              </tr>              
+              <tr style="color:rgba(0, 0, 0, 0.5);">
+                <td><b>Ceiling/QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Height of cloud base (m) and quality control flag</td>
+                <td>Unused</td>
+                <td>4342.00000<br>0</td>
+                <td></td>
+              </tr>
+              <tr style="background-color:#AADDCC;">
+                <td><b>PW or ZTD / QC</b></td>
+                <td>F13.5<br>I7</td>
+                <td>Precipitable water/ZTD and quality control flag</td>
+                <td>Mandatory for some observations</td>
+                <td>3.04000<br>0</td>
+                <td>Mandatory for GPSPW (FM-111) and GPSZTD (FM-114): values are in centimeters, and the QC field is in tenths of a millimeter (see <a href=#gpspw>the section on GPS observations for more details</a>. Unused for all other observation types. These are the only fields which are truly optional (can be left out rather than filled with missing-data flags).</td>
+              </tr>
            </table></p>
 
 
@@ -1139,7 +1285,7 @@ body {
                 <td>-91.18026</td>
                 <td>Fake observation for GPSZTD test</td>
                 <td>Fake observation for GPSZTD test</td>
-                <td>FM-111 GPSZTD	</td>
+                <td>FM-114 GPSZTD	</td>
                 <td>Fake observation for GPSZTD test</td>
                 <td>20.91000</td>
                 <td style="background-color:#DDDDDD;">0</td>
@@ -1394,16 +1540,13 @@ body {
       <blockquote><blockquote><ul class="bodybullet">
          <li><b>Mandatory:</b>
             <ul><li>Surface observations: FM-15,16</li>
-               <li></li>
+               <li>GPS Observations: FM-111,114</li>
             </ul>
          <li><b>Optional:</b>
             <ul><li>Marine observations: FM-13,18,19,33,36 (see below for more details)</li>
                <li>Scatterometer: FM-281 (If elevation is missing, it is set to 10 meters)</li>
                </ul>
-         <li><b>Unused:</b>
-            <ul><li></li>
-               <li></li>
-               <li></li></ul>
+         <li>For other types elevation is unused.</li>
       </ul></blockquote></blockquote>
       <p class=bodytext>For marine observations, if the user has elevation information, that can be included. Otherwise OBSPROC will attempt to assign an observation based on the body of water the observation is from. In most cases, the elevation will automatically be assigned "0", unless it is from the <a href=https://en.wikipedia.org/wiki/Great_Lakes>Great Lakes</a>, in which case it will be assigned the appropriate elevation depending on which lake it is in:</p>
       <blockquote><blockquote><ul class="bodybullet">
