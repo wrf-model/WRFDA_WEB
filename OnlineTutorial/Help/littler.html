@@ -203,7 +203,7 @@ body {
                 <td style="background-color:#AAAADD;"><b>Longitude</b></td>
                 <td style="background-color:#DDDD55;"><b>ID</b></td>
                 <td style="background-color:#DDDD55;"><b>Name</b></td>
-                <td style="background-color:#AAAADD;"><b>Platform (FM-Code)<sup><a href="#FM">note</a></sup></b></td>
+                <td style="background-color:#AAAADD;"><b>Platform (FM&#8209;Code)<sup><a href="#FM">note</a></sup></b></td>
                 <td style="background-color:#DDDD55;"><b>Source</b></td>
                 <td style="background-color:#AAAADD;"><b>Elevation</b></td>
                 <td><b>Valid fields</b></td>
@@ -675,7 +675,7 @@ body {
                 <td>This field is only included for human readability. Can be any text: often used to describe the observation location</td>
               </tr>
               <tr style="background-color:#AAAADD;">
-                <td><b>Platform (FM-Code)</b></td>
+                <td><b>Platform (FM&#8209;Code)</b></td>
                 <td>A40</td>
                 <td>The FM-code of the observation, followed by an optional text description of the observation.</td>
                 <td>Mandatory</td>
@@ -906,13 +906,27 @@ body {
 
       <a name=mandatory_data><p class="bodytext"><strong id="Font14">Data record</strong> </p>
       <p class="bodytext">In the data record for each observation, each level is considered separately for rejection within OBSPROC and/or WRFDA. If it is a single-level observation type (SYNOP, METAR, BUOY, etc.), then the entire observation will be rejected.</p>
-      <p class="bodytext">Before looking at the individual observation types, there are two basic rules that must be followed, otherwise that level will be rejected:</p>
+      <p class="bodytext">Before looking at the individual observation types, there are two basic rules that must be followed in almost all cases, otherwise that level will be rejected:</p>
       <blockquote><blockquote><ul class="bodybullet">
          <li>At least one of pressure or height must be included</li>
          <li>If only one of pressure or height is included, at least one other field must be included</li>
       </ul></blockquote></blockquote>
-      <p class="bodytext">To put it another way: at least two fields of information must be filled in for a level to be used by WRFDA, and at least one of those must be pressure or height. However, </p>
+      <p class="bodytext">To put it another way: at least two fields of information must be filled in for a level to be used by WRFDA, and at least one of those must be pressure or height.</p>
       <p class="bodytext">Aside from the above rules, the variables in the data records that are mandatory, optional, or unused depends on the observation type. A partial list of these criteria is compiled below. Unless otherwise noted, observations which are missing mandatory information will be discarded. For multi-level observations, if some levels are missing mandatory information only those levels will be discarded.</p>
+      <p class="bodytext">In the following table, the data fields are abbreviated as follows:</p>
+      <blockquote><blockquote><ul class="bodybullet">
+         <li><span class=tablecode><b>P</b>&nbsp; </span>Pressure</li>
+         <li><span class=tablecode><b>H</b>&nbsp; </span>Height</li>
+         <li><span class=tablecode><b>T</b>&nbsp; </span>Temperature</li>
+         <li><span class=tablecode><b>Td</b>&nbsp;</span>Dew point</li>
+         <li><span class=tablecode><b>Sp</b>&nbsp;</span>Wind speed</li>
+         <li><span class=tablecode><b>Dr</b>&nbsp;</span>Wind direction</li>
+         <li><span class=tablecode><b>U</b>&nbsp; </span>East-west wind</li>
+         <li><span class=tablecode><b>V</b>&nbsp; </span>North-south wind</li>
+         <li><span class=tablecode><b>RH</b>&nbsp;</span>Relative humidity</li>
+         <li><span class=tablecode><b>Th</b>&nbsp;</span>Thickness</li>
+      </ul></blockquote></blockquote>
+
             <p style="padding-left: 45px"><table style="background-color:#DDFFDD;" border="1" class="bodytable">
                <colgroup>
                   <col span="2"/>
@@ -929,184 +943,197 @@ body {
                 <td><b>Notes</b></td>
               </tr>
               <tr>
-                <td>FM-12<br>FM-14</td>
-                <td>SYNOP<br>SYNOP MOBIL</td>
-                <td>Height and/or pressure</td>
-                <td>U,V,T,Q</td>
-                <td><em>(none)</em></td>
+                <td>FM&#8209;12<br>FM-14</td>
+                <td>SYNOP<br>SYNOP&nbsp;MOBIL</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,RH&dagger;</td>
+                <td>Td,U,V,Th</td>
                 <td></td>
               </tr>
               <tr>
-                <td>FM-13</td>
+                <td>FM&#8209;13</td>
                 <td>SHIP</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Surface observation from a sea station</td>
+i               <td>P and/or H</td>
+                <td>Sp,Dr,T,RH&dagger;</td>
+                <td>Td,U,V,Th</td>
+                <td>Observed pressures less than 850 hPa will be discarded.</td>
               </tr>
               <tr>
-                <td>FM-15<br>FM-16</td>
+                <td>FM&#8209;15<br>FM-16</td>
                 <td>METAR<br>SPECI</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,RH&dagger;</td>
+                <td>Td,U,V,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Aerodrome routine meteorological report<br>Aerodrome special meteorological report</td>
               </tr>
               <tr>
-                <td>FM-18<br>FM-19</td>
+                <td>FM&#8209;18<br>FM-19</td>
                 <td>BUOY</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Buoy observation</td>
+                <td><em>(none)</em></td>
+                <td>P,H,T,Td,Sp,Dr,U,V,RH&dagger;</td>
+                <td>Th</td>
+                <td>Unlike most other observations, if surface pressure and elevation are included in the header record, the observation will be used regardless of the inclusion of other fields<br>Observed pressures less than 850 hPa will be discarded.</td>
               </tr>
               <tr>
-                <td>FM-32<br>FM-33<br>FM-34</td>
-                <td>PILOT<br>PILOT SHIP<br>PILOT MOBIL</td>
+                <td>FM&#8209;32<br>FM-33<br>FM-34</td>
+                <td>PILOT<br>PILOT&nbsp;SHIP<br>PILOT&nbsp;MOBIL</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr</td>
+                <td>T,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Upper-wind report from a fixed land station<br>Upper-wind report from a sea station<br> Upper-wind report from a mobile land station</td>
               </tr>
               <tr>
-                <td>FM-35<br>FM-36<br>FM-37<br>FM-38</td>
-                <td>TEMP<br>TEMP SHIP<br>TEMP DROP<br>TEMP MOBIL</td>
+                <td>FM&#8209;35<br>FM-36<br>FM-37<br>FM-38</td>
+                <td>TEMP<br>TEMP&nbsp;SHIP<br>TEMP&nbsp;DROP<br>TEMP&nbsp;MOBIL</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH</td>
+                <td>U,V,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Upper-level pressure, temperature, humidity and wind report from a fixed land station<br>
-                    Upper-level pressure, temperature, humidity and wind report from a mobile land station</td>
               </tr>
               <tr>
-                <td>FM-42</td>
+                <td>FM&#8209;42</td>
                 <td>AMDAR</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Automated aircraft report</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH&dagger;</td>
+                <td>U,V,Th</td>
+                <td>Aircraft height will be converted to pressure if higher than 3000m above ground level</td>
               </tr>
               <tr>
-                <td>FM-86</td>
+                <td>FM&#8209;86</td>
                 <td>SATEM</td>
+                <td>P,H,Th</td>
+                <td><em>(none)</em></td>
+                <td>T,Td,Sp,Dr,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td> Report of satellite remote upper-air soundings of pressure, temperature, humidity, and thickness</td>
               </tr>
               <tr>
-                <td>FM-88</td>
+                <td>FM&#8209;88</td>
                 <td>SATOB</td>
+                <td>P,Sp,Dr</td>
+                <td><em>(none)</em></td>
+                <td>H,T,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td> Report of satellite observations of wind, surface temperature, cloud, humidity and radiation</td>
               </tr>
               <tr>
-                <td>FM-96<br>FM-97</td>
+                <td>FM&#8209;96<br>FM-97</td>
                 <td>AIREP</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Aircraft report</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH&dagger;</td>
+                <td>U,V,Th</td>
+                <td>Aircraft height will be converted to pressure if higher than 3000m above ground level</td>
               </tr>
               <tr>
-                <td>FM-101</td>
+                <td>FM&#8209;101</td>
                 <td>TAMDAR</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH</td>
+                <td>U,V,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Automated aircraft report from <a href="https://en.wikipedia.org/wiki/TAMDAR">TAMDAR</a> system</td>
               </tr>
               <tr>
-                <td>FM-111</td>
+                <td>FM&#8209;111</td>
                 <td>GPSPW</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Ground-based GPS Precipitable Water observation</td>
+                <td><em>(none)</em></td>
+                <td><em>(none)</em></td>
+                <td>P,H,T,Td,Sp,Dr,U,V,RH,Th</td>
+                <td>GPS PW data is stored in the header; see <a href=#gpspw>relevant section</a> for details.</td>
               </tr>
               <tr>
-                <td>FM-114</td>
+                <td>FM&#8209;114</td>
                 <td>GPSZD</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Ground-based GPS Zenith Total Delay (GPSZTD) observation</td>
+                <td><em>(none)</em></td>
+                <td><em>(none)</em></td>
+                <td>P,H,T,Td,Sp,Dr,U,V,RH,Th</td>
+                <td>GPS ZTD data is stored in the header; see <a href=#gpsztd>relevant section</a> for details.</td>
               </tr>
               <tr>
-                <td>FM-116</td>
+                <td>FM&#8209;116</td>
                 <td>GPSRF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Space-based GPS Refractivity observation </td>
+                <td>P,H,T,Td,RH</td>
+                <td><em>(none)</em></td>
+                <td>U,V,Sp,Dr</td>
+                <td>The GPSRF data should be stored as follows:
+                    <ul><li>P: pressure</li>
+                       <li>U: latitude</li>
+                       <li>V: longitude</li>
+                       <li>H: height</li>
+                       <li>T: temperature</li>
+                       <li>Td: refractivity</li>
+                       <li>Sp: impact parameter / 1000</li>
+                       <li>Dr: azimuth</li>
+                       <li>RH: Bending angle * 1.e7</li>
+                    </ul>
+                    Only pressure, height, temperature, refractivity, and bending angle are used by WRFDA.
+                </td>
               </tr>
               <tr>
-                <td>FM-121</td>
+                <td>FM&#8209;121</td>
                 <td>SSMT1</td>
+                <td>P and/or H</td>
+                <td>T</td>
+                <td>Sp,Dr,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>SSM/T- Atmospheric Temperature Profiler (<a href=https://web.archive.org/web/20051210073501/http://dmsp.ngdc.noaa.gov/html/sensors/doc_ssmt.html>description page</a>)</td>
               </tr>
               <tr>
-                <td>FM-122</td>
+                <td>FM&#8209;122</td>
                 <td>SSMT2</td>
+                <td>P and/or H</td>
+                <td>T</td>
+                <td>Sp,Dr,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>SSMT/2 Atmospheric Water Vapor Profiler (<a href=https://web.archive.org/web/20051210082729/http://dmsp.ngdc.noaa.gov/html/sensors/doc_ssmt2.html>description page</a>)</td>
               </tr>
-              <tr>
+<!--              <tr>
                 <td>FM-125<br>FM-126</td>
                 <td>SSMI</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH</td>
+                <td>U,V,Th</td>
                 <td>Special Sensor Microwave Imager (SSM/I) (<a href=https://nsidc.org/data/docs/daac/ssmi_instrument.gd.html>description page</a>)</td>
               </tr>
               <tr>
                 <td>FM-131</td>
                 <td>TOVS</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH</td>
+                <td>U,V,Th</td>
                 <td>TIROS Observational Vertical Sounder (TOVS) observations (<a href=http://www.ozonelayer.noaa.gov/action/tovs.htm>description page</a>)</td>
+The above two ob types do not have any logic for reading in var/da/da_obs_io/da_read_obs_ascii.inc
+-->
               </tr>
               <tr>
-                <td>FM-132</td>
+                <td>FM&#8209;132</td>
                 <td>PROFILER</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr</td>
+                <td>T,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Profiler observation</td>
               </tr>
               <tr>
-                <td>FM-133</td>
+                <td>FM&#8209;133</td>
                 <td>AIRSRET</td>
+                <td>P and/or H</td>
+                <td>T,Td,RH</td>
+                <td>Sp,Dr,U,V,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Atmospheric Infrared Sounder (AIRS) temperature retrievals (<a href=http://airs.jpl.nasa.gov/data/physical_retrievals>description page</a>) </td>
               </tr>
               <tr>
-                <td>FM-135</td>
+                <td>FM&#8209;135</td>
                 <td>BOGUS</td>
+                <td>P and/or H</td>
+                <td>Sp,Dr,T,Td,RH&dagger;</td>
+                <td>U,V,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Bogus observations for TC relocation (Paper: <a href=http://nldr.library.ucar.edu/repository/assets/osgc/OSGC-000-000-002-702.pdf>Xiao et al., 2008</a>)</td>
               </tr>
               <tr>
-                <td>FM-281</td>
+                <td>FM&#8209;281</td>
                 <td>QSCAT</td>
+                <td>H,Sp,Dr</td>
+                <td><em>(none)</em></td>
+                <td>T,Td,U,V,RH,Th</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td>Scatterometer observation (originally Quickscat, but new scatterometers such as Oceansat can use this code as well)</td>
               </tr>
            </table></p>
-
+      <p class="bodytext"><small>&dagger;RH observations will be unused unless the observation also contains P and T; these variables are required for the calculation of the saturation vapor pressure.</small></p>
 
    <a name=special><h1>Special cases</h1>
       <p class="bodytext">Because LITTLE_R is a legacy format that was developed decades ago, it was developed before many observation types became available. As a work-around for this, several observation types deviate from the formats described above. The exceptions are listed below:</p>
