@@ -18,7 +18,7 @@
 
 <meta name="author" content="MMM Webmaster">
 
-<meta name="copyright" content="Copyright (c) 2016 by UCAR">
+<meta name="copyright" content="Copyright (c) 2017 by UCAR">
 
 <meta name="revisit-after" content="1 days">
 
@@ -120,8 +120,13 @@
             <blockquote>
               <ul class="bodytext"><li><a href="#links">Quick links</a></li>
               <li><a href="#general">General questions</a></li>
+              <li><a href="#compiling">Compiling WRFDA</a></li>
               <li><a href="#running">Running WRFDA</a></li>
-              <ul><li><a href="#running_GENBE">Running GEN_BE</a></li></ul></ul><br></blockquote>
+              <li><a href="#be">Background error and GEN_BE</a></li>
+              <li><a href="#obs">Observations and OBSPROC</a></li>
+              <li><a href="#out">WRFDA output</a></li>
+              <li><a href="#cycling">Cycling WRF and WRFDA</a></li>
+              </ul><br></blockquote>
 
             <blockquote>
               <h1><a name="links">Quick links</h1>
@@ -134,60 +139,31 @@
 
             <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
               <tr>
-                <td width="5%"><strong>Q1</strong></td>
-                <td class="font11"><strong>What are the system requirements for running WRFDA?</strong></td>
+                <td width="5%"><a name=general_q1><strong>Q1</strong></td>
+                <td class="font11"><strong>What is WRFDA?</strong></td>
               </tr>
               <tr>
                 <td style="color:#900"><strong>A1</strong></td>
-                <td style="color:#900">WRFDA is designed to be highly scalable and versatile, so depending on your case the system requirements will vary greatly. There are some known minimum requirements, which are listed at the  <a href="requirements.html">system requirements page</a>.</td>
+                <td style="color:#900"><b>WRFDA</b> is a <b>D</b>ata <b>A</b>ssimilation system for the <b>W</b>eather <b>R</b>esearch and <b>F</b>orecasting model. <a href=http://www2.mmm.ucar.edu/wrf/users/>You can learn more about the WRF model here</a>. Data assimilation is the process of combining observations with computer model information to come up with a "best guess" of the state of the system: in this case, the atmosphere. Ultimately, the goal of atmospheric data assimilation is usually to improve a subsequent weather model forecast.</td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q2</strong></td>
-                <td><strong>Can my observations be assimilated in WRFDA?</strong></td>
+                <td width="5%"><a name=general_q2><strong>Q2</strong></td>
+                <td class="font11"><strong>What does WRFDA do?</strong></td>
               </tr>
               <tr>
                 <td style="color:#900"><strong>A2</strong></td>
-                <td style="color:#900">WRFDA is able to assimilate many different types of data, which are listed at <a href="system.html#methods_and_obs">this page</a>.<br>
-                  WRFDA can assimilate conventional observations in several formats:
-                  <ul><li>LITTLE_R (text-based format) through the OBSPROC utility</li>
-                      <li>NCEP PREPBUFR (binary format)</li>
-                      <li>MADIS (netCDF format), through the <a href="download/madis.html">MADIS2LITTLER</a> converter</li></ul>
-                  Other types of observations are assimilated in their own formats:
-                  <ul><li>Radiance data (AMSU, HIRS, IASI, etc.) are assimilated in BUFR format.</li>
-                      <li>Precipitation data is assimilated in a text format similar to LITTLE_R. <a href="download/precip_converter.tar.gz">A converter is provided</a> for converting NCEP Stage IV data into this text format.</li>
-                      <li>Radar data is assimilated in yet another text format.</li></ul>
-                  If your observations are not in one of the formats listed above, you must convert them into one of the supported formats. LITTLE_R is likely the easiest.<br>
-                  See the <a href="usersguide.html">User's Guide</a> for more detailed information.
-                </td>
+                <td style="color:#900">WRFDA takes a "first guess" of the atmospheric state (either a WRF input file or WRF forecast output file), observations, and information about the uncertainty/error statistics of both, and produces a "best guess" based on all the input information. This output file can then either be analyzed on its own, or used to initiate a new WRF forecast.</td>
+              </tr>            
+              <tr>
+                <td width="5%"><a name=general_q3><strong>Q3</strong></td>
+                <td class="font11"><strong>What are the system requirements for running WRFDA?</strong></td>
+              </tr>
+              <tr>
+                <td style="color:#900"><strong>A3</strong></td>
+                <td style="color:#900">WRFDA is designed to be highly scalable and versatile, so depending on your case the system requirements will vary greatly. There are some known minimum requirements, which are listed at the  <a href="requirements.html">system requirements page</a>.</td>
               </tr>
             </table></p>
 
-
-<!--            <h1><a name="compiling">Compiling WRFDA</h1>
-
-            <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
-              <tr>
-                <td width="5%"><strong>Q1</strong></td>
-                <td class="font11"><strong>What are the system requirements for running WRFDA?</strong></td>
-              </tr>
-              <tr>
-                <td style="color:#900"><strong>A1</strong></td>
-                <td style="color:#900">WRFDA is designed to be highly scalable and versatile, so depending on your case the system requirements will vary greatly. There are some known minimum requirements, which are listed at the  <a href="requirements.html">system requirements page</a>.</td>
-              </tr>
-              <tr>
-                <td width="5%"><strong>Q2</strong></td>
-                <td><strong>Can my observations be assimilated in WRFDA?</strong></td>
-              </tr>
-              <tr>
-                <td style="color:#900"><strong>A2</strong></td>
-                <td style="color:#900">WRFDA can assimilate conventional observations in several formats:
-                  <ul><li>LITTLE_R (text-based format) through the OBSPROC utility</li>
-                      <li>NCEP PREPBUFR (binary format)</li>
-                      <li>MADIS (netCDF format), through the <a href="madis.html">MADIS2LITTLER</a> utility</li><ul>
-                  Other types of observations
-                </td>
-              </tr>
-            </table></p> -->
 
 
             <blockquote>
@@ -196,7 +172,7 @@
 
             <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
               <tr>
-                <td width="5%"><strong>Q1</strong></td>
+                <td width="5%"><a name=running_q1><strong>Q1</strong></td>
                 <td class="font11"><strong>When I try to run WRFDA I get an error: "ERRORS while reading one or more namelists from namelist.input". How can I fix this?</strong></td>
               </tr>
               <tr>
@@ -204,7 +180,7 @@
                 <td style="color:#900">This error indicates that WRFDA had a problem reading one or more sections of your <code>namelist.input</code> file. Typically this is because an invalid namelist option was specified, or the option name was misspelled. Usually the error message will also state which namelist section had a problem (for example, "ERROR while reading namelist wrfvar4"), so check every namelist option in that section to make sure it is valid. See the <a href="usersguide.html">User's Guide</a> specific to your version; there is a section at the end listing valid namelist options.</td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q2</strong></td>
+                <td width="5%"><a name=running_q2><strong>Q2</strong></td>
                 <td class="font11"><strong>When I try to run WRFDA I get an error: "Missing or invalid AS1 ~ AS5 value for IT =        2". How can I fix this?</strong></td>
               </tr>
               <tr>
@@ -212,7 +188,7 @@
                 <td style="color:#900">This error is encountered when you attempt to use multiple outer loops in your minimization with the CV3 background error option. By default, WRFDA only has CV3 length and variance scaling parameters set for a single outer loop; for multiple outer loops you need to set these parameters manually in the namelist. See the section in the user's guide on "<a href="Docs/user_guide_V3.8/users_guide_chap6.htm#CV3">Modifying CV3 length scales and variance</a>" for information on how to do this.</td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q3</strong></td>
+                <td width="5%"><a name=running_q3><strong>Q3</strong></td>
                 <td class="font11"><strong>My WRFDA-4DVAR runs fail with a segmentation fault, "signal 9" error, or no error at all. What is the problem?</strong></td>
               </tr>
               <tr>
@@ -225,7 +201,7 @@
                 </ul></td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q4</strong></td>
+                <td width="5%"><a name=running_q4><strong>Q4</strong></td>
                 <td class="font11"><strong>I see one or more warning messages like this in my output, should I be worried?</strong><br>
                 <code>--------------------------- WARNING ---------------------------<br>
                       WARNING FROM FILE: <A HREF="http://www.mmm.ucar.edu/people/wrfhelp/wrfvar/code/trunk/da_scan_obs_ascii.html">da_scan_obs_ascii.inc</a>  LINE:      61<br>
@@ -239,22 +215,22 @@
             </table></p>
 
             <blockquote>
-              <h1><a name="running_GENBE">Running GENBE</h1>
+              <h1><a name="running_GENBE"><a name=be>Background error and GEN_BE</h1>
             </blockquote>
             <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
               <tr>
-                <td width="5%"><strong>Q1</strong></td>
+                <td width="5%"><a name=be_q1><strong>Q1</strong></td>
                 <td class="font11"><strong>When running GEN_BE, it fails with the message "Stage gen_be_diags failed with error". How can I fix this?</strong></td>
               </tr>
               <tr>
                 <td style="color:#900"><strong>A1</strong></td>
                 <td style="color:#900">While this error message states that the failure was in "Stage gen_be_diags", this is almost always due to an error at an earlier stage. Look in the log files for stages 0&ndash;4 for more information.<br>The most common errors are as follows:
                   <ul><li><b>error 2</b> usually indicates incorrect specification of "NUM_LEVELS" (should be equal to e_vert - 1)</li>
-                  <li><b>error 24</b> usually indicates Incorrect setup of your WRF forecast directories. See the next entry below for help on setting up your GEN_BE forecasts properly.</li>
+                  <li><b>error 24</b> usually indicates Incorrect setup of your WRF forecast directories. See the <a href=#be_q2>entry below</a> for help on setting up your GEN_BE forecasts properly.</li>
                 </td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q2</strong></td>
+                <td width="5%"><a name=be_q2><strong>Q2</strong></td>
                 <td class="font11"><strong>How do I set up my WRF forecasts as input for GEN_BE</strong></td>
               </tr>
               <tr>
@@ -278,7 +254,7 @@
                 </td>
               </tr>
               <tr>
-                <td width="5%"><strong>Q3</strong></td>
+                <td width="5%"><a name=be_q3><strong>Q3</strong></td>
                 <td class="font11"><strong>How many forecasts are necessary for getting good background error statistics from GEN_BE? Do I need to continuously update by background error?</strong></td>
               </tr>
               <tr>
@@ -289,6 +265,76 @@
                 </td>
               </tr>
             </table></p>
+
+            <blockquote>
+              <h1><a name="obs">Observations and OBSPROC</h1>
+            </blockquote>
+
+            <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
+              <tr>
+                <td width="5%"><a name=obs_q1><strong>Q1</strong></td>
+                <td><strong>Can my observations be assimilated in WRFDA?</strong></td>
+              </tr>
+              <tr>
+                <td style="color:#900"><strong>A2</strong></td>
+                <td style="color:#900">WRFDA is able to assimilate many different types of data, which are listed at <a href="system.html#methods_and_obs">this page</a>.<br>
+                  WRFDA can assimilate conventional observations in several formats:
+                  <ul><li>LITTLE_R (text-based format) through the OBSPROC utility</li>
+                      <li>NCEP PREPBUFR (binary format)</li>
+                      <li>MADIS (netCDF format), through the <a href="download/madis.html">MADIS2LITTLER</a> converter</li></ul>
+                  Other types of observations are assimilated in their own formats:
+                  <ul><li>Radiance data (AMSU, HIRS, IASI, etc.) are assimilated in BUFR format.</li>
+                      <li>Precipitation data is assimilated in a text format similar to LITTLE_R. <a href="download/precip_converter.tar.gz">A converter is provided</a> for converting NCEP Stage IV data into this text format.</li>
+                      <li>Radar data is assimilated in yet another text format.</li></ul>
+                  If your observations are not in one of the formats listed above, you must convert them into one of the supported formats. LITTLE_R is likely the easiest.<br>
+                  See the <a href="usersguide.html">User's Guide</a> for more detailed information.
+                </td>
+              </tr>
+            </table></p>
+
+            <blockquote>
+              <h1><a name="out">WRFDA output</h1>
+            </blockquote>
+
+            <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
+              <tr>
+                <td width="5%"><a name=out_q1><strong>Q1</strong></td>
+                <td><strong>I didn't get a wrfvar_output file. What went wrong?</strong></td>
+              </tr>
+              <tr>
+                <td style="color:#900"><strong>A1</strong></td>
+                <td style="color:#900">WRFDA prints out a lot of log information while it runs, including error messages if something went wrong. If you ran the program with MPI (dmpar&ndash;distributed memory parallelism), these log messages can be found in two sets of files: <kbd>rsl.out.0000</kbd>,<kbd>rsl.out.0001</kbd>, etc. (one log file for each processor you used) and <kbd>rsl.error.0000</kbd>, <kbd>rsl.error.0001</kbd>, etc. (one error file for each processor you used). If you did not get a wrfvar_output file, you should look in the <kbd>rsl.out.*</kbd> and <kbd>rsl.error.*</kbd> files for any error messages. Often the error message will be descriptive (missing input file, bad namelist setting, etc.) and you should be able to resolve the problem. Sometimes the program just quits with a segmentation fault or something similar; see <a href=#running_q3>this Q&A entry for more info</a>.
+                </td>
+              </tr>
+            </table></p>
+
+            <blockquote>
+              <h1><a name="cycling">Cycling WRF and WRFDA</h1>
+            </blockquote>
+
+            <p style="padding-left: 45px;"><table width="96%" border="1" align="center" bordercolor="#FF8A81" bgcolor="#FFFFFF" class="font11" style="background-color:#DDFFDD;">
+              <tr>
+                <td width="5%"><a name=cycling_q1><strong>Q1</strong></td>
+                <td><strong>What is "cycling" exactly? How do I set up cycling for WRF and WRFDA?</strong></td>
+              </tr>
+              <tr>
+                <td style="color:#900"><strong>A1</strong></td>
+                <td style="color:#900">"Cycling" is the process by which the output of a previous WRF forecast is used to initialize a new WRF forecast, rather than taking the initial conditions from some other analysis/forecast through WPS/real. This is usually done in the context of real-time forecast
+                  You can find detailed instructions on cycling with WRF/WRFDA in the <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/Docs/user_guide_V3.9/users_guide_chap6.htm#_Cycling_with_WRF_1</a>relevant section of the Users Guide</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="5%"><a name=cycling_q2><strong>Q2</strong></td>
+                <td><strong>What is the difference between "warm-start" and "cold-start" forecasts?</strong></td>
+              </tr>
+              <tr>
+                <td style="color:#900"><strong>A2</strong></td>
+                <td style="color:#900">These terms are widely used in the field of atmospheric modeling and data assimilation, however, to quote <a href=http://www.oc.nps.edu/nom/modeling/initial.html>this site from the Naval Postgraduate School</a>, "The terms <em>cold start</em> and <em>warm start</em> may mean slightly different things to different people." In the context of WRF and WRFDA, a "cold-start" forecast is when the first guess (<kbd>fg</kbd>) file provided to WRFDA is a <kbd>wrfinput</kbd> file from WPS/real, while a "warm-start" forecast is one where the first guess is a WRF forecast file (<kbd>wrfout</kbd>).<br>
+                  Because of the ambiguity in what constitutes a cold-start or warm-start, we try to avoid using these terms in the official documentation.
+                </td>
+              </tr>
+            </table></p>
+
 
             <blockquote>
 
