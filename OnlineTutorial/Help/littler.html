@@ -664,7 +664,7 @@ body {
                 <td>The ID of the observation.</td>
                 <td>Optional</td>
                 <td>3009S 13625E</td>
-                <td>For buoy observations, this field can be used as an alternate way to include elevation information (<a href=#elevation>see the section on elevation</a>) <br> For all other observations this field is only included for human readability. Can be any text: for example, the type of instrument used.</td>
+                <td>&bull; For buoy observations, this field can be used as an alternate way to include elevation information (<a href=#elevation>see the section on elevation</a>) <br>&bull; For SATOB (FM-88) observations, if this field contains the text "AVHRR", this indicates that WRFDA should treat it as a POLARAMV observation, rather than a GEOAMV observation. <br>&bull; For all other observations this field is only included for human readability. Can be any text: for example, the type of instrument used.</td>
               </tr>
               <tr style="background-color:#FFFF99;">
                 <td><b>Name</b></td>
@@ -672,7 +672,7 @@ body {
                 <td>The name of the observation.</td>
                 <td>Optional</td>
                 <td>LINZ/HOERSCHINGFLUGHAFEN / AUSTRIA</td>
-                <td>This field is only included for human readability. Can be any text: often used to describe the observation location</td>
+                <td>&bull; For SATOB (FM-88) observations, if this field contains the text "MODIS", this indicates that WRFDA should treat it as a POLARAMV observation, rather than a GEOAMV observation. <br>&bull; For all other observations this field is only included for human readability. Can be any text: often used to describe the observation location name</td>
               </tr>
               <tr style="background-color:#AAAADD;">
                 <td><b>Platform (FM&#8209;Code)</b></td>
@@ -825,7 +825,7 @@ body {
                 <td>Surface pressure (Pa) and quality control flag</td>
                 <td>Optional</td>
                 <td>98150.00000<br>0</td>
-                <td>Optional for METAR (FM-15,16) if calc_psfc_from_QNH=true; this entry should be the altimeter setting (<a href=https://en.wikipedia.org/wiki/QNH>QNH</a>, and OBSPROC will calculate the surface pressure from that value. Also used for consistency checks for sounding-type observations (FM-32 through 38). Unused for other observation types.</td>
+                <td>&bull; Optional for METAR (FM-15,16) if calc_psfc_from_QNH=true; this entry should be the altimeter setting (<a href=https://en.wikipedia.org/wiki/QNH>QNH</a>, and OBSPROC will calculate the surface pressure from that value. <br>&bull; Used for consistency checks for sounding-type observations (FM-32 through 38). <br>&bull; Unused for other observation types.</td>
               </tr>
               <tr style="color:rgba(0, 0, 0, 0.5);">
                 <td><b>Precipitation/QC</b></td>
