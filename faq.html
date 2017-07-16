@@ -177,7 +177,14 @@
               </tr>
               <tr>
                 <td style="color:#900"><strong>A1</strong></td>
-                <td style="color:#900">This error indicates that WRFDA had a problem reading one or more sections of your <code>namelist.input</code> file. Typically this is because an invalid namelist option was specified, or the option name was misspelled. Usually the error message will also state which namelist section had a problem (for example, "ERROR while reading namelist wrfvar4"), so check every namelist option in that section to make sure it is valid. See the <a href="usersguide.html">User's Guide</a> specific to your version; there is a section at the end listing valid namelist options.</td>
+                <td style="color:#900">This error indicates that WRFDA had a problem reading one or more sections of your <code>namelist.input</code> file. Typically this is because an invalid namelist option was specified, or the option name was misspelled. Usually the error message will also state which namelist section had a problem (for example, "ERROR while reading namelist wrfvar4"), so check every namelist option in that section to make sure it is valid. See the <a href="usersguide.html">User's Guide</a> specific to your version; there is a section at the end listing valid namelist options.<br>
+                  The second most common reason for this error is a missing "/" at the end of a namelist section. Namelist sections must begin with a line specifying the section name (for example, "&amp;wrfvar1"), and end with a line containing the "/" character, indicating the end of the namelist section. A short example can be found below:<br><br>
+                  <kbd>&nbsp;&amp;wrfvar1<br>
+                    &nbsp; &nbsp;var4d                                = .false.,<br>
+                    &nbsp; &nbsp;print_detail_grad                    = .true.,<br>
+                    &nbsp;/<br><br></kbd>
+                  See <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/usersguide.html>the Users Guide</a> for more details. An example namelist can also be found in the source code, under <kbd>WRFDA/var/test/tutorial/namelist.input</kbd>
+                </td>
               </tr>
               <tr>
                 <td width="5%"><a name=running_q2><strong>Q2</strong></td>
