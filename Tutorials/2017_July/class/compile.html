@@ -43,7 +43,7 @@ a:active {
           <td valign="middle" bgcolor="#FFFFFF"><!-- InstanceBeginEditable name="maincontent" -->
               <table align=center width="90%" border="1" cellpadding="10">
                 <tr>
-<!--                  <td class="body">NOTE: The pre-compiled code provided for you has the WRFDA TOOLS package already loaded under var/scripts and var/graphics. The source code does not contain these files, so you should get them from /kumquat/wrfhelp/DATA/WRFDA/WRFDA_tools.tar.gz</td>-->
+<!--                  <td class="body">NOTE: The pre-compiled code provided for you has the WRFDA TOOLS package already loaded under var/scripts and var/graphics. The source code does not contain these files, so you should get them from /classroom/wrfhelp/DATA/WRFDA/WRFDA_tools.tar.gz</td>-->
               <td class="body">This page contains directions on how to compile the code, so you'll be ready to try it yourself when you get home. <b>We don't recommend using code you've compiled yourself for the classroom exercises; use <a href=wrfda_code.html>pre-compiled code</a> instead.</b> </td>
               </tr>
               </table>
@@ -51,11 +51,11 @@ a:active {
             <p class="pagetitle"><a name="compile_3dvar"></a>Compiling WRFDA for 3DVAR</p>
             <p class="body">Reference: <a href="../docs/WRFDA_Software_Compilation.pdf">Download the tutorial presentation</a><p>
             <blockquote>
-              <p>Create a new directory for practicing compilation, then get the WRFDA zipped tar file from <em>/kumquat/wrfhelp/SOURCE_CODE</em></p>
+              <p>Create a new directory for practicing compilation, then get the WRFDA zipped tar file from <em>/classroom/wrfhelp/SOURCE_CODE</em></p>
               <blockquote>
-                <p class="stylecode">mkdir -p /kumquat/users/${USER}/DA/compile</p>
-                <p class="stylecode">cd /kumquat/users/${USER}/DA/compile</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
+                <p class="stylecode">mkdir -p /classroom/users/${USER}/DA/compile</p>
+                <p class="stylecode">cd /classroom/users/${USER}/DA/compile</p>
+                <p class="stylecode">cp /classroom/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
               </blockquote>
               <p>Unzip and untar the file:</p>
               <blockquote>
@@ -69,12 +69,11 @@ a:active {
               <blockquote>
                 <p class="stylecode">setenv J "-j 6"</p>
               </blockquote>
-              <p>Only one radiative transfer model is necessary, but WRFDA can be compiled with both, so set the CRTM and/or RTTOV environment variables:</p>
+              <p>Set the RTTOV environment variable for compiling with RTTOV support:</p>
               <blockquote>
-                <p class="stylecode">setenv CRTM 1<br>
-                  setenv RTTOV /kumquat/wrfhelp/external/rttov11</p>
+                <p class="stylecode">setenv RTTOV /classroom/wrfhelp/external/rttov11</p>
               </blockquote>
-              <p>To compile WRFDA with HDF5 support (necessary for reading AMSR2 observations), set the HDF5 envirnment variable appropriately:</p>
+              <p>To compile WRFDA with HDF5 support (necessary for reading AMSR2 observations), set the HDF5 environment variable appropriately:</p>
               <blockquote>
                 <p class="stylecode">setenv HDF5 /usr/local/hdf5-1.8.15-patch1-gcc/</p>
               </blockquote>
@@ -101,10 +100,10 @@ a:active {
             <p class="pagetitle"><a name="compile_wrfplus"></a>Compiling WRFPLUS</p>
             <blockquote>
               <p>WRFPLUS contains both the non-linear and the tangent-linear/adjoint WRF code. It is needed for 4DVAR and Forecast Sensitivity to Observations (FSO).</p>
-              <p>Get the WRFPLUS zipped tar file from /kumquat/wrfhelp/SOURCE_CODE</p>
+              <p>Get the WRFPLUS zipped tar file from /classroom/wrfhelp/SOURCE_CODE</p>
               <blockquote>
-                <p class="stylecode">cd /kumquat/users/$USER/DA/compile</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/SOURCE_CODE/WRFPLUS_V3.8.tar.gz .</p>
+                <p class="stylecode">cd /classroom/users/$USER/DA/compile</p>
+                <p class="stylecode">cp /classroom/wrfhelp/SOURCE_CODE/WRFPLUS_V3.8.tar.gz .</p>
               </blockquote>
               <p>Set "J" to compile in parallel</p>
               <blockquote>
@@ -130,10 +129,10 @@ a:active {
             <p class="pagetitle"><a name="compile_4dvar"></a>Compiling WRFDA for 4DVAR</p>
             <blockquote>
               <p>To compile WRFDA for 4DVAR, you should have already compiled WRFPLUS (see <a href=#compile_wrfplus>above</a>).</p>
-              <p>Get the WRFDA zipped tar file from /kumquat/wrfhelp/SOURCE_CODE</p>
+              <p>Get the WRFDA zipped tar file from /classroom/wrfhelp/SOURCE_CODE</p>
               <blockquote>
-                <p class="stylecode">cd /kumquat/users/$USER/DA/compile</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
+                <p class="stylecode">cd /classroom/users/$USER/DA/compile</p>
+                <p class="stylecode">cp /classroom/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
                 <p><i>If you have already built WRFDA in this directory for 3DVAR, be sure to rename that directory first.</i></p>
                 <p class="stylecode">mv WRFDA WRFDA_3DVAR</p>
               </blockquote>
@@ -149,7 +148,7 @@ a:active {
               <p>Only one radiative transfer model is necessary, but WRFDA can be compiled with both, so set the CRTM and/or RTTOV environment variables:</p>
               <blockquote>
                 <p class="stylecode">setenv CRTM 1<br>
-                  setenv RTTOV /kumquat/wrfhelp/external/rttov11</p>
+                  setenv RTTOV /classroom/wrfhelp/external/rttov11</p>
               </blockquote>
               <p>To compile WRFDA with HDF5 support (necessary for reading AMSR2 observations), set the HDF5 envirnment variable appropriately:</p>
               <blockquote>
@@ -157,7 +156,7 @@ a:active {
               </blockquote>
               <p>Finally, to compile WRFDA for 4DVAR, you'll have to specify the location of the WRFPLUS code. Set the environment variable WRFPLUS_DIR to point to the WRFPLUS build you just installed.</p>
               <blockquote>
-                <p class="stylecode">setenv WRFPLUS_DIR /kumquat/users/$USER/DA/compile/WRFPLUSV3</p>
+                <p class="stylecode">setenv WRFPLUS_DIR /classroom/users/$USER/DA/compile/WRFPLUSV3</p>
               </blockquote>
               <p>Configure and Compile for 4DVAR (note the different "configure" command):</p>
               <blockquote>
@@ -175,13 +174,14 @@ a:active {
               </blockquote>
               <p>You should see 44 executables: 43 in the var/build/ directory, plus var/obsproc/src/obsproc.exe. The most important of these is var/build/da_wrfvar.exe; this is the main WRFDA executable.</p>
               </blockquote>
-            <p class="pagetitle"><a name="cloudy_radiance"></a>Cloudy radiance code</p>
+
+<!--            <p class="pagetitle"><a name="cloudy_radiance"></a>Cloudy radiance code</p>
             <blockquote>
                 <p>The code for the <a href="cloudy_rad.html">cloudy radiance exercise</a> is not yet available in the latest release version of WRFDA (version 3.8, which is used for most classroom exercises). However, we currently have a separate beta release of the code with the cloudy radiance capabilities included. This section will instruct you on how to download and install that code</p>
-              <p>Get the zipped tar file from /kumquat/wrfhelp/SOURCE_CODE, or download it from <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/beta.html>the WRFDA Users' website</a>.</p>
+              <p>Get the zipped tar file from /classroom/wrfhelp/SOURCE_CODE, or download it from <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/beta.html>the WRFDA Users' website</a>.</p>
               <blockquote>
-                <p class="stylecode">cd /kumquat/users/$USER/DA</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/SOURCE_CODE/WRFDA_V38_cloudy_radiance_beta.tar.gz .</p>
+                <p class="stylecode">cd /classroom/users/$USER/DA</p>
+                <p class="stylecode">cp /classroom/wrfhelp/SOURCE_CODE/WRFDA_V38_cloudy_radiance_beta.tar.gz .</p>
                 <p class="stylecode">tar -zxf WRFDA_V38_cloudy_radiance_beta.tar.gz</p>
                 <p class="stylecode">cd WRFDA_CR</p>
               </blockquote>
@@ -191,10 +191,10 @@ a:active {
             <p class="pagetitle"><a name="CLOUDCV"></a>The CLOUD_CV option</p>
             <blockquote>
               <p>For some newer WRFDA features, you will need additional control variables to properly handle moisture variables. While this is not required for any of the classroom exercises, you can try compiling the code with this option below. You can find more information in <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/Docs/user_guide_V3.8/users_guide_chap6.htm#_Radar_Data_Assimilation>the relevant section of the user's guide</a>.</p>
-              <p>Get the WRFDA zipped tar file from <em>/kumquat/wrfhelp/SOURCE_CODE</em> if you haven't already</p>
+              <p>Get the WRFDA zipped tar file from <em>/classroom/wrfhelp/SOURCE_CODE</em> if you haven't already</p>
               <blockquote>
-                <p class="stylecode">cd /kumquat/users/${USER}/DA</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
+                <p class="stylecode">cd /classroom/users/${USER}/DA</p>
+                <p class="stylecode">cp /classroom/wrfhelp/SOURCE_CODE/WRFDA_V3.8.tar.gz .</p>
               </blockquote>
               <p>Since a directory named WRFDA already exists, create a new one and extract the WRFDA <a href=https://en.wikipedia.org/wiki/Tar_%28computing%29>tarball</a> there</p>
               <blockquote>
@@ -207,7 +207,7 @@ a:active {
                 <p class="stylecode">setenv CLOUD_CV 1</p>
               </blockquote>
               <p>This will make the code compile with the extra moisture control variable options enabled. Note that this will result in slower code even if you are not using the CLOUD_CV control variable options, so it is recommended that you only use this code for experiments that are using the CLOUD_CV moisture control variables!</p>
-              <p> Configure and compile the code the same way you did above, and check for successful compilation before using the code.</p>
+              <p> Configure and compile the code the same way you did above, and check for successful compilation before using the code.</p>-->
 
 
               <p class="stylecode">&nbsp;</p>
