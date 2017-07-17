@@ -280,7 +280,6 @@ PlainStyle2,
 ,"Practice Session 3 ","show-menu=wrfda-practice-3","class/lessons.html#session_3",,1
 ,"Practice Session 4 ","show-menu=wrfda-practice-4","class/lessons.html#session_4",,1
 ,"Practice Session 5 ","show-menu=wrfda-practice-5","class/lessons.html#session_5",,1
-,"Practice Session 6 ","show-menu=wrfda-practice-6","class/lessons.html#session_6",,1
 ,"Code compilation ","class/compile.html",,,1
 ])
 
@@ -333,6 +332,8 @@ PlainStyle2,
 0,
 ,
 ,"3DVAR-realdata","class/3dvar.html",,,1
+,"GEN_BE ","class/genbe.html",,,1
+,"PSOT ","class/psot.html",,,0
 ])
 
 addmenu(menu=[
@@ -357,9 +358,8 @@ PlainStyle2,
 ,
 0,
 ,
-,"GEN_BE ","class/genbe.html",,,1
-,"PSOT ","class/psot.html",,,1
-,"Radiance DA ","class/radiance.html",,,0
+,"Radiance DA ","class/radiance.html",,,1
+,"4DVAR ","class/4dvar.html",,,0
 ])
 
 addmenu(menu=[
@@ -384,8 +384,8 @@ PlainStyle2,
 ,
 0,
 ,
-,"4DVAR ","class/4dvar.html",,,1
 ,"Hybrid DA ","class/hybrid.html",,,1
+,"Radar DA ","class/radar.html",,,1
 ,"Tools/Verification ","class/tools.html",,,0
 ])
 
@@ -412,35 +412,10 @@ PlainStyle2,
 0,
 ,
 ,"WRFDA/WRF Cycling ","class/cycling.html",,,1
-,"FSO ","class/fso.html",,,0
-])
-
-addmenu(menu=[
-"wrfda-practice-6",
-,
-,
-160,
-1,
-,
-PlainStyle2,
-0,
-,
-"Fade(duration=0.5);Shadow(color=777777, Direction=135, Strength=5)",
-0,
-0,
-0,
-,
-,
-0,
-0,
-,
-,
-0,
-,
-,"Radar DA ","class/radar.html",,,1
 ,"Precipitation DA ","class/rainfall.html",,,1
 ,"Cloudy radiance ","class/cloudy_rad.html",,,1
 ,"Dual-res hybrid ","class/dualres_hybrid.html",,,0
+,"FSO ","class/fso.html",,,0
 ])
 
 
