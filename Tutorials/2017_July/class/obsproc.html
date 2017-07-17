@@ -48,17 +48,17 @@ a:active {
               <span class="bodyh1">Source code</span>
             <blockquote>
               <p>
-                Copy the <a href="wrfda_code.html">pre-compiled code</a> to your main working directory (<em>/kumquat/users/${USER}/DA</em>), if you have not done so. </p>
+                Copy the <a href="wrfda_code.html">pre-compiled code</a> to your main working directory (<em>/classroom/users/${USER}/DA</em>), if you have not done so. </p>
               <p><span class="stylecode">WRFDA/var/obsproc/obsproc.exe</span> is the executable that will be used in this session.</p>
             </blockquote>
             <span class="bodyh1">Create your working directory </span>
             <blockquote>
               <p>We recommend running each session in a separate directory, so that it will be easier to check for the necessary input files and look for what output files are created after a successful run.            
               </p>
-              <p>For this exercise you should create <em>/kumquat/users/${USER}/DA/obsproc</em> and use this as your working directory for this session.</p>
+              <p>For this exercise you should create <em>/classroom/users/${USER}/DA/obsproc</em> and use this as your working directory for this session.</p>
               <blockquote>
-                <p class="stylecode">mkdir /kumquat/users/${USER}/DA/obsproc<br>
-                                     cd /kumquat/users/${USER}/DA/obsproc</p>
+                <p class="stylecode">mkdir /classroom/users/${USER}/DA/obsproc<br>
+                                     cd /classroom/users/${USER}/DA/obsproc</p>
               </blockquote>
             </blockquote>
             <p>
@@ -69,7 +69,7 @@ a:active {
                 <blockquote>
                   <p>The first step of observation preprocessing is to prepare observations in little_r format.<br>
                     For this tutorial, an observation file in little_r format is provided.</p>
-                  <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/obs.2008020512 .</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/obs.2008020512 .</p>
                   <p><span class="stylecode">obs.2008020512</span> is the observation file for this exercise in little_r format. It is a text file; you can use <span class="stylecode">emacs</span>, <span class="stylecode">vi</span>, or another text editor to see its contents. <strong>For your own applications, you will have to prepare your own observation file.</strong></p>
                 </blockquote>
               </li>
@@ -77,7 +77,7 @@ a:active {
                 <blockquote>
                   <p>The observation error file (<em>obserr.txt</em>) is provided with the WRFDA package under the var/obsproc directory.<br>
                   Make sure it is present in your obsproc working directory.</p>
-                  <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/var/obsproc/obserr.txt ./obserr.txt</p>
+                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/var/obsproc/obserr.txt ./obserr.txt</p>
                 </blockquote>
               </li>
             
@@ -85,7 +85,7 @@ a:active {
                 <blockquote>
                   <p>For your reference, an example namelist (namelist.obsproc.3dvar.wrfvar-tut) has been included in the WRFDA package under var/obsproc directory.<br>
                   Copy and rename the namelist to "namelist.obsproc" under your working directory.</p>
-                  <p class="stylecode">cp /kumquat/users/${USER}/DA/WRFDA/var/obsproc/namelist.obsproc.3dvar.wrfvar-tut ./namelist.obsproc</p>
+                  <p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/obsproc/namelist.obsproc.3dvar.wrfvar-tut ./namelist.obsproc</p>
                   <p><span class="stylecode">namelist.obsproc</span> contains options to configure the little_r observation file location, domain, time window, etc.<br>
                   For this tutorial case, you shouldn't need to change any settings in the namelist, but you should check the important settings to gain familiarity with the setup of OBSPROC. &amp;record1 specifies information about your input file names, &amp;record2 specifies date/time information, and &amp;record7 and &amp;record8 specify information about your domain.</p>
                   <p class="stylecode">&gt; vi namelist.obsproc</p>
@@ -132,7 +132,7 @@ a:active {
             <blockquote>
               <p>It is convenient to link the executable to your current working directory.</p>
               <blockquote>
-                <p class="stylecode">ln -sf /kumquat/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
+                <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
                 <p class="stylecode">./obsproc.exe</p>
               </blockquote>
               <p>On the classroom computers, running this exercise should take about a minute.</p>
@@ -141,7 +141,7 @@ a:active {
             <blockquote>
               <p>A successful run of obsproc should result in lines similar to these near the end of the output on screen:</p>
               <blockquote>
-                <p class="stylecode">Write 3DVAR GTS observations in file obs_gts_2008-02-05_12:00:00.3DVAR (WRFDA V3.8      )<br><br>Wrote   31140 lines of data in file: obs_gts_2008-02-05_12:00:00.3DVAR<br><br>No SSMI observations available.</p>
+                <p class="stylecode">Write 3DVAR GTS observations in file obs_gts_2008-02-05_12:00:00.3DVAR (WRFDA V3.9)<br><br>Wrote &nbsp; &nbsp;31140 lines of data in file: obs_gts_2008-02-05_12:00:00.3DVAR<br><br>No SSMI observations available.<br><br>STOP 99999</p>
               </blockquote>
               <table align=center width="90%" border="1" cellpadding="10">
                 <tr>
@@ -154,7 +154,7 @@ a:active {
                 <li><a class=stylecode href=obs_duplicate_loc.diag.txt>obs_duplicate_loc.diag</a>: contains info about stations with multiple observations of the same type within your specified time window. For 3DVAR, if there are multiple observations of the same type at the same location, only one will be kept.</li>
                 <li><a class=stylecode href=obs_gts_read.diag.txt>obs_gts_read.diag</a>: lists every observation read from the LITTLE_R input file, followed by a note if it was rejected due to being outside of the specified domain or outside the specified time window.
                 <li><a class=stylecode href=obs_qc1.diag.txt>obs_qc1.diag</a>: first set of quality control checks: looks for and attempts to correct temperature and wind spikes as well as super-adiabatic conditions in sounding observations</li>
-                <li><a class=stylecode href=obs_qc2.diag.txt>obs_qc2.diag</a>: second set of quality control checks: looks for obseravtions above the specified model top</li>
+                <li><a class=stylecode href=obs_qc2.diag.txt>obs_qc2.diag</a>: second set of quality control checks: looks for observations above the specified model top</li>
                 <li><a class=stylecode href=obs_recover_height.diag.txt>obs_recover_height.diag</a> and <a class=stylecode href=obs_recover_pressure.diag.txt>obs_recover_pressure.diag</a>: lists observations where missing height or pressure was recovered from other observed variables combined with the reference state</li>
                 <li><a class=stylecode href=obs_uncomplete.diag.txt>obs_uncomplete.diag</a>: remove observations that consist only of missing data</li>
               </ul>
@@ -165,14 +165,14 @@ a:active {
             <blockquote>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
-                    <td>You can use an NCL script, provided at <em>/kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>, to see the locations of observations contained in <em>obs_gts_2008-02-05_12:00:00.3DVAR</em><br><br>
-              <blockquote><p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl .</p></blockquote>
+                    <td>You can use an NCL script, provided at <em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>, to see the locations of observations contained in <em>obs_gts_2008-02-05_12:00:00.3DVAR</em><br><br>
+              <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl .</p></blockquote>
               <p>Edit plot_ob_ascii_loc.ncl to provide the date, filenames and options of your case.</p>
               <blockquote>
                 <p class="stylecode">......<br>
                 date = &quot;2008020512&quot;<br>
                 obfile = &quot;obs_gts_2008-02-05_12:00:00.3DVAR&quot;<br>
-                fgfile = &quot;/kumquat/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01&quot;   ; for retrieving mapping info<br>
+                fgfile = &quot;/classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01&quot;   ; for retrieving mapping info<br>
                 out_type = &quot;pdf&quot;<br>
                 plotname = &quot;./obsloc&quot;+date<br>
                 ......              </p>
@@ -211,17 +211,17 @@ a:active {
               <p>Then run obsproc again. This time, you should see more output files: <span class="stylecode">obs_gts_2008-02-05_12:00:00.4DVAR</span>, <span class="stylecode">obs_gts_2008-02-05_13:00:00.4DVAR</span>, etc. These files should contain observations for the same domain split into 1-hour time windows as indicated by the file name.</p>-->
 
               <span class="bodyh1">Prepare observations for 4DVAR</span></p>
-              <p>Now we will use OBSPROC to create ASCII obseravtion files for a later 4DVAR exercise. Create <em>/kumquat/users/${USER}/DA/obsproc_4dvar</em> and use this as your working directory.</p>
+              <p>Now we will use OBSPROC to create ASCII obseravtion files for a later 4DVAR exercise. Create <em>/classroom/users/${USER}/DA/obsproc_4dvar</em> and use this as your working directory.</p>
               <blockquote>
-                <p class="stylecode">mkdir /kumquat/users/${USER}/DA/obsproc_4dvar<br>
-                                     cd /kumquat/users/${USER}/DA/obsproc_4dvar</p>
+                <p class="stylecode">mkdir /classroom/users/${USER}/DA/obsproc_4dvar<br>
+                                     cd /classroom/users/${USER}/DA/obsproc_4dvar</p>
               </blockquote>
               <p>As before, you will need an observation file in little_r format, an observation error table, and a namelist file.<br>
               <p>This time, try creating your own "namelist.obsproc" from scratch. You'll need to set the following settings for this test case:<br>
                 <blockquote>
                   <p class="stylecode">&gt; vi namelist.obsproc</p>
                   <p class="stylecode">&amp;record1<br>
-                   obs_gts_filename = '/kumquat/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/obs.all',<br>
+                   obs_gts_filename = '/classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/obs.all',<br>
                    obs_err_filename = 'obserr.txt',<br>
                   /<br>
                   &amp;record2<br>
@@ -274,8 +274,8 @@ a:active {
                 </blockquote>
                 <p>Use the same observation error file as you did for the previous exercise, then run obsproc:</p>
                 <blockquote>
-                  <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/var/obsproc/obserr.txt ./obserr.txt</p>
-                  <p class="stylecode">ln -sf /kumquat/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
+                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/var/obsproc/obserr.txt ./obserr.txt</p>
+                  <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
                   <p class="stylecode">./obsproc.exe</p>
                 </blockquote>
               <p>On the classroom computers, running this exercise should take about a minute.</p>
@@ -284,7 +284,7 @@ a:active {
                   <td class="style8"><p><b>NOTE:</b> If you see messages stating "WARNING: ERROR in read_measurements", this is normal and can be safely ignored. This simply indicates that an observation in the input file is formatted incorrectly, and is being skipped.</p></td>
                 </tr>
               </table>
-              <p>This time, you should see several observation files in your working directory:</p>
+              <p><br>This time, you should see several observation files in your working directory:</p>
                 <blockquote>
                   <p class="stylecode">obs_gts_2005-07-16_00:00:00.4DVAR<br>
                   obs_gts_2005-07-16_01:00:00.4DVAR<br>
@@ -298,12 +298,12 @@ a:active {
               <p>You will also see the same <span class="stylecode">*.diag</span> diagnostic files as with the 3DVAR case. The only difference is there will now be 7 duplicate time log files rather than one.</p>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
-                    <td>You can use the same NCL script as above (<em>/kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>), to see the locations of observations contained in each of your observation files. Copy plot_ob_ascii_loc.ncl to your working directory, then edit it to provide the date, filenames and options for this case.</p>
+                    <td>You can use the same NCL script as above (<em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>), to see the locations of observations contained in each of your observation files. Copy plot_ob_ascii_loc.ncl to your working directory, then edit it to provide the date, filenames and options for this case.</p>
               <blockquote>
                 <p class="stylecode">......<br>
                 date = &quot;2005071600&quot;<br>
                 obfile = &quot;obs_gts_2005-07-16_00:00:00.4DVAR&quot;; (or obs_gts_2005-07-16_01:00:00.4DVAR, obs_gts_2005-07-16_02:00:00.4DVAR, etc.)<br>
-                fgfile = &quot;/kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01&quot;   ; for retrieving mapping info<br>
+                fgfile = &quot;/classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01&quot;   ; for retrieving mapping info<br>
                 out_type = &quot;pdf&quot;<br>
                 plotname = &quot;./obsloc&quot;+date<br>
                 ......              </p>
@@ -326,7 +326,7 @@ a:active {
               <li>Try modifying some of the settings under &amp;record2 and &amp;record9 to see how it changes the observations that are printed out.</li>
             </ul>
             <ul>
-              <li>Set up any other domain of your interest, or some domains you have used for <a href="http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_July2015/wps_arw.php">WRF practice</a>. Use the command "ncdump -h" on any WRF file to find out the appropriate domain settings.<br>
+              <li>Set up any other domain of your interest, or some domains you have used for <a href="http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_July2017/wps_arw.php">WRF practice</a>. Use the command "ncdump -h" on any WRF file to find out the appropriate domain settings.<br>
                 <strong>Take a look at WRFDA/var/obsproc/README.namelist to get some ideas on the options available for setting up your own domain.</strong></li>
             </ul>
             <p>&nbsp;</p>

@@ -331,7 +331,7 @@ PlainStyle2,
 ,
 0,
 ,
-,"3DVAR-realdata","class/3dvar.html",,,1
+,"3DVAR","class/3dvar.html",,,1
 ,"GEN_BE ","class/genbe.html",,,1
 ,"PSOT ","class/psot.html",,,0
 ])

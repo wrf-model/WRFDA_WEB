@@ -331,7 +331,7 @@ PlainStyle2,
 ,
 0,
 ,
-,"3DVAR-realdata","../class/3dvar.html",,,1
+,"3DVAR","../class/3dvar.html",,,1
 ,"GEN_BE ","../class/genbe.html",,,1
 ,"PSOT ","../class/psot.html",,,0
 ])
@@ -507,63 +507,6 @@ PlainStyle2,
 ,"Step 1 - Localization","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRFSI/si_run1.htm",,,0
 ,"Step 2 - deGrib Input","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRFSI/si_run2.htm",,,0
 ,"Step 3 - Interpolation","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRFSI/si_run3.htm",,,0
-])
-
-
-//    MENU ITEM - ARW Real
-addmenu(menu=[
-"ARW_Real",
-,
-,
-160,
-1,
-,
-PlainStyle2,
-0,
-,
-"Fade(duration=0.5);Shadow(color=777777, Direction=135, Strength=5)",
-0,
-0,
-0,
-,
-,
-0,
-0,
-,
-,
-0,
-,
-,"General","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRF_real/index.htm",,,0
-,"Run real.exe","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRF_real/arw_real_1dom.htm",,,0
-,"Run wrf.exe","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/WRF_real/arw_wrf_1dom.htm",,,0
-])
-
-addmenu(menu=[
-"ARW_Ideal",
-,
-,
-190,
-1,
-,
-PlainStyle2,
-0,
-,
-"Fade(duration=0.5);Shadow(color=777777, Direction=135, Strength=5)",
-0,
-0,
-0,
-,
-,
-0,
-0,
-,
-,
-0,
-,
-//,"Pubs & Docs Overview","http://www2.mmm.ucar.edu/wrf/users/pub-doc.html",,,0
-//,"WRF dynamics","http://www2.mmm.ucar.edu/wrf/users/docs/wrf-dyn.html",,,0
-//,"WRF physics document","http://www2.mmm.ucar.edu/wrf/users/docs/wrf-phy.html",,,0
-//,"Tutorial Presentation","http://www2.mmm.ucar.edu/wrf/tutorial/2003/tutorial-2003.html",,,1
 ])
 
 
