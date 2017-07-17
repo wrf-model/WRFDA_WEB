@@ -58,16 +58,6 @@ a:active {
               <p>This will generate the <span class="stylecode">WRFDA</span> directory containing the compiled WRFDA code. This WRFDA package is pre-compiled to run in parallel (dmpar) mode using the GNU compiler (gfortran/gcc 4.9.2). It was compiled with the 4DVAR capability, and so can be run for both 3DVAR and 4DVAR exercises</p>
               </p>
             </blockquote>
-<!--            <span class="bodyh1"><a name="4dvar">Pre-compiled code for 4DVAR</span>
-            <blockquote>
-              <p><b>NOTE: if you already have a "WRFDA" directory in your main working directory <em>/kumquat/users/${USER}/DA</em>, be sure to rename it before extracting the new code.</b></p>
-                <span class="stylecode">cd /kumquat/users/${USER}/DA</span><br>
-                <span class="stylecode">mv WRFDA WRFDA_3DVAR </span><br>
-                <span class="stylecode">cp /kumquat/wrfhelp/PRE_COMPILED/WRFDA/WRFDA_4DVAR_compiled.tar.gz . </span><br>
-                <span class="stylecode">tar -xzf WRFDA_4DVAR_compiled.tar.gz</span></p>
-              <p>This will generate the <span class="stylecode">WRFDA</span> directory containing the compiled WRFDA-4DVAR package. The WRFDA code is pre-compiled to run in parallel (dmpar) mode using the GNU compiler (gfortran/gcc 4.9.2). It is not necessary to copy over the WRFPLUS code unless you will be running it directly, like with the <a href="fso.html">FSO exercise</a>.</p>
-              </p>
-            </blockquote>-->
             <a name=WRFPLUS><span class="bodyh1">Pre-compiled code for WRFPLUS</span>
             <blockquote>
               <p>The pre-compiled WRFPLUS package can be accessed from the same directory. It is not necessary to copy over the WRFPLUS code unless you will be running it directly, like with the <a href="fso.html">FSO exercise</a>.</p>
@@ -76,11 +66,6 @@ a:active {
                 tar -xzf WRFPLUSV3_compiled.tar.gz</p>
             </blockquote>
             
-            <a name=cloudy><span class="bodyh1">Code for cloudy radiance</span>
-            <blockquote>
-              <p>The code for the <a href="cloudy_rad.html">cloudy radiance exercise</a> is not yet available in the latest release version of WRFDA (version 3.8, which is used for the rest of the classroom exercises). Therefore you'll need to <a href=compile.html#CLOUDCV>download and compile the beta-release code yourself</a>.</p>
-            </blockquote>
-
           </td>
         </tr>
         <tr><td><a href="#top">back to top</a></td></tr>

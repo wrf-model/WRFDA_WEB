@@ -244,7 +244,7 @@ PlainStyle2,
 ,
 0,
 , 
-,"Overview ","../class/wrfda_sessions.html",,,1
+,"Overview ","../class/lessons.html",,,1
 ,"OBSPROC ","../class/obsproc.html",,,1
 ,"WRFVar-Real ","../class/3dvar.html",,,1
 ,"GEN_BE ","../class/genbe.html",,,1
@@ -274,13 +274,13 @@ PlainStyle2,
 ,
 0,
 , 
-,"Overview ","../class/wrfda_sessions.html",,,1
-,"Practice Session 1 ","show-menu=wrfda-practice-1","../class/wrfda_sessions.html#session_1",,1
-,"Practice Session 2 ","show-menu=wrfda-practice-2","../class/wrfda_sessions.html#session_2",,1
-,"Practice Session 3 ","show-menu=wrfda-practice-3","../class/wrfda_sessions.html#session_3",,1
-,"Practice Session 4 ","show-menu=wrfda-practice-4","../class/wrfda_sessions.html#session_4",,1
-,"Practice Session 5 ","show-menu=wrfda-practice-5","../class/wrfda_sessions.html#session_5",,1
-,"Practice Session 6 ","show-menu=wrfda-practice-6","../class/wrfda_sessions.html#session_6",,1
+,"Overview ","../class/lessons.html",,,1
+,"Practice Session 1 ","show-menu=wrfda-practice-1","../class/lessons.html#session_1",,1
+,"Practice Session 2 ","show-menu=wrfda-practice-2","../class/lessons.html#session_2",,1
+,"Practice Session 3 ","show-menu=wrfda-practice-3","../class/lessons.html#session_3",,1
+,"Practice Session 4 ","show-menu=wrfda-practice-4","../class/lessons.html#session_4",,1
+,"Practice Session 5 ","show-menu=wrfda-practice-5","../class/lessons.html#session_5",,1
+,"Practice Session 6 ","show-menu=wrfda-practice-6","../class/lessons.html#session_6",,1
 ,"Code compilation ","../class/compile.html",,,1
 ])
 
