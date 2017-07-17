@@ -49,12 +49,12 @@ set DATE         = 2007010106
 set RUN_TYPE     = cycle   # cold or cycle
 set DOMAIN_ID    = 01
 set NPROC        =  4
-set DA_SRCDIR    = /kumquat/wrfhelp/SOURCE_CODE/WRFDA
+set DA_SRCDIR    = /classroom/wrfhelp/SOURCE_CODE/WRFDA
 set BIN_DIR      = ${DA_SRCDIR}/var/build
-set OB_DATDIR    = /kumquat/wrfhelp/DATA/WRFDA/ASR180/ob
-set BE_DATDIR    = /kumquat/wrfhelp/DATA/WRFDA/ASR180/be
-set RC_DATDIR    = /kumquat/wrfhelp/DATA/WRFDA/ASR180/rc
-set RUN_BASEDIR  = /kumquat/users/$USER/DA/asr180/run
+set OB_DATDIR    = /classroom/wrfhelp/DATA/WRFDA/ASR180/ob
+set BE_DATDIR    = /classroom/wrfhelp/DATA/WRFDA/ASR180/be
+set RC_DATDIR    = /classroom/wrfhelp/DATA/WRFDA/ASR180/rc
+set RUN_BASEDIR  = /classroom/users/$USER/DA/asr180/run
 set DA_RUNDIR    = ${RUN_BASEDIR}/${DATE}/da/d${DOMAIN_ID}
 set TIMEWINDOW1  =  -1h30m
 set TIMEWINDOW2  =  1h30m
@@ -111,7 +111,7 @@ ln -fs ${DA_SRCDIR}/var/run/radiance_info .
 # link crtm_coeffs if using CRTM
 ln -fs ${DA_SRCDIR}/var/run/crtm_coeffs   .
 # link rtcoef* if using RTTOV
-#ln -fs /kumquat/wrfhelp/WRFDA/external/rttov87/rtcoef_rttov7/rtcoef*.dat .
+#ln -fs /classroom/wrfhelp/WRFDA/external/rttov87/rtcoef_rttov7/rtcoef*.dat .
 #
 set VARBC_DIR = ${RUN_BASEDIR}/${VARBC_PREV_DATE}/da/d${DOMAIN_ID}
 if ( ! -e ${VARBC_DIR}/VARBC.out ) then

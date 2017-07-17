@@ -47,10 +47,10 @@ a:active {
 <p>              <span class="bodyh1">Source code</span>            </p>
             <blockquote>
                 <p>WRFDA and WRFPLUS are needed for this practice.</p>
-                <p><a href="wrfda_code.html">Get the pre-compiled WRFDA <b>and WRFPLUS</b></a> from <em>/kumquat/wrfhelp/PRE_COMPILED/WRFDA</em>. <b>This is the only exercise where WRFPLUS is directly needed, so make sure you copy that pre-compiled code to your working directory as well</b>.</p>
-                <p>The FSO data, including the main script, can be found in /kumquat/wrfhelp/DATA/WRFDA/FSO</p>
+                <p><a href="wrfda_code.html">Get the pre-compiled WRFDA <b>and WRFPLUS</b></a> from <em>/classroom/wrfhelp/PRE_COMPILED/WRFDA</em>. <b>This is the only exercise where WRFPLUS is directly needed, so make sure you copy that pre-compiled code to your working directory as well</b>.</p>
+                <p>The FSO data, including the main script, can be found in /classroom/wrfhelp/DATA/WRFDA/FSO</p>
                 <p><strong><em>wrapper_run_fso.ksh</em></strong> is the main script that will be used in this practice.</p>
-<p>The <strong><em>wrapper_run_fso.ksh</em></strong> calls several other scripts that are in the /kumquat/wrfhelp/DATA/WRFDA/TOOLS/scripts and /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl directories. This scripts are part of the WRFDA TOOLS package, which is not part of the main WRFDA source code; if you are working from home, you will have to <a href="http://www2.mmm.ucar.edu/wrf/users/wrfda/download/tools.html">download the TOOLS package</a> separately.</p>
+<p>The <strong><em>wrapper_run_fso.ksh</em></strong> calls several other scripts that are in the /classroom/wrfhelp/DATA/WRFDA/TOOLS/scripts and /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl directories. This scripts are part of the WRFDA TOOLS package, which is not part of the main WRFDA source code; if you are working from home, you will have to <a href="http://www2.mmm.ucar.edu/wrf/users/wrfda/download/tools.html">download the TOOLS package</a> separately.</p>
 <p>For example,<br>
 &nbsp;&nbsp;scripts/da_run_sensitivity.ksh<br>
 &nbsp;&nbsp;scripts/da_run_wrf.ksh<br>
@@ -65,10 +65,10 @@ are some of the scripts involved in the FSO procedures.
               <blockquote>
                 <p class="stylecode">
                 <p>Create a working directory for this practice.</p>
-                <p class="stylecode">mkdir /kumquat/users/$USER/DA/FSO<br>
-                cd /kumquat/users/$USER/DA/FSO</p>
+                <p class="stylecode">mkdir /classroom/users/$USER/DA/FSO<br>
+                cd /classroom/users/$USER/DA/FSO</p>
                 <p>You will need to copy the FSO script and test data for this exercise</p>
-                <p class="stylecode">cp -r /kumquat/wrfhelp/DATA/WRFDA/FSO/* . </p>
+                <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/FSO/* . </p>
                 <p>Edit wrapper_run_fso.ksh to set up the options for a regular WRFDA run.                </p>
                 <p>......<br>
                   export RUN_WRFVAR=<strong>true</strong><br>
@@ -87,12 +87,12 @@ export FINAL_DATE=2007010112
                   export INITIAL_DATE=2007010100<br>
                   export FINAL_DATE=2007010112<br>
                 <p>                ......<br>
-                  export REL_DIR=/kumquat/users/$USER/DA/<br>
+                  export REL_DIR=/classroom/users/$USER/DA/<br>
                   export DAT_DIR=$REL_DIR/FSO<br>
                   export WRFPLUS_DIR=$REL_DIR/WRFPLUSV3<br>
                   export WRFVAR_DIR=$REL_DIR/WRFDA<br>
                   export WRFNL_DIR=$WRFPLUS_DIR<br>
-                  export TOOLS_DIR=/kumquat/wrfhelp/DATA/WRFDA/TOOLS/<br>
+                  export TOOLS_DIR=/classroom/wrfhelp/DATA/WRFDA/TOOLS/<br>
                   export SCRIPTS_DIR=$TOOLS_DIR/scripts<br>
                   export GRAPHICS_DIR=$TOOLS_DIR/graphics/ncl<br>
                   export BUILD_DIR=$WRFVAR_DIR/var/build<br>
@@ -104,7 +104,7 @@ export FINAL_DATE=2007010112
                   export NL_J_PARENT_START=0</p>
                 <p>Execute the script. This part should take less than a minute.</p>
                 <p class="stylecode">./wrapper_run_fso.ksh</p>
-<p>After the script finishes, a file in your working directory (<em>/kumquat/users/$USER/DA/FSO/run</em>) will indicate whether the run was successful or not (a blank file will exist, either named "FAIL" or "SUCCESS"). If the run was successful, edit wrapper_run_fso.ksh again, and change the following settings to do sensitivity and observation impact runs:</p>
+<p>After the script finishes, a file in your working directory (<em>/classroom/users/$USER/DA/FSO/run</em>) will indicate whether the run was successful or not (a blank file will exist, either named "FAIL" or "SUCCESS"). If the run was successful, edit wrapper_run_fso.ksh again, and change the following settings to do sensitivity and observation impact runs:</p>
 <p>......<br>
   export RUN_WRFVAR=<strong><span style="color:blue">false</span></strong><br>
 export RUN_UPDATE_BC=<strong><span style="color:blue">false</span></strong><br>
@@ -122,9 +122,9 @@ export RUN_OBS_IMPACT=<span style="color:red">true</span></p>
                 <span class="bodyh1">Check Output </span></p>
               <blockquote>
                 <p class="body">NOTE: The error trapping in FSO is not perfect, so for certain problems the system may still report "SUCCESS". Make sure all the files below were created, or else you may have set some variables incorrectly.</p>
-                <p>/kumquat/users/$USER/DA/FSO/run/2007010100/sensitivity/ad_d01_2007010100 is the <strong>gradient of the forecast error norm to the initial conditions</strong>. You can quickly view this file using ncview to ensure there is nothing strange going on (the TL/A variables should look <a href="images/ncview.TL_U.png">like this</a>, while the NL variables should look <a href="images/ncview.NL_U.png">like this</a>. <!--plot_adj_sensitivity.ncl, which can be found in the TOOLS package, can be used to make some plots. CANT GET THIS TO WORK BECAUSE OF STUPID XLAT PROBLEM--></p>
-                <p>/kumquat/users/$USER/DA/FSO/run/2007010100/sensitivity/index.html contains the text output from running var/graphics/ncl/adj_diagnostics.ncl to get the <strong>diagnostics of error reduction in the forecasts from Xb (background) to Xa (analysis)</strong>.</p>
-                <p>/kumquat/users/$USER/DA/FSO/run/2007010100/obsimpact/rsl.out.0000 contains the <strong>cumulated impact of each observation type on the forecast errors</strong>.</p>
+                <p>/classroom/users/$USER/DA/FSO/run/2007010100/sensitivity/ad_d01_2007010100 is the <strong>gradient of the forecast error norm to the initial conditions</strong>. You can quickly view this file using ncview to ensure there is nothing strange going on (the TL/A variables should look <a href="images/ncview.TL_U.png">like this</a>, while the NL variables should look <a href="images/ncview.NL_U.png">like this</a>. <!--plot_adj_sensitivity.ncl, which can be found in the TOOLS package, can be used to make some plots. CANT GET THIS TO WORK BECAUSE OF STUPID XLAT PROBLEM--></p>
+                <p>/classroom/users/$USER/DA/FSO/run/2007010100/sensitivity/index.html contains the text output from running var/graphics/ncl/adj_diagnostics.ncl to get the <strong>diagnostics of error reduction in the forecasts from Xb (background) to Xa (analysis)</strong>.</p>
+                <p>/classroom/users/$USER/DA/FSO/run/2007010100/obsimpact/rsl.out.0000 contains the <strong>cumulated impact of each observation type on the forecast errors</strong>.</p>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>

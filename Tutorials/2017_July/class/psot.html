@@ -51,25 +51,25 @@ a:active {
               </blockquote>
               <p><span class="bodyh1">Choose your working directory</span> </p>
               <blockquote>
-                <p>For this exercise you should create<span class="stylecode"> /kumquat/users/${USER}/DA/singleob</span> and use this as your working directory for this session.</p>
+                <p>For this exercise you should create<span class="stylecode"> /classroom/users/${USER}/DA/singleob</span> and use this as your working directory for this session.</p>
                 <blockquote>
-                <p class="stylecode">mkdir /kumquat/users/${USER}/DA/singleob<br>
-                                     cd /kumquat/users/${USER}/DA/singleob</p>
+                <p class="stylecode">mkdir /classroom/users/${USER}/DA/singleob<br>
+                                     cd /classroom/users/${USER}/DA/singleob</p>
               </blockquote></blockquote>
               <span class="bodyh1">Input files</span>
               <blockquote>
                 <p>The setup for a pseduo-observation test is the same as <a href="3dvar.html">running WRFDA-3DVAR with real data</a> (except that the observation file ob.ascii is not required):</p>
                 <blockquote>
-                  <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL <br>
-                  ln -fs /kumquat/users/${USER}/DA/gen_be/gen_be5_cv5/be.dat ./be.dat <br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01 ./fg <br>
+                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL <br>
+                  ln -fs /classroom/users/${USER}/DA/gen_be/gen_be5_cv5/be.dat ./be.dat <br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01 ./fg <br>
                 </blockquote>
               </blockquote>
               <span class="bodyh1">Edit namelist.input</span>
               <blockquote>
                 <p>Change and add the following <span class="stylecode">namelist.input</span> settings to activate the pseudo single ob test. You can do so by modifying the namelist.input used in the previous WRFDA-3DVAR tutorial case:</p>
                 <blockquote>
-                  <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar ./namelist.input</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar ./namelist.input</p>
                   <p class="stylecode">vi namelist.input</p>
                   <p class="stylecode">&amp;wrfvar15<br>
                     num_pseudo = 1,<br>
@@ -90,7 +90,7 @@ a:active {
               <blockquote>
                 <p>The pseudo-single ob test takes very little memory to run compared to a real-data assimilation run, so we can just run it on a single processor:
                 <blockquote>
-                <p class="stylecode">mpirun -np 1 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                <p class="stylecode">mpirun -np 1 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
                 </blockquote>
               </blockquote>
               <p><span class="bodyh1">Check output</span>          </p>
@@ -112,18 +112,18 @@ a:active {
                   <tr style="vertical-align: top;">
                     <td><blockquote><p>Some useful NCL scripts for this exercise are:<br>
                       <br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl<br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test<br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_xy_auto.ncl<br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_xz_auto.ncl<br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_yz_auto.ncl<br>
-                      /kumquat/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_h.ncl
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl<br>
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test<br>
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_xy_auto.ncl<br>
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_xz_auto.ncl<br>
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_yz_auto.ncl<br>
+                      /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/psot_h.ncl
                     </p>
                     <p>The plot at right was generated using psot_h.ncl using the following settings:</p>
                     <blockquote>
                       <p class="stylecode">   works = "pdf"<br>
                         expt = ""<br>
-                        directory = "/kumquat/users/$USER/DA/singleob/"<br>
+                        directory = "/classroom/users/$USER/DA/singleob/"<br>
                         first_guess     = addfile(directory+"fg.nc", "r")<br>
                         analysis        = addfile(directory+"wrfvar_output.nc", "r")<br>
                         kl=12

@@ -52,24 +52,24 @@ a:active {
               <p><span class="bodyh1">Choice of your working directory </span> </p>
               <blockquote>
                 <p>You should run each lesson in a separate directory, so that it will be easier to check for the necessary input files and look for what output files are created after a successful run.</p>
-                <p>We recommend you create <em>/kumquat/users/${USER}/DA/radiance</em> to be your working directory for this session.</p>
+                <p>We recommend you create <em>/classroom/users/${USER}/DA/radiance</em> to be your working directory for this session.</p>
                 <blockquote>
-                  <p class="stylecode">mkdir /kumquat/users/${USER}/DA/radiance<br>
-                                       cd /kumquat/users/${USER}/DA/radiance</p>
+                  <p class="stylecode">mkdir /classroom/users/${USER}/DA/radiance<br>
+                                       cd /classroom/users/${USER}/DA/radiance</p>
               </blockquote></blockquote>
               <p><span class="bodyh1">Input files</span> </p>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
                     <blockquote>
-                      <p>For radiance assimilation practice, we will be using a different case than the day 1 exercises, which can be found in /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case. This is a case from late December, 2013, when a <a href="https://en.wikipedia.org/wiki/Cyclone_Dirk">major extratropical cyclone</a> impacted northwestern Europe. The domain for this case is plotted at right.</p>
+                      <p>For radiance assimilation practice, we will be using a different case than the day 1 exercises, which can be found in /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case. This is a case from late December, 2013, when a <a href="https://en.wikipedia.org/wiki/Cyclone_Dirk">major extratropical cyclone</a> impacted northwestern Europe. The domain for this case is plotted at right.</p>
                       <p>Keep in mind that if you <a href="compile.html">compiled WRFDA yourself</a>, additional settings (specifically, environment variables for BUFR and one or both radiative transfer models) must be specified at compile time to utilize radiance data. This has been done for you in the pre-compiled code.</p>
                       <p>Radiance assimilation for 3DVAR is much the same procedure as <a href="3dvar.html">Running WRFDA-3DVAR with conventional observations</a>. To begin this exercise, link/copy the basic input files above that you should have been familiar with by now:</p>
                       <blockquote>
-                        <p class="stylecode">ln -sf /kumquat/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL<br>
-                                             ln -sf /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/obs_gts_2013-12-23_00:00:00.3DVAR ./ob.ascii<br>
-                                             ln -sf /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/be/be.dat ./be.dat<br>
-                                             cp -p /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/rc/2013122300/wrfinput_d01 ./fg</p>
+                        <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL<br>
+                                             ln -sf /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/obs_gts_2013-12-23_00:00:00.3DVAR ./ob.ascii<br>
+                                             ln -sf /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/be/be.dat ./be.dat<br>
+                                             cp -p /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/rc/2013122300/wrfinput_d01 ./fg</p>
                       </blockquote>
                       <p>In addition, the following extra files are required for radiance assimilation:</p>
                     </td>
@@ -82,8 +82,8 @@ a:active {
               </ul>
               <blockquote>
                 <blockquote>
-                  <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bamua.t00z.20131223.bufr ./amsua.bufr<br>
-                    ln -fs /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bamub.t00z.20131223.bufr ./amsub.bufr</p>
+                  <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bamua.t00z.20131223.bufr ./amsua.bufr<br>
+                    ln -fs /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bamub.t00z.20131223.bufr ./amsub.bufr</p>
                 </blockquote>
               </blockquote>
               <ul>
@@ -91,7 +91,7 @@ a:active {
               </ul>
               <blockquote>
                 <blockquote> 
-                  <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/var/run/radiance_info ./radiance_info</p>
+                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/var/run/radiance_info ./radiance_info</p>
                 </blockquote>
               </blockquote>
               <ul>
@@ -99,7 +99,7 @@ a:active {
               </ul>
               <blockquote>
                 <blockquote>
-                  <p class="stylecode">cp /kumquat/users/${USER}/DA/WRFDA/var/run/VARBC.in ./VARBC.in</p>
+                  <p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/run/VARBC.in ./VARBC.in</p>
                 </blockquote>
               </blockquote>
               <ul>
@@ -107,14 +107,14 @@ a:active {
               </ul>
               <blockquote>
                 <blockquote>
-                  <p class="stylecode"> ln -fs /kumquat/users/${USER}/DA/WRFDA/var/run/crtm_coeffs ./crtm_coeffs</p>
-                  <p class="stylecode">ln -fs /kumquat/wrfhelp/external/rttov11/rtcoef_rttov11/rttov7pred54L ./rttov_coeffs</p>
+                  <p class="stylecode"> ln -fs /classroom/users/${USER}/DA/WRFDA/var/run/crtm_coeffs ./crtm_coeffs</p>
+                  <p class="stylecode">ln -fs /classroom/wrfhelp/external/rttov11/rtcoef_rttov11/rttov7pred54L ./rttov_coeffs</p>
                 </blockquote>
               </blockquote>
               <p><span class="bodyh1">Edit namelist.input</span> </p>
               <blockquote>
                 <p>A sample namelist.input is provided here: <a href="namelist.input.radiance">namelist.input</a></p>
-                <p>If you'd like a challenge, try creating the namelist yourself from scratch. The important settings for this case are listed below. Otherwise you can copy it from /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/namelist.input.radiance</p>
+                <p>If you'd like a challenge, try creating the namelist yourself from scratch. The important settings for this case are listed below. Otherwise you can copy it from /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/namelist.input.radiance</p>
                 <blockquote>
                   <p><span class="stylecode">vi namelist.input </span>(pay special attention to the following radiance-related settings)</p>
                   <p><span class="stylecode">&amp;wrfvar1<br>
@@ -222,7 +222,7 @@ a:active {
               <p><span class="bodyh1">Run WRFDA</span> </p>
               <blockquote>
                 <blockquote>
-                  <p class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                  <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
                 </blockquote>
                 <p>The test should take about a minute to complete on classroom computers.</p>
               </blockquote>
@@ -240,18 +240,18 @@ a:active {
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                <p>The script <em>/kumquat/wrfhelp/DATA/WRFDA/TOOLS/scripts/da_rad_diags.ksh</em> can be used to generate a number of helpful plots and graphs for visualizing radiance assimilation statistics.</p>
-                <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/TOOLS/scripts/da_rad_diags.ksh .</p>
+                <p>The script <em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/scripts/da_rad_diags.ksh</em> can be used to generate a number of helpful plots and graphs for visualizing radiance assimilation statistics.</p>
+                <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/scripts/da_rad_diags.ksh .</p>
                 <p class="stylecode">vi da_rad_diags.ksh<br>
                   export START_DATE=2013122300<br>
                   export END_DATE=2013122300<br>
                   export CYCLE_PERIOD=12<br>
                   #<br>
                   export NUM_PROCS=6  # number of processors used in running WRFDA<br>
-                  export WRFVAR_DIR=/kumquat/users/${USER}/DA/WRFDA<br>
+                  export WRFVAR_DIR=/classroom/users/${USER}/DA/WRFDA<br>
                   export BUILD_DIR=${WRFVAR_DIR}/var/build<br>
-                  export TOOLS_DIR=/kumquat/wrfhelp/DATA/WRFDA/TOOLS<br>
-                  export EXP_DIR=/kumquat/users/${USER}/DA/radiance<br>
+                  export TOOLS_DIR=/classroom/wrfhelp/DATA/WRFDA/TOOLS<br>
+                  export EXP_DIR=/classroom/users/${USER}/DA/radiance<br>
                   export VAR_RUN_DIR1=$EXP_DIR<br>
                   export VAR_RUN_DIR2=none<br>
                   <br>
@@ -273,9 +273,9 @@ a:active {
               <p class="bodyh2"><a name="advanced">Additional practice</a></p>
               <ul>
                 <li>Try assimilating more radiance data for this case. The radiance data for the HIRS3, HIRS4, and MHS instruments, respectively, can be found below:<br><br>
-                <span class="stylecode">ln -sf /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bhrs3.t00z.20131223.bufr ./hirs3.bufr<br>
-                  ln -sf /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bhrs4.t00z.20131223.bufr ./hirs4.bufr<br>
-                  ln -sf /kumquat/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bmhs.t00z.20131223.bufr ./mhs.bufr<br><br></span>
+                <span class="stylecode">ln -sf /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bhrs3.t00z.20131223.bufr ./hirs3.bufr<br>
+                  ln -sf /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bhrs4.t00z.20131223.bufr ./hirs4.bufr<br>
+                  ln -sf /classroom/wrfhelp/DATA/WRFDA/arctic_tutorial_case/ob/2013122300/gdas.1bmhs.t00z.20131223.bufr ./mhs.bufr<br><br></span>
                 In the namelist, change the following settings to read the new files and assimilate the data:<br><br>
                 <span class="stylecode">&amp;wrfvar4<br>
                     use_hirs3obs = .true.<br>
@@ -289,7 +289,7 @@ a:active {
                     rtminit_sensor = 0,0,15,15<br><br>
                 </span>
 </li>
-                <li>Try adding radiance assimilation to the <a href="3dvar.html">3dvar case</a> you tested in an earlier practice session. The radiance data for that case can be found in <em>/kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512</em><br><br></li>
+                <li>Try adding radiance assimilation to the <a href="3dvar.html">3dvar case</a> you tested in an earlier practice session. The radiance data for that case can be found in <em>/classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512</em><br><br></li>
                 <li>Try changing some of the namelist.input settings (for example, different thinning mesh, different Radiative Transfer Model) and compare the results. </li>
               </ul>
             </blockquote>

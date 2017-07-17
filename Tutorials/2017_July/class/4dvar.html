@@ -60,9 +60,9 @@ a:active {
             <p><br><span class="bodyh1">Choice of your working directory</span></p>
             <blockquote>
               <p>We recommend running each session in a separate directory, so that it will be easier to check for the necessary input files and look for what output files are created after a successful run.</p>
-              <p>We recommend you create<em> /kumquat/users/${USER}/DA/4dvar</em> and cd there to be your working directory for this session.</p>
-              <p class="stylecode">mkdir /kumquat/users/${USER}/DA/4dvar<br>
-                cd /kumquat/users/${USER}/DA/4dvar</p>
+              <p>We recommend you create<em> /classroom/users/${USER}/DA/4dvar</em> and cd there to be your working directory for this session.</p>
+              <p class="stylecode">mkdir /classroom/users/${USER}/DA/4dvar<br>
+                cd /classroom/users/${USER}/DA/4dvar</p>
             </blockquote>
             <span class="bodyh1">Input data</span>
             <blockquote>
@@ -70,7 +70,7 @@ a:active {
                 <tr style="vertical-align: top;">
                   <td>
                     <p>For running 3D-VAR, the 3 major input files are observations (ob.ascii), background error statistics (be.dat) and first guess (fg). For 4D-VAR, the similar concept holds except that now the observations need to be processed into multiple time-slot files. </p>
-                    <p><a href=wrfda_testdata.html#testdata_4dvar>This case</a> utilizes a western Pacific, 31x25 gridpoints, 17 vertical levels, and 135km resolution (it can be found at /kumquat/wrfhelp/DATA/WRFDA/4dvar). This is a much lower resolution than should normally be run to see good results; the test is kept small for tutorial purposes. The exact area of the domain is shown at right.</a>
+                    <p><a href=wrfda_testdata.html#testdata_4dvar>This case</a> utilizes a western Pacific, 31x25 gridpoints, 17 vertical levels, and 135km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/4dvar). This is a much lower resolution than should normally be run to see good results; the test is kept small for tutorial purposes. The exact area of the domain is shown at right.</a>
                     <p>It features <a href="https://en.wikipedia.org/wiki/Typhoon_Haitang_%282005%29">Typhoon Haitang</a> south of Japan on July 16, 2005. Due to the low resolution, the typhoon is not well-resolved in this case.</p>
                   </td>
                   <td class="bodytext"><a href="images/4dvar.png"><img src="images/4dvar.png" alt="Domain of this test case" height="300"></a></td>
@@ -85,13 +85,13 @@ a:active {
               </li>
               <li>First guess
                 <blockquote>
-                  <p>/kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfbdy_d01</p>
+                  <p>/classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01<br>
+                    /classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfbdy_d01</p>
                 </blockquote>
               </li>
               <li>Background error statistics
                 <blockquote>
-                  <p>/kumquat/wrfhelp/DATA/WRFDA/4dvar/be/be.dat            </p>
+                  <p>/classroom/wrfhelp/DATA/WRFDA/4dvar/be/be.dat            </p>
                 </blockquote>
               </li>
             </ul>
@@ -100,33 +100,33 @@ a:active {
               <p>A few additional constant files are needed for 4DVAR runs. These are necessary for running the nonlinear model as part of the 4DVAR assimilation.</p>
               <blockquote>
                 
-                <p> <span class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA </span></p>
-                <p> <span class="stylecode">ln -fs  /kumquat/users/${USER}/DA/WRFDA/run/*.TBL .</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA </span></p>
+                <p> <span class="stylecode">ln -fs  /classroom/users/${USER}/DA/WRFDA/run/*.TBL .</span></p>
               </blockquote>
               <p>link first guess and boundary files.</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01 ./fg</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01 .</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfbdy_d01 .</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01 ./fg</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01 .</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfbdy_d01 .</span></p>
               </blockquote>
               <p>link observation files</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_00:00:00.4DVAR ./ob01.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_01:00:00.4DVAR ./ob02.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_02:00:00.4DVAR ./ob03.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_03:00:00.4DVAR ./ob04.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_04:00:00.4DVAR ./ob05.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_05:00:00.4DVAR ./ob06.ascii</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_06:00:00.4DVAR ./ob07.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_00:00:00.4DVAR ./ob01.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_01:00:00.4DVAR ./ob02.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_02:00:00.4DVAR ./ob03.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_03:00:00.4DVAR ./ob04.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_04:00:00.4DVAR ./ob05.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_05:00:00.4DVAR ./ob06.ascii</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/users/class103/DA/obsproc_4dvar/obs_gts_2005-07-16_06:00:00.4DVAR ./ob07.ascii</span></p>
               </blockquote>              <p>link background error file</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/be/be.dat .</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/be/be.dat .</span></p>
               </blockquote>
             </blockquote>
             <span class="bodyh1">Edit namelists</span>
             <blockquote>
-              <p>A very basic namelist.input for running the 4D-VAR tutorial case is available at <em>/kumquat/wrfhelp/DATA/WRFDA/4dvar/namelist.input</em></p>
-              <p><span class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/4dvar/namelist.input .</span></p>
+              <p>A very basic namelist.input for running the 4D-VAR tutorial case is available at <em>/classroom/wrfhelp/DATA/WRFDA/4dvar/namelist.input</em></p>
+              <p><span class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/4dvar/namelist.input .</span></p>
               <p class="stylecode">vi namelist.input</p>
               <p>Pay special attention to the following namelist variables.</p>
               <p><span class="stylecode">&amp;wrfvar1<br>
@@ -175,7 +175,7 @@ a:active {
             </blockquote>
             <span class="bodyh1">Running 4D-VAR</span>
             <blockquote>
-              <p><span class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe &gt;&amp; var4d.log &amp;</span></p>
+              <p><span class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe &gt;&amp; var4d.log &amp;</span></p>
               <p class="stylecode">The "&amp;" at the end of the above command tells WRFDA to run in the background. Because the command line is now usable even as WRFDA runs, you can use the "tail" command to follow the progress of WRFDA as it writes the log files: </p>
               <p class="stylecode">tail -f rsl.out.0000</span>
             </blockquote>
@@ -192,7 +192,7 @@ a:active {
             <blockquote>
               <p>WRFDA 4DVAR has the option to add an additional cost function term based on the lateral boundary conditions. You can activate it by setting <em>var4d_lbc=true</em> in <em>&amp;wrfvar1</em>, and linking the following files.</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/rc/2005071606/wrfinput_d01 ./fg02</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071606/wrfinput_d01 ./fg02</span></p>
                 <p> <span class="stylecode" style="color:red">cp ./fg02 ./ana02</span></p>
               </blockquote>
               <p>"fg02" and "ana02" are the same file, and are the "first guess" field for the same domain at the <b>end</b> of the 4DVAR assimilation window (in this case, the analysis at 2005-07-16 06Z).</p>
@@ -202,18 +202,18 @@ a:active {
             <blockquote>
               <p>Try using PREPBUFR data instead of ASCII format data. Since PREPBUFR files from GDAS contain 6 hours of data which is different from our 6-hour assimlation window (PREPBUFR files contain data from 21z&ndash;03z, 03z&ndash;09z, etc.) you will need to link two different observation files to cover the whole assimilation window:<br>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/prepbufr.gdas.2005071600.wo40 ./ob01.bufr</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/ob/2005071606/prepbufr.gdas.2005071606.wo40 ./ob02.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/prepbufr.gdas.2005071600.wo40 ./ob01.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071606/prepbufr.gdas.2005071606.wo40 ./ob02.bufr</span></p>
               </blockquote>
               <p>Radiance assimilation works in much the same way, since radiance data in GDAS BUFR files follows the same time window conventions.</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/gdas.1bamua.t00z.20050716.bufr ./amsua01.bufr</span></p>
-                <p> <span class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/4dvar/ob/2005071606/gdas.1bamua.t06z.20050716.bufr ./amsua02.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/gdas.1bamua.t00z.20050716.bufr ./amsua01.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071606/gdas.1bamua.t06z.20050716.bufr ./amsua02.bufr</span></p>
               </blockquote>
               <p>Don't forget to change the appropriate namelist options for these new data types!<br><br></p>
               <hr>
-              <p><br>Try setting up a different 4D-VAR run using CONUS60 case (/kumquat/wrfhelp/DATA/WRFDA/CONUS60) and compare the results with the 3D-VAR run. Use the same namelist from the 3dvar case, and modify the following settings:<br>
-              <p><span class="stylecode">cp /kumquat/users/${USER}/DA/3dvar/namelist.input .</span></p>
+              <p><br>Try setting up a different 4D-VAR run using CONUS60 case (/classroom/wrfhelp/DATA/WRFDA/CONUS60) and compare the results with the 3D-VAR run. Use the same namelist from the 3dvar case, and modify the following settings:<br>
+              <p><span class="stylecode">cp /classroom/users/${USER}/DA/3dvar/namelist.input .</span></p>
               <p class="stylecode">vi namelist.input</p>
               <p>Pay special attention to the following namelist variables, which are essential for 4DVAR runs</p>
               <p class="stylecode">&amp;wrfvar1<br>
@@ -278,29 +278,29 @@ real_data_init_type=3,<br>
             <ul>
               <li>Observations
                 <blockquote>
-                  <p>/kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/ob.ascii+<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020513/ob.ascii<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020514/ob.ascii<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020515/ob.ascii<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020516/ob.ascii<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020517/ob.ascii<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020518/ob.ascii-</p>
+                  <p>/classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/ob.ascii+<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020513/ob.ascii<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020514/ob.ascii<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020515/ob.ascii<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020516/ob.ascii<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020517/ob.ascii<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020518/ob.ascii-</p>
                 </blockquote>
               </li>
               <li>First guess
                 <blockquote>
-                  <p>/kumquat/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01<br>
-                    /kumquat/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01</p>
+                  <p>/classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01<br>
+                    /classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01</p>
                 </blockquote>
               </li>
               <li>Background error statistics
                 <blockquote>
-                  <p>/kumquat/wrfhelp/DATA/WRFDA/CONUS60/be/be.dat            </p>
+                  <p>/classroom/wrfhelp/DATA/WRFDA/CONUS60/be/be.dat            </p>
                 </blockquote>
               </li>
             </ul>
             <br>
-            <p>You can also try assimilating PREPBUFR and radiance data, as described above. Those observation files can be found in the appropriate sub-directories in /kumquat/wrfhelp/DATA/WRFDA/CONUS60/ob</p>
+            <p>You can also try assimilating PREPBUFR and radiance data, as described above. Those observation files can be found in the appropriate sub-directories in /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob</p>
             <p><b>NOTE: The CONUS60 case will take more than 15 minutes to complete on the classroom computers, even with a low value of ntmax=4.</b> This is why a much smaller, simplified case is provided for the basic tutorial above.</p>
               <p>&nbsp;</p>
 </blockquote>

@@ -53,30 +53,30 @@ a:active {
             <p><span class="bodyh1">Working directory</span></p>
               <blockquote>
                 <p>We recommend you create a new working directory for this exercise:</p>
-                <p class="stylecode">mkdir /kumquat/users/$USER/DA/rainfall<br>
-                cd /kumquat/users/$USER/DA/rainfall</p>
+                <p class="stylecode">mkdir /classroom/users/$USER/DA/rainfall<br>
+                cd /classroom/users/$USER/DA/rainfall</p>
               </blockquote>
             <p><span class="bodyh1">Input data</span></p>
               <blockquote>
-                <p>The test data for this rainfall tutorial case can be found in <em>/kumquat/wrfhelp/DATA/WRFDA/Rainfall</em></p>
+                <p>The test data for this rainfall tutorial case can be found in <em>/classroom/wrfhelp/DATA/WRFDA/Rainfall</em></p>
                 <blockquote>
-                  <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/Rainfall/ob/ob.rain.2008020518.06h ob07.rain <br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfinput_d01 ./fg <br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfinput_d01 . <br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfbdy_d01 . <br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Rainfall/be/be.dat . </p>
+                  <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/Rainfall/ob/ob.rain.2008020518.06h ob07.rain <br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfinput_d01 ./fg <br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfinput_d01 . <br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Rainfall/rc/wrfbdy_d01 . <br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Rainfall/be/be.dat . </p>
                 </blockquote>
                 <p>These are the observation, first guess, boundary, and background error files, respectively. It is necessary to link a few more files for a 4D-VAR precipitation run</p>
                 <blockquote>
-                  <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA<br>
-                  ln -fs /kumquat/users/${USER}/DA/WRFDA/run/*.TBL .</p>
+                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA<br>
+                  ln -fs /classroom/users/${USER}/DA/WRFDA/run/*.TBL .</p>
                 </blockquote>
               </blockquote>
               <p><span class="bodyh1">Edit namelists </span></p>
               <blockquote>
-                <p>A very basic namelist.input file for running this tutorial case is available at <em>/kumquat/wrfhelp/DATA/WRFDA/Rainfall/namelist.input</em>.
+                <p>A very basic namelist.input file for running this tutorial case is available at <em>/classroom/wrfhelp/DATA/WRFDA/Rainfall/namelist.input</em>.
                 <blockquote>
-                  <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Rainfall/namelist.input . <br>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Rainfall/namelist.input . <br>
                   vi namelist.input</p>
                 </blockquote>
                 <p>Pay special attention to the following namelist variables, making sure they are set to these values:</p>
@@ -95,7 +95,7 @@ a:active {
                 </blockquote>
                 <p><span class="bodyh1">Run 4D-VAR with Accumulated Rainfall Observations</span></p> 
                 <blockquote>
-                  <p class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe </p>
+                  <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe </p>
                   <p> <span style="color:red">Note!</span> In the provided namelist, we haven't set a small limit for ntmax (maximum number of iterations of the cost function minimization) like we did for the original practice 4DVAR case. Therefore, on the classroom computers this case will take some time, probably more than 10 minutes. If you would rather move on quickly and do not care about reaching the full minimization, set ntmax=5; this will still not be instantaneous, but will only take a few minutes.</p>
                 </blockquote>
               </blockquote>

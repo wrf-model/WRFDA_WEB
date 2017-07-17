@@ -60,8 +60,8 @@ a:active {
                     <td>
                     <blockquote>
                 <p>We recommend running each session in a separate directory, so that it will be easier to check for the necessary input files and look for what output files are created after a successful run.</p>
-                <p><span class="stylecode">mkdir /kumquat/users/${USER}/DA/dualres_hybrid</span><br>
-                  <span class="stylecode">cd /kumquat/users/${USER}/DA/dualres_hybrid</span></p>
+                <p><span class="stylecode">mkdir /classroom/users/${USER}/DA/dualres_hybrid</span><br>
+                  <span class="stylecode">cd /classroom/users/${USER}/DA/dualres_hybrid</span></p>
               </blockquote>
               <p><span class="bodyh1">Input data</span> </p>
               <blockquote>
@@ -76,8 +76,8 @@ a:active {
                 <li>ensemble mean
                   <blockquote>
                     <p>The first step of hybrid data assimilation is to prepare a set of ensembles.<br>
-                      For this practice, a set of 10-member ensemble forecasts is provided under /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc directory. This ensemble is the larger, lower resolution domain (45 km)</p>
-                    <p class=stylecode>ls -al /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/<br>
+                      For this practice, a set of 10-member ensemble forecasts is provided under /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc directory. This ensemble is the larger, lower resolution domain (45 km)</p>
+                    <p class=stylecode>ls -al /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/<br>
 -rw-r--r-- 1 wrfhelp  instructor 87460656 Aug  3 07:09 wrfout_d01_2008-09-12_00:00:00.e001<br>
 -rw-r--r-- 1 wrfhelp  instructor 87460656 Aug  3 07:10 wrfout_d01_2008-09-12_00:00:00.e002<br>
 -rw-r--r-- 1 wrfhelp  instructor 87460656 Aug  3 07:09 wrfout_d01_2008-09-12_00:00:00.e003<br>
@@ -99,11 +99,11 @@ a:active {
                     <li> Copy ensemble forecasts and template files to your working directory.</li>
                   </ul>
                   <blockquote>
-                    <p class="stylecode">cp -r /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/ . </p>
+                    <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/ . </p>
                   </blockquote>
                   
                   <ul>
-                    <li>Edit gen_be_ensmean_nl.nl (or copy it from /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/gen_be_ensmean_nl.nl)</li>
+                    <li>Edit gen_be_ensmean_nl.nl (or copy it from /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/gen_be_ensmean_nl.nl)</li>
                   </ul>
                   <blockquote>
                     <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
@@ -119,7 +119,7 @@ a:active {
                     <li>Run gen_be_ensmean.exe</li>
                   </ul>
                   <blockquote>
-                    <p class="stylecode">/kumquat/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exe</p>
+                    <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exe</p>
                   </blockquote>
                   <ul>
                     <li>Check output</li>
@@ -132,10 +132,10 @@ a:active {
               <blockquote>
                 <blockquote>
                   <p><em>2008091118/wrfout_d01_2008-09-12_00:00:00.vari</em> is the ensemble variance</p>
-                  <p>You may use the NCL script <em>/kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl</em> to make some plots.</p>
+                  <p>You may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl</em> to make some plots.</p>
                   <blockquote>
-                    <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl .<br>
-                      cp /kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test .</p>
+                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl .<br>
+                      cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test .</p>
                   </blockquote>
                     <p>Edit <em>ens_mean_std_dev.ncl</em> to set the proper date and path path. Note that the "date" is the date and time when the forecast was initialized, while the individual "year", "month", etc. settings are for the forecast valid date/time, 6 hours later.</p>
                   <blockquote>
@@ -144,7 +144,7 @@ a:active {
    month = "09"<br>
    day = "12"<br>
    hour = "00"<br>
-                    dir = &quot;/kumquat/users/$USER/DA/dualres_hybrid/&quot; + date + &quot;/&quot;</p>
+                    dir = &quot;/classroom/users/$USER/DA/dualres_hybrid/&quot; + date + &quot;/&quot;</p>
                     <p class="stylecode">ncl ens_mean_std_dev.ncl<br>
                     display mean_std_dev.pdf</p>
                   </blockquote>
@@ -164,7 +164,7 @@ a:active {
                   <li>This step will extract the ensemble perturbations from the existing ensemble wrfout files provided for you. Create another sub-directory where you will be working for this step.</li>
                 </ul>
                 <blockquote>
-                  <p class="stylecode">cd /kumquat/users/${USER}/DA/dualres_hybrid</p>
+                  <p class="stylecode">cd /classroom/users/${USER}/DA/dualres_hybrid</p>
                   <p class="stylecode">mkdir -p 2008091200/ep</p>
                   <p class="stylecode">cd 2008091200/ep                </p>
                 </blockquote>
@@ -176,17 +176,17 @@ a:active {
                 </ul>
                 <blockquote>
                   <p>gen_be_ep2.exe requires 4 command arguments (DATE, NUM_MEMBER, DIRECTORY, FILENAME) as defined below:</p>
-                  <p class="stylecode">/kumquat/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2008091200 10 ../../2008091118 wrfout_d01_2008-09-12_00:00:00</p>
+                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2008091200 10 ../../2008091118 wrfout_d01_2008-09-12_00:00:00</p>
                 </blockquote>
                 <ul>
                   <li>Check the output files generated by gen_be_ep2.exe</li>
                 </ul>
                 <blockquote>
                   <p>A list of binary files will be created under 2008091200/ep directory. Among them, tmp.e* are temporary scratch files that can be removed.</p>
-<!--                  <p>You may use the NCL script <em>/kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl</em> to make some plots.</p>
+<!--                  <p>You may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl</em> to make some plots.</p>
                   <blockquote>
-                    <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl .<br>
-                      cp /kumquat/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test . </p>
+                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl .<br>
+                      cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test . </p>
                   </blockquote>
                   <p>Edit <em>ens_perturbations.ncl</em> to set the proper date and path.<br>
                   <blockquote>
@@ -195,7 +195,7 @@ a:active {
                     month = "09"<br>
                     day = "12"<br>
                     hour = "00"<br>
-                    directory = &quot;/kumquat/users/$USER/DA/dualres_hybrid/&quot; + date</p>
+                    directory = &quot;/classroom/users/$USER/DA/dualres_hybrid/&quot; + date</p>
                     <p class="stylecode">ncl ens_perturbations.ncl<br>
                       display ens_perturbations.pdf </p>
                   </blockquote>
@@ -214,8 +214,8 @@ a:active {
               <blockquote>
                 <blockquote>
                   <p>gen_be_vertloc.exe generates the input file for vertical localization.  This program requires one command-line argument: the number of vertical levels of the model configuration (same value as e_vert in the namelist; for the tutorial example, this should be 45).</p>
-                  <p class="stylecode">cd /kumquat/users/${USER}/DA/dualres_hybrid</p>
-                  <p class="stylecode">/kumquat/users/${USER}/DA/WRFDA/var/build/gen_be_vertloc.exe 45</p>
+                  <p class="stylecode">cd /classroom/users/${USER}/DA/dualres_hybrid</p>
+                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_vertloc.exe 45</p>
                 </blockquote>
               </blockquote>
 
@@ -225,17 +225,17 @@ a:active {
               </blockquote>
                 <p> The first guess is a wrf forecast file from the higher resolution domain</p>
               <blockquote>
-                <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/wrfout_d02_2008-09-12_00:00:00 ./fg </p>
+                <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/fc/2008091118/wrfout_d02_2008-09-12_00:00:00 ./fg </p>
               </blockquote>
                 <p> We link the mean of the low-resolution ensemble as "fg_ens". WRFDA reads this for collecting mapping info for the lower resolution domain.
               <blockquote>
                 <p class="stylecode">ln -fs 2008091118/wrfout_d01_2008-09-12_00:00:00.mean ./fg_ens </p>
-                <p class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/run/LANDUSE.TBL .<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/ob/2008091200/ob.ascii ./ob.ascii<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/be/be.dat ./be.dat
+                <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL .<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/ob/2008091200/ob.ascii ./ob.ascii<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/be/be.dat ./be.dat
                 </p>
-                <p>Edit namelist.input (a sample file is provided as /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/namelist.input)</p>
-                  <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/namelist.input .<br><br>vi namelist.input</p>
+                <p>Edit namelist.input (a sample file is provided as /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/namelist.input)</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/dual_res_tutorial_case/namelist.input .<br><br>vi namelist.input</p>
                 <p>Note that, unlike every other instance of running WRFDA, we actually have <em>two</em> sets of domain information. The analysis will be performed on the second, smaller, 15-km domain.</p>
                 <p> <span class="stylecode">&amp;domains<br>
                      e_we                                = 181,184,<br>
@@ -264,7 +264,7 @@ a:active {
                   <span class="stylecode">dual_res_upscale_opt =  3</span> <span style="color:red"># DO NOT CHANGE, other options are bad</span><br>
                   /</span>
                 </p>
-                <p class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
               </blockquote>
               <p>View the different output files to see how they differ from a 3DVAR assimilation run. For example, in <em>cost_fn</em> and <em>grad_fn</em>, you will see the ensemble terms of the cost function and gradient, respectively.</p>
                 <p>Try playing around with some of the hybrid-related settings above and compare the results.</p>

@@ -53,9 +53,9 @@ a:active {
               </p>
               <blockquote>
                 <p>We recommend running each session in a separate directory, so that it will be easier to check for the necessary input files and look for what output files are created after a successful run. </p>
-                <p>We recommend you create <em>/kumquat/users/${USER}/DA/radar</em> and cd there to be your working directory for this session. <br>
-                <p class="stylecode">mkdir /kumquat/users/${USER}/DA/radar</p>
-                <p class="stylecode">cd /kumquat/users/${USER}/DA/radar</p>
+                <p>We recommend you create <em>/classroom/users/${USER}/DA/radar</em> and cd there to be your working directory for this session. <br>
+                <p class="stylecode">mkdir /classroom/users/${USER}/DA/radar</p>
+                <p class="stylecode">cd /classroom/users/${USER}/DA/radar</p>
                 </p>
               </blockquote>
               <p><span class="bodyh1">Input files</span>
@@ -64,7 +64,7 @@ a:active {
               <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                      <p>The <a href="wrfda_testdata.html#testdata_radar">radar case</a> is different from the CONUS60 case you have used in obsproc, running WRFDA-3DVAR and gen_be sessions. It utilizes a high-resolution domain over Taiwan, 61x51 gridpoints, 30 vertical levels, and 15km resolution (it can be found at /kumquat/wrfhelp/DATA/WRFDA/Radar).</a>
+                      <p>The <a href="wrfda_testdata.html#testdata_radar">radar case</a> is different from the CONUS60 case you have used in obsproc, running WRFDA-3DVAR and gen_be sessions. It utilizes a high-resolution domain over Taiwan, 61x51 gridpoints, 30 vertical levels, and 15km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/Radar).</a>
                       <p>It features <a href="https://en.wikipedia.org/wiki/Typhoon_Fanapi">Typhoon Fanapi</a> striking the island on September 19, 2010.</p>
                       <p>&nbsp;</p>
                       <p>The procedure is the same as <a href="3dvar.html">Running WRFDA-3DVAR</a> except for an extra radar input file and adding and changing some namelist.input settings.</p>
@@ -74,19 +74,19 @@ a:active {
                   </tr>
                 </table>
                 <blockquote>
-                  <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Radar/ob.radar ./ob.radar</p>
-                  <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob.ascii ./ob.ascii<br>
-                    ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/wrfinput_d01 ./fg<br>
-                    ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/be.dat ./be.dat<br>
-                    ln -fs /kumquat/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Radar/ob.radar ./ob.radar</p>
+                  <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob.ascii ./ob.ascii<br>
+                    ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/wrfinput_d01 ./fg<br>
+                    ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/be.dat ./be.dat<br>
+                    ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL</p>
                   </blockquote>
                 <p>In this exercise, be.dat was created for cv_options=7.</p>
               </blockquote>
               <p><span class="bodyh1">Edit namelist.input</span>
               </p>
               <blockquote>
-                <p>A sample namelist for this test case is provided in <em>/kumquat/wrfhelp/DATA/WRFDA/Radar/namelist.input</em></p>
-                <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Radar/namelist.input ./namelist.input</p>
+                <p>A sample namelist for this test case is provided in <em>/classroom/wrfhelp/DATA/WRFDA/Radar/namelist.input</em></p>
+                <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Radar/namelist.input ./namelist.input</p>
                 <p class="stylecode">vi namelist.input</p>
                 <p class="stylecode">&amp;wrfvar2<br>
                   calc_w_increment = .true.<br>
@@ -107,7 +107,7 @@ a:active {
               </blockquote>
               <p><span class="bodyh1">Run WRFDA</span>
               <blockquote>
-                <p class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
               </blockquote>
               <p><span class="bodyh1">Check output</span>
               </p>
@@ -132,33 +132,33 @@ a:active {
               <blockquote>
                 <p><em>WRFDA/var/build/da_wrfvar_4dvar.exe</em> (this is renamed from da_wrfvar.exe)<br>
                   is the executable that will be used in the 4D-VAR session.              </p>
-                <p>You should create a separate working directory <em> /kumquat/users/${USER}/DA/radar_4dvar</em> so that you can compare the two methods.</p>
-                <p><span class="stylecode">mkdir /kumquat/users/${USER}/DA/radar_4dvar</span><br>
-                <span class="stylecode">cd /kumquat/users/${USER}/DA/radar_4dvar</span></p>
+                <p>You should create a separate working directory <em> /classroom/users/${USER}/DA/radar_4dvar</em> so that you can compare the two methods.</p>
+                <p><span class="stylecode">mkdir /classroom/users/${USER}/DA/radar_4dvar</span><br>
+                <span class="stylecode">cd /classroom/users/${USER}/DA/radar_4dvar</span></p>
             </blockquote>
             <span class="bodyh1">Input data</span>
             <blockquote>
               <p>As in the regular 4DVAR case with conventional obs, more files are needed than just for 3DVAR. Observations need to be processed into multiple time-slot files. The naming convention for different time slots is also the same as for conventional obs (ob01.radar, ob02.radar, etc.)</p>
-              <p>Test data for this case are in the same directory as the 3dvar case, /kumquat/wrfhelp/DATA/WRFDA/Radar.</p>
+              <p>Test data for this case are in the same directory as the 3dvar case, /classroom/wrfhelp/DATA/WRFDA/Radar.</p>
             <blockquote>
-                <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob01.radar ./ob01.radar<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob02.radar ./ob02.radar<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob03.radar ./ob03.radar<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob04.radar ./ob04.radar</p>
-<!--                <p class="stylecode">ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob01.ascii ./ob01.ascii<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob02.ascii ./ob02.ascii<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob03.ascii ./ob03.ascii<br>
-                  ln -fs /kumquat/wrfhelp/DATA/WRFDA/Radar/ob04.ascii ./ob04.ascii</p>-->
-                <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Radar/wrfinput_d01 ./wrfinput_d01<br>
+                <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob01.radar ./ob01.radar<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob02.radar ./ob02.radar<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob03.radar ./ob03.radar<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob04.radar ./ob04.radar</p>
+<!--                <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob01.ascii ./ob01.ascii<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob02.ascii ./ob02.ascii<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob03.ascii ./ob03.ascii<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Radar/ob04.ascii ./ob04.ascii</p>-->
+                <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Radar/wrfinput_d01 ./wrfinput_d01<br>
                   ln -fs wrfinput_d01 ./fg<br>
-                  cp /kumquat/wrfhelp/DATA/WRFDA/Radar/wrfbdy_d01 ./wrfbdy_d01<br>
-                  cp /kumquat/wrfhelp/DATA/WRFDA/Radar/be.dat ./be.dat</p>
-                <p> <span class="stylecode">ln -fs /kumquat/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA </span></p>
-                <p> <span class="stylecode">ln -fs  /kumquat/users/${USER}/DA/WRFDA/run/*.TBL .</span></p>
+                  cp /classroom/wrfhelp/DATA/WRFDA/Radar/wrfbdy_d01 ./wrfbdy_d01<br>
+                  cp /classroom/wrfhelp/DATA/WRFDA/Radar/be.dat ./be.dat</p>
+                <p> <span class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/RRTM_DATA_DBL ./RRTM_DATA </span></p>
+                <p> <span class="stylecode">ln -fs  /classroom/users/${USER}/DA/WRFDA/run/*.TBL .</span></p>
               </blockquote>
-              <p>A sample namelist for this test case is provided in <em>/kumquat/wrfhelp/DATA/WRFDA/Radar/namelist.input.4dvar</em></p>
+              <p>A sample namelist for this test case is provided in <em>/classroom/wrfhelp/DATA/WRFDA/Radar/namelist.input.4dvar</em></p>
               <blockquote>
-                <p class="stylecode">cp /kumquat/wrfhelp/DATA/WRFDA/Radar/namelist.input.4dvar ./namelist.input</p>
+                <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Radar/namelist.input.4dvar ./namelist.input</p>
                 <p class="stylecode">&amp;wrfvar1<br>
                   var4d=true,<br>
                   var4d_bin=600,<br>
@@ -183,7 +183,7 @@ a:active {
               <p><span class="bodyh1">Run WRFDA</span>
               <p>Since the assimilation windows for this case are only 10 minutes, and we have set ntmax=4, this test should take less than 5 minutes to run on the classroom computers.</p>
               <blockquote>
-                <p class="stylecode">mpirun -np 6 /kumquat/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
               </blockquote>
               <p>Compare the output of the 3dvar test to the 4dvar test using ncdiff. Is the difference significant? Remember, we only did 4 inner loop minimization steps, so we haven't reached 4DVAR's full potential!</p>
               <p class=body>You have finished the radar assimilation tutorial. You can now <a href="lessons.html#session_6">move on to the next exercise</a>.</p>

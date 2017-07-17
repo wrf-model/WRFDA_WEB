@@ -69,21 +69,21 @@ a:active {
               </blockquote></blockquote>
               <p><span class="bodyh1">Choice of your working directory </span> </p>
               <blockquote>
-                <p>For this exercise you should create<span class="stylecode"> /kumquat/users/${USER}/DA/gen_be</span> and use this as your working directory for this session.<br>
+                <p>For this exercise you should create<span class="stylecode"> /classroom/users/${USER}/DA/gen_be</span> and use this as your working directory for this session.<br>
                 <blockquote>
-                  <p class="stylecode">mkdir /kumquat/users/${USER}/DA/gen_be<br>
-                                       cd /kumquat/users/${USER}/DA/gen_be</p>
+                  <p class="stylecode">mkdir /classroom/users/${USER}/DA/gen_be<br>
+                                       cd /classroom/users/${USER}/DA/gen_be</p>
               </blockquote></blockquote>
               <p><span class="bodyh1">Edit gen_be_wrapper.ksh</span>
               </p>
               <blockquote>
                 <p>Copy gen_be_wrapper.ksh to your working directory</p>
-                <blockquote><p class="stylecode">cp /kumquat/users/${USER}/DA/WRFDA/var/scripts/gen_be/gen_be_wrapper.ksh .</p></blockquote>
+                <blockquote><p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/scripts/gen_be/gen_be_wrapper.ksh .</p></blockquote>
                 <p>Pay special attention to the following settings and make necessary modifications for your case and directories:</p>
                 <blockquote>
                   <p class="stylecode">vi gen_be_wrapper.ksh</p>
                   <p class="stylecode">......<br>
-                    export WRFVAR_DIR=/kumquat/users/${USER}/DA/WRFDA<br>
+                    export WRFVAR_DIR=/classroom/users/${USER}/DA/WRFDA<br>
                     export NL_CV_OPTIONS=5 &nbsp; &nbsp; &nbsp; # Specify control variable options<br>
                     export BIN_TYPE=5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# How data is binned for calculating statistics<br>
                     export START_DATE=2008020300 # the first perturbation valid date<br>
@@ -91,7 +91,7 @@ a:active {
                     export NUM_LEVELS=40 &nbsp; &nbsp; &nbsp; &nbsp; # e_vert -1<br>
                     export BE_METHOD=NMC<br>
                     export FCST_RANGE=12<br>
-                    export FC_DIR=/kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc<br>
+                    export FC_DIR=/classroom/wrfhelp/DATA/WRFDA/CONUS60/fc<br>
                     export RUN_DIR=`pwd`/gen_be${BIN_TYPE}_cv${NL_CV_OPTIONS}<br>
                     export DOMAIN=01<br>
                     export FCST_RANGE1=24<br>
@@ -114,7 +114,7 @@ a:active {
               </p>
               <table align=center width="90%" border="1" cellpadding="10">
                 <tr>
-                  <td class="style8"><p><b>NOTE:</b> If you see this error message while the script is running <br><kbd><br>/kumquat/users/class103/DA/WRFDA/var/scripts/gen_be/gen_be_stage0_wrf.ksh[59]: .false.: not found [No such file or directory]<br></kbd><br>it can be safely ignored. This is due to a bug that does not affect results and will be fixed in the next release.</p></td>
+                  <td class="style8"><p><b>NOTE:</b> If you see this error message while the script is running <br><kbd><br>/classroom/users/class103/DA/WRFDA/var/scripts/gen_be/gen_be_stage0_wrf.ksh[59]: .false.: not found [No such file or directory]<br></kbd><br>it can be safely ignored. This is due to a bug that does not affect results and will be fixed in the next release.</p></td>
                 </tr>
               </table>
               <blockquote>
@@ -122,40 +122,40 @@ a:active {
                 <table width="100%" border="1" cellpadding="10">
                   <tr>
                     <td><p class="stylecode">Thu Jul 30 20:02:32 MDT 2015 Start<br>
-                      WRFVAR_DIR is /kumquat/users/class105/DA/WRFDA exported<br>
-                      RUN_DIR is /kumquat/users/class105/DA/gen_be/workdir<br>
+                      WRFVAR_DIR is /classroom/users/class105/DA/WRFDA exported<br>
+                      RUN_DIR is /classroom/users/class105/DA/gen_be/workdir<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 0: Calculate ensemble perturbations from model forecasts.<br>
                       ---------------------------------------------------------------<br>
                       Beginning CPU time: Thu Jul 30 20:02:32 MDT 2015<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020300<br>
-                      2008020200 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020200/wrfout_d01_2008-02-03_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020212/wrfout_d01_2008-02-03_00:00:00<br>
+                      2008020200 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020200/wrfout_d01_2008-02-03_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020212/wrfout_d01_2008-02-03_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020312<br>
-                      2008020212 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020212/wrfout_d01_2008-02-03_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020300/wrfout_d01_2008-02-03_12:00:00<br>
+                      2008020212 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020212/wrfout_d01_2008-02-03_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020300/wrfout_d01_2008-02-03_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020400<br>
-                      2008020300 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020300/wrfout_d01_2008-02-04_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020312/wrfout_d01_2008-02-04_00:00:00<br>
+                      2008020300 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020300/wrfout_d01_2008-02-04_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020312/wrfout_d01_2008-02-04_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020412<br>
-                      2008020312 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020312/wrfout_d01_2008-02-04_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020400/wrfout_d01_2008-02-04_12:00:00<br>
+                      2008020312 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020312/wrfout_d01_2008-02-04_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020400/wrfout_d01_2008-02-04_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020500<br>
-                      2008020400 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020400/wrfout_d01_2008-02-05_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020412/wrfout_d01_2008-02-05_00:00:00<br>
+                      2008020400 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020400/wrfout_d01_2008-02-05_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020412/wrfout_d01_2008-02-05_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020512<br>
-                      2008020412 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020412/wrfout_d01_2008-02-05_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020500/wrfout_d01_2008-02-05_12:00:00<br>
+                      2008020412 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020412/wrfout_d01_2008-02-05_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020500/wrfout_d01_2008-02-05_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020600<br>
-                      2008020500 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020500/wrfout_d01_2008-02-06_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020512/wrfout_d01_2008-02-06_00:00:00<br>
+                      2008020500 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020500/wrfout_d01_2008-02-06_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020512/wrfout_d01_2008-02-06_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020612<br>
-                      2008020512 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020512/wrfout_d01_2008-02-06_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020600/wrfout_d01_2008-02-06_12:00:00<br>
+                      2008020512 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020512/wrfout_d01_2008-02-06_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020600/wrfout_d01_2008-02-06_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020700<br>
-                      2008020600 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020600/wrfout_d01_2008-02-07_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020612/wrfout_d01_2008-02-07_00:00:00<br>
+                      2008020600 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020600/wrfout_d01_2008-02-07_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020612/wrfout_d01_2008-02-07_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020712<br>
-                      2008020612 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020612/wrfout_d01_2008-02-07_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020700/wrfout_d01_2008-02-07_12:00:00<br>
+                      2008020612 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020612/wrfout_d01_2008-02-07_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020700/wrfout_d01_2008-02-07_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020800<br>
-                      2008020700 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020700/wrfout_d01_2008-02-08_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020712/wrfout_d01_2008-02-08_00:00:00<br>
+                      2008020700 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020700/wrfout_d01_2008-02-08_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020712/wrfout_d01_2008-02-08_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020812<br>
-                      2008020712 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020712/wrfout_d01_2008-02-08_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020800/wrfout_d01_2008-02-08_12:00:00<br>
+                      2008020712 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020712/wrfout_d01_2008-02-08_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020800/wrfout_d01_2008-02-08_12:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020900<br>
-                      2008020800 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020800/wrfout_d01_2008-02-09_00:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_00:00:00<br>
+                      2008020800 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020800/wrfout_d01_2008-02-09_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020912<br>
-                      2008020812 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_12:00:00 /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020900/wrfout_d01_2008-02-09_12:00:00<br>
+                      2008020812 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020900/wrfout_d01_2008-02-09_12:00:00<br>
                       Ending CPU time: Thu Jul 30 20:03:11 MDT 2015<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 1: Read standard fields, and remove time/ensemble/area mean.<br>
@@ -199,13 +199,13 @@ a:active {
               <blockquote>
                 <p><span class="stylecode">WRFDA/var/scripts/gen_be/gen_be_plot_wrapper.ksh</span> is the main plotting script which calls other NCL scripts located in WRFDA/var/graphics/ncl/gen_be.</p>
                 <blockquote>
-                  <p class="stylecode">cp /kumquat/users/${USER}/DA/WRFDA/var/scripts/gen_be/gen_be_plot_wrapper.ksh .</p>
+                  <p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/scripts/gen_be/gen_be_plot_wrapper.ksh .</p>
                 </blockquote>
                 <p>Edit gen_be_plot_wrapper.ksh to provide proper settings.</p>
                 <blockquote>
                   <p class="stylecode">vi gen_be_plot_wrapper.ksh</p>
                   <p class="stylecode">......<br>
-                    export WRFVAR_DIR=/kumquat/users/${USER}/DA/WRFDA<br>
+                    export WRFVAR_DIR=/classroom/users/${USER}/DA/WRFDA<br>
                     export GEN_BE_PLOT=${WRFVAR_DIR}/var/graphics/ncl/gen_be<br>
                     export GRAPHIC_WORKS=pdf</p>
                   <p>export NUM_WE=89 # 1 point less than stagger points  90<br>
@@ -213,7 +213,7 @@ a:active {
                   export NUM_LEVELS=40 # 1 point less than stagger points 41<br>
                   export RESOLUTION=60.0  # km<br>
                   export REGION=tutorial     # only for naming output purpose<br>
-                  export BE_DIR=/kumquat/users/${USER}/DA/gen_be/gen_be5_cv5/working<br>
+                  export BE_DIR=/classroom/users/${USER}/DA/gen_be/gen_be5_cv5/working<br>
                   export BE_NROW=$NUM_LEVELS</p>
                 </blockquote>
                 <p>then run the script</p>
@@ -272,7 +272,7 @@ a:active {
             <span class="bodyh1"><a name="advanced">Additional practice</span>
             <blockquote>
               <ul>
-              <li>Try using more data and see how your plots change. You can find up to 4 weeks of data in /kumquat/wrfhelp/DATA/WRFDA/CONUS60/fc/.</p>
+              <li>Try using more data and see how your plots change. You can find up to 4 weeks of data in /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/.</p>
               <li>If this was successful, view plots of the gen_be statistics with the above wrapper script, and continue to try more <a href="psot.html">single ob tests</a> using the be.dat you have created.</li>
               </ul>
               <p>&nbsp;</p>
