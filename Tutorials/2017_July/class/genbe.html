@@ -24,7 +24,7 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
--->
+                      -->
 </style></head>
 
 <body id="top" bgcolor="#FFFFFF">
@@ -102,6 +102,8 @@ a:active {
                 </blockquote>
                 <p>FC_DIR specifies the directory where the WRF forecast files (wrfout*) reside. Observe the directory structure and how the wrfout files are stored. To generate your own BE file for your own case and domain in the future, you will need to prepare and arrange your wrfout files in the same way (for example, 2008020512/wrfout_d01_2008-02-06_12:00:00; 2008020512 is the initial time, wrfout_d01_2008-02-06_12:00:00 is the 24-hour forecast valid at 2008020612).</p>
                 <p>NL_CV_OPTIONS specifies the control variable option. 5 is for the default wind control variables (psi and chi_u). 7 is for the new CV7 option, which uses u and v as the wind control variables.</p> 
+                <p>BIN_TYPE specifies the binning option for calculating GEN_BE statistics. BIN_TYPE=5 is the only option that is well-tested, but you may try other options as well. See comments within the script or <a href=../docs/WRFDA_BE.pdf>the GEN_BE presentation</a> for information about the other options.</p>
+
               </blockquote>
               <p><span class="bodyh1">Run gen_be_wrapper.ksh</span></p>
               <blockquote>
@@ -112,22 +114,17 @@ a:active {
               </blockquote>
               <p><span class="bodyh1">Check output</span>
               </p>
-              <table align=center width="90%" border="1" cellpadding="10">
-                <tr>
-                  <td class="style8"><p><b>NOTE:</b> If you see this error message while the script is running <br><kbd><br>/classroom/users/class103/DA/WRFDA/var/scripts/gen_be/gen_be_stage0_wrf.ksh[59]: .false.: not found [No such file or directory]<br></kbd><br>it can be safely ignored. This is due to a bug that does not affect results and will be fixed in the next release.</p></td>
-                </tr>
-              </table>
               <blockquote>
                 <p>You should see the following messages as the script runs:</p>
                 <table width="100%" border="1" cellpadding="10">
                   <tr>
-                    <td><p class="stylecode">Thu Jul 30 20:02:32 MDT 2015 Start<br>
+                    <td><p class="stylecode">Mon Jul 17 16:43:38 MDT 2017 Start<br>
                       WRFVAR_DIR is /classroom/users/class105/DA/WRFDA exported<br>
-                      RUN_DIR is /classroom/users/class105/DA/gen_be/workdir<br>
+                      RUN_DIR is /users/class105/DA/gen_be/gen_be5_cv5<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 0: Calculate ensemble perturbations from model forecasts.<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:02:32 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:43:38 MDT 2017<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020300<br>
                       2008020200 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020200/wrfout_d01_2008-02-03_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020212/wrfout_d01_2008-02-03_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020312<br>
@@ -156,41 +153,41 @@ a:active {
                       2008020800 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020800/wrfout_d01_2008-02-09_00:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_00:00:00<br>
                       gen_be_stage0_wrf: Calculating standard perturbation fields valid at time  2008020912<br>
                       2008020812 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020812/wrfout_d01_2008-02-09_12:00:00 /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/2008020900/wrfout_d01_2008-02-09_12:00:00<br>
-                      Ending CPU time: Thu Jul 30 20:03:11 MDT 2015<br>
+                      Ending CPU time: Mon Jul 17 16:44:06 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 1: Read standard fields, and remove time/ensemble/area mean.<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:03:11 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:03:13 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:44:06 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:44:09 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 2: Calculate regression coefficients.<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:03:13 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:03:14 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:44:09 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:44:09 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 2a: Calculate control variable fields.<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:03:14 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:03:15 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:44:09 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:44:10 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 3: Read 3D control variable fields, and calculate vertical covariances.<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:03:15 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:03:20 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:44:10 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:44:18 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run Stage 4: Calculate horizontal covariances (regional lengthscales).<br>
                       ---------------------------------------------------------------<br>
-                      Beginning CPU time: Thu Jul 30 20:03:20 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:04:05 MDT 2015<br>
-                      Ending CPU time: Thu Jul 30 20:04:05 MDT 2015<br>
+                      Beginning CPU time: Mon Jul 17 16:44:18 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:45:18 MDT 2017<br>
+                      Ending CPU time: Mon Jul 17 16:45:19 MDT 2017<br>
                       ---------------------------------------------------------------<br>
                       Run gen_be_cov2d.<br>
-                      ---------------------------------------------------------------</p>
-                    <p class="stylecode">Thu Jul 30 20:04:06 MDT 2015 Finished</p></td>
+                      ---------------------------------------------------------------<br>
+                    <p class="stylecode">Mon Jul 17 16:45:20 MDT 2017 Finished</p></td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
-                <p>Look for <strong><span class="stylecode">be.dat</span></strong> in the ${RUN_DIR} you specified in your gen_be_wrapper.ksh. <span class="stylecode"><strong>be.dat</strong></span> is the background error file which can now be used to run WRFDA.</p>
+                <p>Look for <strong><span class="stylecode">be.dat</span></strong> in the ${RUN_DIR} you specified in your <span class="stylecode">gen_be_wrapper.ksh</span> script. <span class="stylecode"><strong>be.dat</strong></span> is the background error file which can now be used to run WRFDA.</p>
                 <p>If <span class="stylecode">be.dat</span> has not been created, check the log files for each gen_be stage (found in ${RUN_DIR}) to find the error.</p>
                 <p>The <span class="stylecode">fort.*</span> files under the directory <span class="stylecode">$RUN_DIR/working</span> are the files to be read by the graphics tools mentioned below.</p>
               </blockquote>
@@ -267,16 +264,23 @@ a:active {
                   </tr>
                 </table>
               </blockquote>
-              <p>If this was successful, you can <a href="lessons.html#session_3">continue to the next practice case</a>.</p>
-            </blockquote>
+            <p>If this was successful, you can <a href="psot.html">continue to the next practice case (PSOT)</a>.</p>
             <span class="bodyh1"><a name="advanced">Additional practice</span>
-            <blockquote>
-              <ul>
-              <li>Try using more data and see how your plots change. You can find up to 4 weeks of data in /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/.</p>
-              <li>If this was successful, view plots of the gen_be statistics with the above wrapper script, and continue to try more <a href="psot.html">single ob tests</a> using the be.dat you have created.</li>
-              </ul>
               <p>&nbsp;</p>
-              </blockquote>
+              <p>
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr style="vertical-align: top;">
+                    <td>
+                      <ul>
+                        <li>Try using more data and see how your plots change. You can find up to 4 weeks of data in /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/.<br><br></li>
+                        <li>Try using a different BIN_TYPE and running gen_be_plot_wrapper.ksh again. As an example of the different kind of results you will see, BIN_TYPE=3 results in the "gen_be_corr_yz_tutorial.pdf" plot shown at right.<br><br></li>
+                        <li>If this was successful, view plots of the gen_be statistics with the above wrapper script, and continue to try more <a href="psot.html">single ob tests</a> using the be.dat you have created.</li>
+                      </ul>
+                    </td>
+                    <td class="bodytext"><a href="images/gen_be_corr_yz_tutorial_bin_type_3.png"><img src="images/gen_be_corr_yz_tutorial_bin_type_3.png" height="300"></a></td>
+                  </tr>
+                </table>
+              </p>
             </blockquote>
 <!-- InstanceEndEditable --><br>
             
