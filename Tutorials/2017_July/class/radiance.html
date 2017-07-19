@@ -159,7 +159,7 @@ a:active {
                     <span class="stylecode">only_sea_rad = .false.<br>
                     use_varbc = .true.<br>
                     use_crtm_kmatrix = .true.</span> &nbsp; (set "use_rttov_kmatrix" instead for RTTOV)<br>
-                    <span class="stylecode">varbc_nbgerr = 5000</span>
+                    <span class="stylecode">varbc_nbgerr = 5000
                     <br>
                     /<br>
                     &amp;wrfvar15<br>
@@ -223,6 +223,12 @@ a:active {
               <blockquote>
                 <blockquote>
                   <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+                  <table align=center width="90%" border="1" cellpadding="10">
+                    <tr>
+                      <td class="body"><span style="color:red"><b>Pro-tip!</b></span><br>
+                        If you want to perform other tasks while you are waiting for WRFDA to complete, just type "ctrl-z" then "bg" and hit enter: this will make the job run "in the background" while you perform other tasks!</td>
+                    </tr>
+                  </table>
                 </blockquote>
                 <p>The test should take about a minute to complete on classroom computers.</p>
               </blockquote>
@@ -253,9 +259,6 @@ a:active {
                   export TOOLS_DIR=/classroom/wrfhelp/DATA/WRFDA/TOOLS<br>
                   export EXP_DIR=/classroom/users/${USER}/DA/radiance<br>
                   export VAR_RUN_DIR1=$EXP_DIR<br>
-                  export VAR_RUN_DIR2=none<br>
-                  <br>
-                  ...<br>
                   export FGFILE=$VAR_RUN_DIR1/fg<br>
                   ...<br>
                   export FILE_PREFIX=01_oma<br>
@@ -263,12 +266,22 @@ a:active {
                   ...<br>
                   export FULL_FILE_PREFIX=$VAR_RUN_DIR1/$FILE_PREFIX</p>
 
-                <p>After changing all the above settings, run the script. A number of plots with the file extention ".ncgm" will be created in the "diag" directory. Use the command "idt" to view these .ncgm files. The plot at right shows the observed values for AMSU-A Channel 5 on NOAA-16 (after thinning was applied); you should see many plots just like this for other channels and instruments.</p>
+                <p>After changing all the above settings, run the script. A number of plots with the file extention ".ncgm" will be created in the "diag" directory. Use the command "idt" to view these .ncgm files (alternatively, you can modify the script line "export OUT_TYPE=ncgm" to read "export OUT_TYPE=pdf" to generate pdf files, but these will take longer to create). The plots at right show (from top to bottom):</p>
+                <ul><li>observed minus analysis values for AMSU-A Channel 7 on NOAA-19 (after thinning and bias correction were applied)
+                  <li>A scatterplot of the observed vs background brightness temperatures (Tb) for AMSU-A Channel 7 on NOAA-19 (before bias correction)
+                  <li>A scatterplot of the observed vs background brightness temperatures (Tb) for AMSU-A Channel 7 on NOAA-19 (after bias correction).
+                </ul>
+
+                    <p>You should see many plots just like this for other channels and instruments.</p>
                     </td>
-                    <td class="bodytext"><a href="images/noaa-16-amsua_2013122300-0.png"><img src="images/noaa-16-amsua_2013122300-0.png" height="300"></a></td>
+                    <td class="bodytext">
+                      <a href="images/noaa-16-amsua_2013122300-0.png"><img src="images/noaa-19-amsua_2013122300-20.png" height="300"></a><br><br>
+                      <a href="images/noaa-16-amsua_2013122300-0.png"><img src="images/noaa-19-amsua_2013122300-21.png" height="300"></a><br><br>
+                      <a href="images/noaa-16-amsua_2013122300-0.png"><img src="images/noaa-19-amsua_2013122300-22.png" height="300"></a>
+                    </td>
                   </tr>
                 </table>
-                <p class="body"><br>You have now completed the basic radiance tutorial! If you still have time, you can try the additional practice below:</p>
+                <p class="body"><br>You have now completed the basic radiance tutorial! You can move on to <a href=4dvar.html>the next exercise</a>, or try the additional practice below:</p>
               </blockquote>
               <p class="bodyh2"><a name="advanced">Additional practice</a></p>
               <ul>

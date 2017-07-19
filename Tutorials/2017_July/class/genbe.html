@@ -101,7 +101,7 @@ a:active {
                     export NOCOLONS=false</p>
                 </blockquote>
                 <p>FC_DIR specifies the directory where the WRF forecast files (wrfout*) reside. Observe the directory structure and how the wrfout files are stored. To generate your own BE file for your own case and domain in the future, you will need to prepare and arrange your wrfout files in the same way (for example, 2008020512/wrfout_d01_2008-02-06_12:00:00; 2008020512 is the initial time, wrfout_d01_2008-02-06_12:00:00 is the 24-hour forecast valid at 2008020612).</p>
-                <p>NL_CV_OPTIONS specifies the control variable option. 5 is for the default wind control variables (psi and chi_u). 7 is for the new CV7 option, which uses u and v as the wind control variables.</p> 
+                <p>NL_CV_OPTIONS specifies the control variable option. 5 is for the default wind control variables (psi and chi_u). 7 is for the CV7 option, which uses u and v as the wind control variables.</p> 
                 <p>BIN_TYPE specifies the binning option for calculating GEN_BE statistics. BIN_TYPE=5 is the only option that is well-tested, but you may try other options as well. See comments within the script or <a href=../docs/WRFDA_BE.pdf>the GEN_BE presentation</a> for information about the other options.</p>
 
               </blockquote>
@@ -204,14 +204,14 @@ a:active {
                   <p class="stylecode">......<br>
                     export WRFVAR_DIR=/classroom/users/${USER}/DA/WRFDA<br>
                     export GEN_BE_PLOT=${WRFVAR_DIR}/var/graphics/ncl/gen_be<br>
-                    export GRAPHIC_WORKS=pdf</p>
-                  <p>export NUM_WE=89 # 1 point less than stagger points  90<br>
-                  export NUM_SN=59 # 1 point less than stagger points  60<br>
-                  export NUM_LEVELS=40 # 1 point less than stagger points 41<br>
-                  export RESOLUTION=60.0  # km<br>
-                  export REGION=tutorial     # only for naming output purpose<br>
-                  export BE_DIR=/classroom/users/${USER}/DA/gen_be/gen_be5_cv5/working<br>
-                  export BE_NROW=$NUM_LEVELS</p>
+                    export GRAPHIC_WORKS=pdf<br>
+                    export NUM_WE=89 # 1 point less than stagger points  90<br>
+                    export NUM_SN=59 # 1 point less than stagger points  60<br>
+                    export NUM_LEVELS=40 # 1 point less than stagger points 41<br>
+                    export RESOLUTION=60.0  # km<br>
+                    export REGION=tutorial     # only for naming output purpose<br>
+                    export BE_DIR=/classroom/users/${USER}/DA/gen_be/gen_be5_cv5/working<br>
+                    export BE_NROW=$NUM_LEVELS</p>
                 </blockquote>
                 <p>then run the script</p>
                 <blockquote>
@@ -273,8 +273,8 @@ a:active {
                     <td>
                       <ul>
                         <li>Try using more data and see how your plots change. You can find up to 4 weeks of data in /classroom/wrfhelp/DATA/WRFDA/CONUS60/fc/.<br><br></li>
-                        <li>Try using a different BIN_TYPE and running gen_be_plot_wrapper.ksh again. As an example of the different kind of results you will see, BIN_TYPE=3 results in the "gen_be_corr_yz_tutorial.pdf" plot shown at right.<br><br></li>
-                        <li>If this was successful, view plots of the gen_be statistics with the above wrapper script, and continue to try more <a href="psot.html">single ob tests</a> using the be.dat you have created.</li>
+                        <li>Try using CV_OPTIONS=7 and see how your results change.<br><br></li>
+                        <li>Try using a different BIN_TYPE and running gen_be_plot_wrapper.ksh again (BIN_TYPE=0 may take a long time). As an example of the different kind of results you will see, BIN_TYPE=3 results in the "gen_be_corr_yz_tutorial.pdf" plot shown at right.<br><br></li>
                       </ul>
                     </td>
                     <td class="bodytext"><a href="images/gen_be_corr_yz_tutorial_bin_type_3.png"><img src="images/gen_be_corr_yz_tutorial_bin_type_3.png" height="300"></a></td>

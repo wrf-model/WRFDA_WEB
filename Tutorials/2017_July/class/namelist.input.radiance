@@ -80,7 +80,6 @@
 /
 &physics
  sf_surface_physics = 2,
- num_land_cat = 24,
 /
 &scm
 /
