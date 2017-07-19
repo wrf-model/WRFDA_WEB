@@ -43,7 +43,7 @@ a:active {
           <td valign="middle" bgcolor="#FFFFFF"><!-- InstanceBeginEditable name="maincontent" -->
             <span class="pagetitle">Running WRFDA - pseudo single ob test</span>
             <blockquote>
-              <p>The pseudo single ob test is usually the first step to try out WRFDA after you have generated your own be.dat. It is a very useful tool, which can be used to investigate your choice of background error and its impact on your analysis. See <a href="../docs/WRFDA_BE.pdf#22">the Background Error presentation</a> for more information (starting on slide 22).</p>
+              <p>The pseudo single ob test is usually the first step to try out WRFDA after you have generated your own be.dat. It is a very useful tool, which can be used to investigate your choice of background error and its impact on your analysis. See <a href="../docs/WRFDA_BE.pdf#34">the Background Error presentation</a> for more information (starting on slide 34).</p>
               <span class="bodyh1">Source code</span>
               <blockquote>
                 <p>Get the <a href="wrfda_code.html">pre-compiled code</a>, if you have not done so. </p>
@@ -67,7 +67,7 @@ a:active {
               </blockquote>
               <span class="bodyh1">Edit namelist.input</span>
               <blockquote>
-                <p>Change and add the following <span class="stylecode">namelist.input</span> settings to activate the pseudo single ob test. You can do so by modifying the namelist.input used in the previous WRFDA-3DVAR tutorial case:</p>
+                <p>Change/add the following <span class="stylecode">namelist.input</span> settings to activate the pseudo single ob test. You can do so by modifying the namelist.input used in the previous WRFDA-3DVAR tutorial case:</p>
                 <blockquote>
                   <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar ./namelist.input</p>
                   <p class="stylecode">vi namelist.input</p>
@@ -83,7 +83,7 @@ a:active {
                     pseudo_var = 'u'<br>
                     /</p>
                 </blockquote>
-                <p>Note: pseudo_var can be u, v, t, p, q. If pseudo_var is q, then reasonable values of pseudo_err and pseudo_val are 0.001 rather than 1.0.</p>
+                <p>Note: pseudo_var can be u, v, t, p, q, or several other pseudo-observation types. If pseudo_var is q, then reasonable values of pseudo_err and pseudo_val are 0.001 rather than 1.0. For more details, see <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/Docs/user_guide_V3.9/users_guide_chap6.htm#_Additional_WRFDA_Exercises:_2>the relevant section of the Users Guide</a>.</p>
                 <p>By setting <span class="stylecode">num_pseudo = 1</span>, WRFDA will ignore real data and simply assimilate the pseudo-observation</p>
               </blockquote>
               <p><span class="bodyh1">Run WRFDA (da_wrfvar.exe)</span> </p>
@@ -164,12 +164,14 @@ a:active {
                       / </p>
                     <p><a href="images/psot_ncview.P.length50.var25.png">Here is the plot of the pressure perturbation with these settings and 'u' as the test variable</a>. Is this the impact you expected? (hint: check the range of P in the legend)</p>
                 </li>
-              <p>If this was successful, you can <a href="lessons.html#session_3">continue to the next practice case</a>. </p>
+              <p>If this was successful, you can try the "Additional practice" below, or try some of the extra exercises from other lessons in <a href="lessons.html#session_2">this practice session</a>. </p>
               </ul>
             </blockquote>
             <span class="bodyh1"><a name="advanced">Additional practice</span>
             <blockquote>
-              <p>After you have run the <a href="hybrid.html">hybrid tutorial case</a>, try running PSOT with hybrid assimilation. This exercise can be found at that page.</p>
+              <ul><li>If you did the <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/Tutorials/2017_July/class/genbe.html#advanced>additional GEN_BE exercises</a>, run PSOT using those additional be.dat files you created.
+                <li>After you have run the <a href="hybrid.html">hybrid tutorial case</a>, try running PSOT with hybrid assimilation. This exercise can be found at that page.</li>
+              </ul>
             </blockquote>
 <p>&nbsp;</p>
             <!-- InstanceEndEditable --><br>
