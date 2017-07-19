@@ -194,24 +194,9 @@ a:active {
             <p class="bodyh2"><a name="4dvar">OBSPROC for 4DVAR</a></p>
             <blockquote>
               <p>So far we have prepared observations for 3DVAR: this method assumes all observations are at the same time, so all observations are contained within a single file. We can also prepare observations for 4DVAR, which is a method by which observations are assimilated at their actual time. You will learn more about this method in later lectures and exercises.</p>
-<!--              <p>To prepare observations for 4DVAR, simply change the time settings under &amp;record2, and the "use_for" namelist setting under &amp;record9 in namelist.obsproc:</p>
-              <blockquote>
-                <p class="stylecode">&gt; vi namelist.obsproc</p>
-                <p class="stylecode">&amp;record2<br>
-                   time_window_min = '2008-02-05_12:00:00',<br>
-                   time_analysis   = '2008-02-05_15:00:00',<br>
-                   time_window_max = '2008-02-05_18:00:00',<br>
-                  /<br>
-                  <br>
-                  ...<br>
-                  <br>
-                  &amp;record9<br>
-                  &nbsp;use_for &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= '4DVAR',</p>
-              </blockquote>
-              <p>Then run obsproc again. This time, you should see more output files: <span class="stylecode">obs_gts_2008-02-05_12:00:00.4DVAR</span>, <span class="stylecode">obs_gts_2008-02-05_13:00:00.4DVAR</span>, etc. These files should contain observations for the same domain split into 1-hour time windows as indicated by the file name.</p>-->
 
               <span class="bodyh1">Prepare observations for 4DVAR</span></p>
-              <p>Now we will use OBSPROC to create ASCII obseravtion files for a later 4DVAR exercise. Create <em>/classroom/users/${USER}/DA/obsproc_4dvar</em> and use this as your working directory.</p>
+              <p>Now we will use OBSPROC to create ASCII observation files for a later 4DVAR exercise. Create <em>/classroom/users/${USER}/DA/obsproc_4dvar</em> and use this as your working directory.</p>
               <blockquote>
                 <p class="stylecode">mkdir /classroom/users/${USER}/DA/obsproc_4dvar<br>
                                      cd /classroom/users/${USER}/DA/obsproc_4dvar</p>
@@ -221,13 +206,13 @@ a:active {
                 <blockquote>
                   <p class="stylecode">&gt; vi namelist.obsproc</p>
                   <p class="stylecode">&amp;record1<br>
-                   obs_gts_filename = '/classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2005071600/obs.all',<br>
+                   obs_gts_filename = '/classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2017070400/obs.2017070400',<br>
                    obs_err_filename = 'obserr.txt',<br>
                   /<br>
                   &amp;record2<br>
-                   time_window_min  = '2005-07-16_00:00:00',<br>
-                   time_analysis    = '2005-07-16_03:00:00',<br>
-                   time_window_max  = '2005-07-16_06:00:00',<br>
+                   time_window_min  = '2017-07-04_00:00:00',<br>
+                   time_analysis    = '2017-07-04_03:00:00',<br>
+                   time_window_max  = '2017-07-04_03:00:00',<br>
                   /<br>
                   &amp;record3<br>
                    max_number_of_obs        = 400000,<br>
@@ -247,19 +232,19 @@ a:active {
                   /<br>
                   &amp;record7<br>
                    IPROJ = 3,<br>
-                   PHIC  = 24.,<br>
+                   PHIC  = 30.,<br>
                    XLONC = 130.0,<br>
-                   TRUELAT1= 24.0,<br>
-                   TRUELAT2= 24.0,<br>
-                   MOAD_CEN_LAT = 24.,<br>
+                   TRUELAT1= 20.0,<br>
+                   TRUELAT2= 40.0,<br>
+                   MOAD_CEN_LAT = 30.,<br>
                    STANDARD_LON = 130.,<br>
                   /<br>
                   &amp;record8<br>
                    IDD    =   1,<br>
                    MAXNES =   1,<br>
-                   NESTIX =  24,  200,  136,  181,  211,<br>
-                   NESTJX =  30,  200,  181,  196,  211,<br>
-                   DIS    = 135,  10.,  3.3,  1.1,  1.1,<br>
+                   NESTIX =  51,  200,  136,  181,  211,<br>
+                   NESTJX =  51,  200,  181,  196,  211,<br>
+                   DIS    =  60,  10.,  3.3,  1.1,  1.1,<br>
                    NUMC   =    1,    1,   2,     3,    4,<br>
                    NESTI  =    1,   40,  28,    35,   45,<br>
                    NESTJ  =    1,   60,  25,    65,   55,<br>
@@ -267,7 +252,7 @@ a:active {
                   &amp;record9<br>
                    use_for          = '4DVAR',<br>
                    num_slots_past   = 3,<br>
-                   num_slots_ahead  = 3,<br>
+                   num_slots_ahead  = 0,<br>
                    /<br>
                   </p>
                   <p>Note that this time, instead of copying the little_r observation file to our working directory, we specify its location in the namelist with "obs_gts_filename".</p>
@@ -286,31 +271,28 @@ a:active {
               </table>
               <p><br>This time, you should see several observation files in your working directory:</p>
                 <blockquote>
-                  <p class="stylecode">obs_gts_2005-07-16_00:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_01:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_02:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_03:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_04:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_05:00:00.4DVAR<br>
-                  obs_gts_2005-07-16_06:00:00.4DVAR</p>
+                  <p class="stylecode">obs_gts_2017-07-04_00:00:00.4DVAR<br>
+                  obs_gts_2017-07-04_01:00:00.4DVAR<br>
+                  obs_gts_2017-07-04_02:00:00.4DVAR<br>
+                  obs_gts_2017-07-04_03:00:00.4DVAR</p>
                 </blockquote>
-              <p>These are the output observation files from obsproc, one for each time window. You can open them using a text editor; <a href="obs_gts_2005-07-16_00:00:00.4DVAR.txt">they should look similar to this</a>. Note that the off-hour observation files (<em>i.e.</em>, not 00z, 06z, 12z, or 18z) have fewer observations, since many regular observations are only taken at those times.</p>
-              <p>You will also see the same <span class="stylecode">*.diag</span> diagnostic files as with the 3DVAR case. The only difference is there will now be 7 duplicate time log files rather than one.</p>
+              <p>These are the output observation files from obsproc, one for each time window. You can open them using a text editor; <a href="obs_gts_2017-07-04_03:00:00.4DVAR.txt">they should look similar to this</a>. Note that the off-hour observation files (<em>i.e.</em>, not 00z, 06z, 12z, or 18z) have fewer observations, since many regular observations are only taken at those times.</p>
+              <p>You will also see the same <span class="stylecode">*.diag</span> diagnostic files as with the 3DVAR case. The only difference is there will now be 4 duplicate time log files rather than one, since we have specified 4 observation time windows.</p>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>You can use the same NCL script as above (<em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>), to see the locations of observations contained in each of your observation files. Copy plot_ob_ascii_loc.ncl to your working directory, then edit it to provide the date, filenames and options for this case.</p>
               <blockquote>
                 <p class="stylecode">......<br>
-                date = &quot;2005071600&quot;<br>
-                obfile = &quot;obs_gts_2005-07-16_00:00:00.4DVAR&quot;; (or obs_gts_2005-07-16_01:00:00.4DVAR, obs_gts_2005-07-16_02:00:00.4DVAR, etc.)<br>
-                fgfile = &quot;/classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2005071600/wrfinput_d01&quot;   ; for retrieving mapping info<br>
+                date = &quot;2017070400&quot;<br>
+                obfile = &quot;obs_gts_2017-07-04_00:00:00.4DVAR&quot;; (or obs_gts_2017-07-04_01:00:00.4DVAR, obs_gts_2017-07-04_02:00:00.4DVAR, obs_gts_2017-07-04_03:00:00.4DVAR)<br>
+                fgfile = &quot;/classroom/wrfhelp/DATA/WRFDA/4dvar/rc/2017070400/wrfinput_d01&quot;   ; for retrieving mapping info<br>
                 out_type = &quot;pdf&quot;<br>
                 plotname = &quot;./obsloc&quot;+date<br>
                 ......              </p>
               </blockquote>
-              <p>Run the NCL script, then view the output file (obsloc2005071600.pdf) using <span class="stylecode">display</span>. You should see plots similar to the one seen at right.</p>
+              <p>Run the NCL script, then view the output file (obsloc2017070400.pdf) using <span class="stylecode">display</span>. You should see plots similar to the one seen at right.</p>
                 </blockquote></td>
-                    <td class="bodytext"><a href="images/obsloc2005071600-2.png"><img src="images/obsloc2005071600-2.png" alt="Locations of METAR observations for tutorial case"></a></td>
+                    <td class="bodytext"><a href="images/obsloc2017070400-2.png"><img src="images/obsloc2017070400-2.png" alt="Locations of SHIP observations for 4DVAR tutorial case"></a></td>
                   </tr>
                 </table>
 
