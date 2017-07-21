@@ -43,7 +43,7 @@ a:active {
           <td valign="middle" bgcolor="#FFFFFF"><!-- InstanceBeginEditable name="maincontent" -->
             <span class="pagetitle">Radar data assimilation</span>
             <blockquote>
-              <p><span class="body">References: <ul><li><a href="../../2015_Aug/docs/WRFDA_Radar.pdf">Download the presentation from last year's tutorial</a></span></li><li><a href="../docs/WRFDA_Advanced_Practice_Sessions.pdf">Brief presentation on advanced exercises</a></li></ul></p>
+              <p><span class="body">Reference: <a href="../docs/WRFDA_Radar.pdf">Download the tutorial presentation</a></span></p>
               <p><span class="bodyh1">Source code</span></p>
               <blockquote>
                 <p>Get the <a href="wrfda_code.html">pre-compiled code</a>, if you have not done so.</p>
@@ -64,7 +64,7 @@ a:active {
               <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                      <p>The <a href="wrfda_testdata.html#testdata_radar">radar case</a> is different from the CONUS60 case you have used in obsproc, running WRFDA-3DVAR and gen_be sessions. It utilizes a high-resolution domain over Taiwan, 61x51 gridpoints, 30 vertical levels, and 15km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/Radar).</a>
+                      <p>The <a href="wrfda_testdata.html#radar">radar case</a> is different from the CONUS60 case you have used in obsproc, running WRFDA-3DVAR and gen_be sessions. It utilizes a medium-resolution domain over Taiwan, 61x51 gridpoints, 30 vertical levels, and 15km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/Radar).</a>
                       <p>It features <a href="https://en.wikipedia.org/wiki/Typhoon_Fanapi">Typhoon Fanapi</a> striking the island on September 19, 2010.</p>
                       <p>&nbsp;</p>
                       <p>The procedure is the same as <a href="3dvar.html">Running WRFDA-3DVAR</a> except for an extra radar input file and adding and changing some namelist.input settings.</p>
@@ -113,6 +113,7 @@ a:active {
               </p>
               <blockquote>
                 <p>Use ncdiff and the ncl scripts introduced in previous exercises to analyze the output.</p>
+                <p>Note the existance of a number of extra diagnostic files (for example, gts_omb_oma_02, qcstat_conv_02, etc.). This is because of the setting "max_ext_its = 2" in the namelist: this run of WRFDA used two outer loops. For many of the diagnostics, each outer loop gets its own separate file.</p>
                 <p>Check analysis increments of moisture fields.</p>
                 <p>Check the <em><strong>statistics</strong></em> file.</p>
               </blockquote>
@@ -124,13 +125,13 @@ a:active {
                   use_radar_rf = .true. only<br>
                   both use_radar_rv = .true. and use_radar_rf = .true.</p>
               </blockquote>
-              <p class=body>You can now <a href="lessons.html#session_6">move on to the next exercise</a>, or try the 4DVAR radar assimilation exercise below.</p>
+              <p class=body>You can now <a href="lessons.html#session_4">move on to the next exercise</a>, or try the 4DVAR radar assimilation exercise below.</p>
             </blockquote>
             <span class="pagetitle">4DVAR radar assimilation</span>
             <blockquote>
               <p><span class="bodyh1">Source code</span></p>
               <blockquote>
-                <p><em>WRFDA/var/build/da_wrfvar_4dvar.exe</em> (this is renamed from da_wrfvar.exe)<br>
+                <p><em>WRFDA/var/build/da_wrfvar.exe</em><br>
                   is the executable that will be used in the 4D-VAR session.              </p>
                 <p>You should create a separate working directory <em> /classroom/users/${USER}/DA/radar_4dvar</em> so that you can compare the two methods.</p>
                 <p><span class="stylecode">mkdir /classroom/users/${USER}/DA/radar_4dvar</span><br>
@@ -181,16 +182,12 @@ a:active {
                 </blockquote>
               </blockquote>
               <p><span class="bodyh1">Run WRFDA</span>
-              <p>Since the assimilation windows for this case are only 10 minutes, and we have set ntmax=4, this test should take less than 5 minutes to run on the classroom computers.</p>
+              <p>Since the assimilation windows for this case are only 10 minutes, and we have set ntmax=4 (only 4 inner loop minimization steps), this test should only take about 5 minutes to run on the classroom computers. Remember, you can always use "ctrl-z" followed by the "bg" command to make WRFDA run in the background.</p>
               <blockquote>
                 <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
               </blockquote>
               <p>Compare the output of the 3dvar test to the 4dvar test using ncdiff. Is the difference significant? Remember, we only did 4 inner loop minimization steps, so we haven't reached 4DVAR's full potential!</p>
-              <p class=body>You have finished the radar assimilation tutorial. You can now <a href="lessons.html#session_6">move on to the next exercise</a>.</p>
-<!--            <span class="pagetitle">Radar assimilation with CLOUD_CV options</span>
-            <blockquote>
-              <p><span class="bodyh1">Source code</span></p>
-            </blockquote>-->
+              <p class=body>You have finished the radar assimilation tutorial. You can now <a href="lessons.html#session_4">move on to the next exercise</a>.</p>
             <p>&nbsp;</p>
             <!-- InstanceEndEditable --><br>
             
