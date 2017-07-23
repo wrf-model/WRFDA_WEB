@@ -43,14 +43,13 @@ a:active {
           <td valign="middle" bgcolor="#FFFFFF"><!-- InstanceBeginEditable name="maincontent" -->
             <span class="pagetitle">Dual-resolution hybrid data assimilation</span>
             <blockquote>
-              <p><span class="body">Reference: <ul><li><a href="../docs/WRFDA_Hybrid.pdf">Download the tutorial presentation</a></li><li><a href="../docs/WRFDA_Advanced_Practice_Sessions.pdf">Brief presentation on advanced exercises</a></li></ul></span></p>
-<p><span class="bodyh1">Source code</span></p>
+              <p><span class="body">Reference: <a href="../docs/WRFDA_Hybrid.pdf">Download the tutorial presentation</a></span></p>
               <blockquote>
                 <p>Get the <a href="wrfda_code.html">pre-compiled code</a>, if you have not done so. </p>
-                <p><em>WRFDA/var/build/gen_be_ensmean.exe</em><br>
-                  <em>WRFDA/var/build/gen_be_ep2.exe</em><br>
-                  <em>WRFDA/var/build/gen_be_vertloc.exe</em><br>
-                  <em>WRFDA/var/build/da_wrfvar.exe</em><br> 
+                <p><span class=stylecode>>WRFDA/var/build/gen_be_ensmean.exe<br>
+                  WRFDA/var/build/gen_be_ep2.exe<br>
+                  WRFDA/var/build/gen_be_vertloc.exe<br>
+                  WRFDA/var/build/da_wrfvar.exe</span><br> 
                   are the four executables that will be used in this session.</p>
               </blockquote>
               <p><span class="bodyh1">Choice of your working directory</span>
@@ -65,11 +64,11 @@ a:active {
               </blockquote>
               <p><span class="bodyh1">Input data</span> </p>
               <blockquote>
-                <p>The <a href="wrfda_testdata.html#testdata_dualres_hybrid">dual-resolution hybrid case</a> much the same as the <a href="hybrid.html">hybrid case</a>. Some additional namelist settings and input files are required, but otherwise the procedure is very similar.</p>
+                <p>The <a href="wrfda_testdata.html#dualres_hybrid">dual-resolution hybrid case</a> much the same as the <a href="hybrid.html">hybrid case</a>. Some additional namelist settings and input files are required, but otherwise the procedure is very similar.</p>
                 <p>Just as in the standard hybrid case, you will need the basic input files (LANDUSE.TBL, ob.ascii, be.dat), an ensemble, and a first guess. In this case, the first guess is a <em>nest domain</em> of the lower resolution ensemble, and we perform the analysis on this smaller, but higher-resolution domain. The two domains are plotted at right.</p>
               </blockquote>
                     </td>
-                    <td class="bodytext"><a href="images/dual_res_hybrid_tutorial_case_domain.png"><img src="images/dual_res_hybrid_tutorial_case_domain.png" height="300"></a></td>
+                    <td class="bodytext"><a href="images/dual_res_hybrid_tutorial_case_domain.png"><img src="images/dual_res_hybrid_tutorial_case_domain.png" height="300"></a><br>Map of the dual-resolution hybrid test domains</td>
                   </tr>
                 </table>
               <ul>
@@ -137,6 +136,9 @@ a:active {
                     <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl .<br>
                       cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test .</p>
                   </blockquote>
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr style="vertical-align: top;">
+                    <td>
                     <p>Edit <em>ens_mean_std_dev.ncl</em> to set the proper date and path path. Note that the "date" is the date and time when the forecast was initialized, while the individual "year", "month", etc. settings are for the forecast valid date/time, 6 hours later.</p>
                   <blockquote>
                     <p class="stylecode">  date = "2008091118"<br>
@@ -154,6 +156,10 @@ a:active {
                     kl = 24</p>
                   </blockquote>
                   <p>V, W, T, P, and QVAPOR are some other interesting fields to look at.</p>
+                    </td>
+                    <td class="bodytext"><a href="images/mean_std_dev_dualres.png"><img src="images/mean_std_dev_dualres.png" height="300"></a><br>Example of the output from ens_mean_std_dev.ncl, showing the ensemble mean (left) and standard deviation (right) of the U field on model level 24</td>
+                  </tr>
+                </table>
                 </blockquote>
               </blockquote>
               <ul>
@@ -268,7 +274,7 @@ a:active {
               </blockquote>
               <p>View the different output files to see how they differ from a 3DVAR assimilation run. For example, in <em>cost_fn</em> and <em>grad_fn</em>, you will see the ensemble terms of the cost function and gradient, respectively.</p>
                 <p>Try playing around with some of the hybrid-related settings above and compare the results.</p>
-                <p class=body>You have now completed the WRFDA hybrid assimilation tutorial. You can now <a href="lessons.html#session_6">move on to the next exercise</a>.</p>
+                <p class=body>You have now completed the WRFDA hybrid assimilation tutorial. You can now <a href="lessons.html#session_5">move on to the next exercise</a>.</p>
                 <p>&nbsp;</p>
               </blockquote>
             </blockquote>
