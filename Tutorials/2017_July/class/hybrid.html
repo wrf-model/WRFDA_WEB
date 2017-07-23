@@ -43,14 +43,30 @@ a:active {
           <td valign="middle" bgcolor="#FFFFFF"><!-- InstanceBeginEditable name="maincontent" -->
             <span class="pagetitle">Hybrid data assimilation</span>
             <blockquote>
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr style="vertical-align: top;">
+                  <td>
+                    <blockquote>
+                      <p>Hybrid data assimilation is a combination of variational and ensemble methods of data assimilation. This lesson has exercises for both 3DENVAR and 4DENVAR.</p>
+                      <p>This case utilizes a domain over the eastern United States and western atlantic ocean, 111x111 gridpoints, 41 vertical levels, and 24km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/hybrid). The exact area of the domain is shown at right. This case will be used both for 3DENVAR and 4DENVAR.</a>
+                      <p>It features a <a href="https://en.wikipedia.org/wiki/January_2016_United_States_blizzard">major blizzard</a> which produced a record amount of snowfall in some cities from January 22-24, 2016.</p>
+                    </td>
+                  </blockquote>
+                  <td class="bodytext"><a href="images/hybrid_domain.png"><img src="images/hybrid_domain.png" alt="Domain of this test case" height="300"></a></td>
+                </tr>
+              </table>
+              <p>Hybrid data assimilation is a combination of variational and ensemble methods of data assimilation. This lesson has exercises for both 3DENVAR and 4DENVAR.</p>
               <p><span class="body">Reference: <a href="../docs/WRFDA_Hybrid.pdf">Download the tutorial presentation</a></span></p>
-<p><span class="bodyh1">Source code</span></p>
+              <p class="bodyh2"><a name="3denvar">3DENVAR</a></p>
+
+              <p><span class="bodyh1">Source code</span></p>
               <blockquote>
                 <p>Get the <a href="wrfda_code.html">pre-compiled code</a>, if you have not done so. </p>
-                <p><em>WRFDA/var/build/gen_be_ensmean.exe</em><br>
-                  <em>WRFDA/var/build/gen_be_ep2.exe</em><br>
-                  <em>WRFDA/var/build/da_wrfvar.exe</em><br> 
-                  are the three executables that will be used in this session.</p>
+                <p><span class=stylecode>>WRFDA/var/build/gen_be_ensmean.exe<br>
+                  WRFDA/var/build/gen_be_ep2.exe<br>
+                  WRFDA/var/build/gen_be_vertloc.exe<br>
+                  WRFDA/var/build/da_wrfvar.exe</span><br>
+                  are the four executables that will be used in this session.</p>
               </blockquote>
               <p><span class="bodyh1">Choice of your working directory</span>
               </p>
@@ -61,46 +77,45 @@ a:active {
               </blockquote>
               <p><span class="bodyh1">Input data</span> </p>
               <blockquote>
-                <p>The <a href="wrfda_testdata.html#testdata_hybrid">hybrid case</a> is different from other practice cases.</p>
-                <p>The procedure is the same as <a href="3dvar.html">Running WRFDA-3DVAR</a> except for some more input files and namelist.input settings.</p>
+                <p>The procedure for hybrid 3DENVAR assimilation is much the same as <a href="3dvar.html">Running WRFDA for 3DVAR</a>, except for some more input files and namelist.input settings.</p>
                 <p>In addition to the basic input files (LANDUSE.TBL, ob.ascii, be.dat) that you should have been familiar with by now, <em><strong>an ensemble mean</em></strong> (which will be the <em><strong>fg</strong></em> for the hybrid application) and <em><strong>ensemble perturbations</strong></em> are the extra required input files.                </p>
               </blockquote>
               <ul>
                 <li>ensemble mean
                   <blockquote>
-                    <p>Usually, the first step of hybrid data assimilation is to prepare a set of ensembles.<br>
-                      For this practice, a set of 10-member ensemble forecasts is provided under /classroom/wrfhelp/DATA/WRFDA/Hybrid/fc directory.</p>
-                    <p>Hybrid/fc/2006102712/<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e001<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e002<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e003<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e004<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e005<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e006<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e007<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e008<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e009<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.e010<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.mean<br>
-                      -rw-r--r-- 1 wrfhelp nobody 36059392 Aug 11  2015 wrfout_d01_2006-10-28_00:00:00.vari</p>
-                    <p>2006102712/wrfout_d01_2006-10-28_00:00:00.e* are ensemble forecasts valid at 2006102800 initialized at 2006102712.</p>
-                    <p>wrfout_d01_2006-10-28_00:00:00.mean and wrfout_d01_2006-10-28_00:00:00.vari are two template files that will be overwritten by a program that calculates ensemble mean from ensemble forecasts.</p>
+                    <p>Usually, the first step of hybrid data assimilation is to prepare a set of ensembles. However, this step is time-consuming, so a set of 10 ensemble forecasts is provided under the /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012300 directory.</p>
+                    <p><span class="stylecode">ls -al /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012300/<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e001<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e002<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e003<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e004<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e005<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e006<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e007<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e008<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e009<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-23_00:00:00.e010<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:55 wrfout_d01_2016-01-23_00:00:00.mean<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:55 wrfout_d01_2016-01-23_00:00:00.vari<br></span></p>
+
+                    <p>wrfout_d01_2016-01-23_00:00:00.e* are a set of 12-hour WRF forecasts (valid at 2016012300,  initialized at 2016012212).</p>
+                    <p>wrfout_d01_2016-01-23_00:00:00.mean and wrfout_d01_2016-01-23_00:00:00.vari are two template files that will be overwritten by a program that calculates ensemble mean from ensemble forecasts.</p>
                   </blockquote>
                   <ul>
                     <li> Copy  ensemble forecasts and template files to your working directory.</li>
                   </ul>
                   <blockquote>
-                    <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/Hybrid/fc/2006102712 . </p>
+                    <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012300/ . </p>
                   </blockquote>
                   
                   <ul>
-                    <li>Edit gen_be_ensmean_nl.nl (or copy it from /classroom/wrfhelp/DATA/WRFDA/Hybrid/gen_be_ensmean_nl.nl)</li>
+                    <li>Edit gen_be_ensmean_nl.nl (or copy it from /classroom/wrfhelp/DATA/WRFDA/hybrid/gen_be_ensmean_nl.nl)</li>
                   </ul>
                   <blockquote>
                     <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
                     <p class="stylecode">&amp;gen_be_ensmean_nl<br>
-                      directory = './2006102712'<br>
-                      filename = 'wrfout_d01_2006-10-28_00:00:00'<br>
+                      directory = './2016012300'<br>
+                      filename = 'wrfout_d01_2016-01-23_00:00:00'<br>
                       num_members = 10<br>
                       nv = 7<br>
                       cv = 'U', 'V', 'W', 'PH', 'T', 'MU', 'QVAPOR'<br>
@@ -116,19 +131,19 @@ a:active {
                     <li>Check output</li>
                   </ul>
                   <blockquote>
-                    <p><em>2006102712/wrfout_d01_2006-10-28_00:00:00.mean</em> is the ensemble mean</p>
+                    <p><span class="stylecode">2016012300/wrfout_d01_2016-01-23_00:00:00.mean</span> is the ensemble mean</p>
+                    <p><span class="stylecode">2016012300/wrfout_d01_2016-01-23_00:00:00.vari</span> is the ensemble variance. This file is for diagnostic purposes only, and will not be used in assimilation.</p>
                   </blockquote>
                 </li>
               </ul>
               <blockquote>
                 <blockquote>
-                  <p><em>2006102712/wrfout_d01_2006-10-28_00:00:00.vari</em> is the ensemble variance</p>
-                  <p>You may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl</em> to make some plots.</p>
+                  <p>You may use the NCL script <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl</span> to make some plots.</p>
                   <blockquote>
-                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_mean_std_dev.ncl .<br>
-                      cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test .</p>
+                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl .<br>
+                      cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/WRF_contributed.ncl.test .</p>
                   </blockquote>
-                    Edit <em>ens_mean_std_dev.ncl</em> to set the proper date and path path<br>
+                    Edit <span class="stylecode">ens_mean_std_dev.ncl</span> to set the proper date and path path<br>
                   <blockquote>
                     <p class="stylecode">dir = &quot;/classroom/users/$USER/DA/hybrid/&quot; + date + &quot;/&quot;</p>
                     <p class="stylecode">ncl ens_mean_std_dev.ncl<br>
@@ -151,8 +166,8 @@ a:active {
                 </ul>
                 <blockquote>
                   <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid</p>
-                  <p class="stylecode">mkdir -p 2006102800/ep</p>
-                  <p class="stylecode">cd 2006102800/ep                </p>
+                  <p class="stylecode">mkdir -p 2016012300/ep</p>
+                  <p class="stylecode">cd 2016012300/ep </p>
                 </blockquote>
               </ul>
             
@@ -162,17 +177,17 @@ a:active {
                 </ul>
                 <blockquote>
                   <p>gen_be_ep2.exe requires 4 command arguments (DATE, NUM_MEMBER, DIRECTORY, FILENAME) as defined below:</p>
-                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2006102800 10 ../../2006102712 wrfout_d01_2006-10-28_00:00:00</p>
+                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012300 10 ../../2016012300 wrfout_d01_2016-01-23_00:00:00</p>
                 </blockquote>
                 <ul>
                   <li>Check the output files generated by gen_be_ep2.exe</li>
                 </ul>
                 <blockquote>
-                  <p>A list of binary files will be created under 2006102800/ep directory. Among them, tmp.e* are temporary scratch files that can be removed.</p>
-                  <p>You may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl</em> to make some plots.</p>
+                  <p>A list of binary files will be created under 2016012300/ep directory. Among them, tmp.e* are temporary scratch files that can be removed.</p>
+                  <p>You may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_perturbations.ncl</em> to make some plots.</p>
                   <blockquote>
-                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/ens_perturbations.ncl .<br>
-                      cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/ncl/WRF_contributed.ncl.test . </p>
+                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_perturbations.ncl .<br>
+                      cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/WRF_contributed.ncl.test . </p>
                   </blockquote>
                   <p>Edit <em>ens_perturbations.ncl</em> to set the proper date and path.<br>
                   <blockquote>
@@ -188,17 +203,29 @@ a:active {
                   <p>Depending on what variable you display, you may have to change the color contour settings "cont_min", "cont_max", and "cont_spacing" as well to get a nice-looking plot.</p>
                 </blockquote>
               </blockquote>
+
+
+              <span class="bodyh1">Run gen_be_vertloc.exe</span>
+              <blockquote>
+                <p><span class="stylecode">gen_be_vertloc.exe</span> generates the input file for vertical localization.  This program requires one command-line argument: the number of vertical levels of the model configuration (same value as e_vert in the namelist; for the tutorial example, this should be 41</p>
+                <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid</p>
+                <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_vertloc.exe 41</p>
+                <p>This generates a file <span class="stylecode">be.vertloc.dat</span> which will be used by WRFDA.</p>
+              </blockquote>
+
+
               <span class="bodyh1">Run WRFDA in hybrid mode</span>
               <blockquote>
                 <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid</p>
-                <p> <span class="stylecode">ln -fs 2006102800/ep ./ep </span> <span style="color:red"># ensemble perturbation files should be under the ep subdirectory</span></p>
-                <p> <span class="stylecode">ln -fs 2006102712/wrfout_d01_2006-10-28_00:00:00.mean ./fg </span> <span style="color:red"># first guess is an ensemble forecast mean</span></p>
-                <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL .<br>
-                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Hybrid/ob/2006102800/ob.ascii ./ob.ascii<br>
-                  ln -fs /classroom/wrfhelp/DATA/WRFDA/Hybrid/be/be.dat ./be.dat
+                <p> <span class="stylecode">ln -fs 2016012300/ep ./ep </span> <span style="color:red"># ensemble perturbation files should be under the ep subdirectory</span><br>
+                  <span class="stylecode">ln -fs 2016012300/wrfout_d01_2016-01-23_00:00:00.mean ./fg </span> <span style="color:red"># first guess is an ensemble forecast mean</span><br>
+                  <span class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL .<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-23_00:00:00.FGAT ob.ascii</span><br>
+                  <span style="color:red"># we created the observation file during the OBSPROC exercise, if you did not finish you can find a copy here: /classroom/wrfhelp/DATA/WRFDA/hybrid/ob/2016012300/ob.ascii</span><br>
+                  <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/hybrid/be/be.dat ./be.dat</span><span style="color:red"># 3DENVAR uses a combination of static and ensemble-based background error. The static portion, contained in be.dat, is the same kind used in other assimilation types we have already demonstrated.
                 </p>
-                <p>Edit namelist.input (a sample file is provided as /classroom/wrfhelp/DATA/WRFDA/Hybrid/namelist.input)</p>
-                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/Hybrid/namelist.input .<br><br>vi namelist.input</p>
+                <p>Edit namelist.input (a sample file is provided as /classroom/wrfhelp/DATA/WRFDA/hybrid/namelist.input)</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/namelist.input .<br><br>vi namelist.input</p>
                 <p>Pay special attention to the following hybrid-related settings:</p>
                 <p> <span class="stylecode">&amp;wrfvar7<br>
                   je_factor = 2.0<br>
@@ -212,12 +239,268 @@ a:active {
                 <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
               </blockquote>
               <p>View the different output files to see how they differ from a 3DVAR assimilation run. For example, in <em>cost_fn</em> and <em>grad_fn</em>, you will see the ensemble terms of the cost function and gradient, respectively.</p>
-              <span class="bodyh1">Other practice</span>
+
+
+
+
+
+              <p class="bodyh2"><a name="4denvar">4DENVAR</a></p>
+              <p>4DENVAR is a hybrid ensemble-variational data assimilation method that uses ensemble input files at several different times to allow observations to be assimilated at the appropriate time rather than assuming the observations (which may be taken at times different from the analysis time) are all at the analysis time. The process is very similar to the 3DENVAR method described above, but the ensemble steps must be run for several different times.</p>
+
+              <blockquote>
+                <p>Create a new working directory for this practice</p>
+                <p><span class="stylecode">mkdir /classroom/users/${USER}/DA/hybrid_4denvar</span><br>
+                  <span class="stylecode">cd /classroom/users/${USER}/DA/hybrid_4denvar</span></p>
+              </blockquote>
+              <p><span class="bodyh1">Input data</span> </p>
+              <blockquote>
+                <p>This 4DENVAR test case will be the same as the 3DENVAR case. For 4DENVAR, you will have multiple "first guess" files, as well as multiple sets of ensemble forecast files, valid at different times around the analysis time. In this case, the analysis time is still 2016012300, but we have ensemble output from 2016012221, 2016012222, 2016012223, 2016012300, 2016012301, 2016012302, and 2016012303.</p>
+              </blockquote>
+                  <blockquote>
+                    <p><span class="stylecode">ls -al /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012*/<br>
+                      /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012221/:<br>
+                      total 486680<br>
+                      drwxr-sr-x 2 19974 instructor     4096 Jul 21 16:54 .<br>
+                      drwxr-sr-x 9 19974 instructor     4096 Jul 21 16:20 ..<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_21:00:00.e001<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_21:00:00.e002<br>
+                      ...<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_21:00:00.e010<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:54 wrfout_d01_2016-01-22_21:00:00.mean<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:54 wrfout_d01_2016-01-22_21:00:00.vari<br>
+                      <br>
+                      /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012222/:<br>
+                      total 486680<br>
+                      drwxr-sr-x 2 19974 instructor     4096 Jul 21 16:55 .<br>
+                      drwxr-sr-x 9 19974 instructor     4096 Jul 21 16:20 ..<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_22:00:00.e001<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_22:00:00.e002<br>
+                      ...<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_22:00:00.e010<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:55 wrfout_d01_2016-01-22_22:00:00.mean<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:55 wrfout_d01_2016-01-22_22:00:00.vari<br>
+                      <br>
+                      /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012223/:<br>
+                      total 486680<br>
+                      drwxr-sr-x 2 19974 instructor     4096 Jul 21 16:55 .<br>
+                      drwxr-sr-x 9 19974 instructor     4096 Jul 21 16:20 ..<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_23:00:00.e001<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_23:00:00.e002<br>
+                      -rw-r--r-- 1 19974 instructor 41525452 Jul 21 16:52 wrfout_d01_2016-01-22_23:00:00.e003<br>
+                      ...<br>
+                      etc.<br>
+                      ...<br></span></p>
+
+                    <p>wrfout_d01_2016-01-22_21:00:00.e*, wrfout_d01_2016-01-22_22:00:00.e*, wrfout_d01_2016-01-22_23:00:00.e*, etc. are a set of WRF forecasts (initialized at 2016012212) which are valid at 2016012221, 2016012222, 2016012223, etc.</p>
+                    <p>As before, the ".mean" and ".vari" files are template files that will be overwritten by gen_be_ensmean.exe</p>
+                  </blockquote>
+                  <ul>
+                    <li> Copy ensemble forecasts and template files to your working directory.</li>
+                  </ul>
+                  <blockquote>
+                    <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012* . </p>
+                  </blockquote>
+                  
+                  <p>Edit gen_be_ensmean_nl.nl (or copy it from /classroom/wrfhelp/DATA/WRFDA/hybrid/gen_be_ensmean_nl.nl).</p>
+                  <blockquote>
+                    <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
+                    <p class="stylecode">&amp;gen_be_ensmean_nl<br>
+                      directory = './2016012221'<br>
+                      filename = 'wrfout_d01_2016-01-22_21:00:00'<br>
+                      num_members = 10<br>
+                      nv = 7<br>
+                      cv = 'U', 'V', 'W', 'PH', 'T', 'MU', 'QVAPOR'<br>
+                      /</p>
+                  </blockquote>
+                  <ul>
+                    <li>Run gen_be_ensmean.exe</li>
+                  </ul>
+                  <blockquote>
+                    <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exe</p>
+                  </blockquote>
+                </li>
+              </ul>
+              <blockquote>
+                <p>As before, you may use the NCL script <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl</span> to make some plots of the ensemble statistics.</p>
+                <blockquote>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl .<br>
+                    cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/WRF_contributed.ncl.test .</p>
+                </blockquote>
+                  Edit <span class="stylecode">ens_mean_std_dev.ncl</span> to set the proper date (2016012221 for this time) and path<br>
+                <blockquote>
+                  <p class="stylecode">dir = &quot;/classroom/users/$USER/DA/hybrid_4denvar/&quot; + date + &quot;/&quot;</p>
+                  <p class="stylecode">ncl ens_mean_std_dev.ncl<br>
+                  display mean_std_dev.pdf</p>
+                </blockquote>
+                <p>You must now do the same step for every other first guess time:</p>
+
+                <blockquote>
+                  <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
+                  <p class="stylecode">&amp;gen_be_ensmean_nl<br>
+                    directory = './2016012221'<br>
+                    filename = 'wrfout_d01_2016-01-22_22:00:00'<br>
+                    num_members = 10<br>
+                    nv = 7<br>
+                    cv = 'U', 'V', 'W', 'PH', 'T', 'MU', 'QVAPOR'<br>
+                    /</p>
+                    <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exe</p>
+                  <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
+                  <p class="stylecode">&amp;gen_be_ensmean_nl<br>
+                    directory = './2016012221'<br>
+                    filename = 'wrfout_d01_2016-01-22_23:00:00'<br>
+                    num_members = 10<br>
+                    nv = 7<br>
+                    cv = 'U', 'V', 'W', 'PH', 'T', 'MU', 'QVAPOR'<br>
+                    /</p>
+                    <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exei<br><br>...</p>
+                  <p>And so on for 2016012300, 2016012301, 2016012302, and 2016012303</p>
+                </blockquote>
+
+              </blockquote>
+              <ul>
+                <li>ensemble perturbations</li>
+              </ul>
+              <ul>
+                <ul>
+                  <li>This step will extract the ensemble perturbations from the existing ensemble wrfout files for each first guess time. Create another sub-directory where you will be working for this step (we will need a different subdirectory for each first guess time).</li>
+                </ul>
+                <blockquote>
+                  <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid_4denvar</p>
+                  <p class="stylecode">mkdir -p 2016012221/ep</p>
+                  <p class="stylecode">cd 2016012221/ep </p>
+                </blockquote>
+              </ul>
+            
+              <blockquote>
+                <ul>
+                  <li>Run gen_be_ep2.exe</li>
+                </ul>
+                <blockquote>
+                  <p>gen_be_ep2.exe requires 4 command arguments (DATE, NUM_MEMBER, DIRECTORY, FILENAME) as defined below:</p>
+                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012221 10 ../../2016012221 wrfout_d01_2016-01-22_21:00:00</p>
+                </blockquote>
+                <ul>
+                  <li>Check the output files generated by gen_be_ep2.exe</li>
+                </ul>
+                <blockquote>
+                  <p>A list of binary files will be created under 2016012300/ep directory.</p>
+                  <p>Again, you may use the NCL script <em>/classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_perturbations.ncl</em> to make some plots.</p>
+                </blockquote>
+
+                <p>As before, you must run this step for each first guess time. Each step should take less than a minute to run.</p>
+                <blockquote>
+                  <p class="stylecode">
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012222/ep<br>
+                    cd 2016012222/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012222 10 ../../2016012222 wrfout_d01_2016-01-22_22:00:00<br>
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012223/ep<br>
+                    cd 2016012223/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012223 10 ../../2016012223 wrfout_d01_2016-01-22_23:00:00<br>
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012300/ep<br>
+                    cd 2016012300/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012300 10 ../../2016012300 wrfout_d01_2016-01-23_00:00:00<br>
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012301/ep<br>
+                    cd 2016012301/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012301 10 ../../2016012301 wrfout_d01_2016-01-23_01:00:00<br>
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012302/ep<br>
+                    cd 2016012302/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012302 10 ../../2016012302 wrfout_d01_2016-01-23_02:00:00<br>
+                    cd /classroom/users/${USER}/DA/hybrid_4denvar<br>
+                    mkdir -p 2016012303/ep<br>
+                    cd 2016012303/ep <br>
+                    /classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ep2.exe 2016012303 10 ../../2016012303 wrfout_d01_2016-01-23_03:00:00<br>
+                  </p>
+                </blockquote>
+
+
+              </blockquote>
+
+
+              <span class="bodyh1">Run gen_be_vertloc.exe</span>
+              <blockquote>
+                <p>As with 3DENVAR, run <span class="stylecode">gen_be_vertloc.exe</span> to generate the input file for vertical localization. This step only needs to be run once, since the file is not time-dependent.</p>
+                <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid_4denvar</p>
+                <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_vertloc.exe 41</p>
+              </blockquote>
+
+
+              <span class="bodyh1">Run WRFDA in hybrid mode</span>
+              <blockquote>
+                <p class="stylecode">cd /classroom/users/${USER}/DA/hybrid_4denvar</p>
+                <p> <span class="stylecode">ln -fs 2016012221/ep ./ep01 </span> <span style="color:red"># need an "ep" directory for each time</span><br>
+                  <span class="stylecode">ln -fs 2016012222/ep ./ep02 <br>
+                  ln -fs 2016012223/ep ./ep03 <br>
+                  ln -fs 2016012300/ep ./ep04 <br>
+                  ln -fs 2016012301/ep ./ep05 <br>
+                  ln -fs 2016012302/ep ./ep06 <br>
+                  ln -fs 2016012303/ep ./ep07 <br>
+                  ln -fs 2016012300/wrfout_d01_2016-01-23_00:00:00.mean ./fg<br>
+                  ln -fs 2016012221/wrfout_d01_2016-01-22_21:00:00.mean ./fg01 </span> <span style="color:red"># need an additional first guess file for each time</span><br>
+                  <span class="stylecode">ln -fs 2016012222/wrfout_d01_2016-01-22_22:00:00.mean ./fg02<br>
+                  ln -fs 2016012223/wrfout_d01_2016-01-22_23:00:00.mean ./fg03<br>
+                  ln -fs 2016012300/wrfout_d01_2016-01-23_00:00:00.mean ./fg04<br>
+                  ln -fs 2016012301/wrfout_d01_2016-01-23_01:00:00.mean ./fg05<br>
+                  ln -fs 2016012302/wrfout_d01_2016-01-23_02:00:00.mean ./fg06<br>
+                  ln -fs 2016012303/wrfout_d01_2016-01-23_03:00:00.mean ./fg07<br>
+                  ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL .<br>
+                  <span style="color:red"># we created the observation files during the OBSPROC exercise, if you did not finish you should <a href=obsproc.html#fgat>go back and complete the exercise</a></span><br>
+                  <span class="stylecode">ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-22_21:00:00.FGAT ob01.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-22_22:00:00.FGAT ob02.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-22_23:00:00.FGAT ob03.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-23_00:00:00.FGAT ob04.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-23_01:00:00.FGAT ob05.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-23_02:00:00.FGAT ob06.ascii<br>
+                  ln -sf /classroom/users/${USER}/DA/obsproc_fgat/obs_gts_2016-01-23_03:00:00.FGAT ob07.ascii<br>
+                  ln -fs /classroom/wrfhelp/DATA/WRFDA/hybrid/be/be.dat ./be.dat<br>
+                </p>
+                <p>Edit namelist.input (a sample file is provided as /classroom/wrfhelp/DATA/WRFDA/hybrid/namelist.input)</p>
+                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/namelist.input .<br><br>vi namelist.input</p>
+                <p>Edit the appropriate settings to set up for 4DENVAR, rather than 3DENVAR</p>
+                <p> 
+                  <span class="stylecode">&amp;wrfvar3<br>
+                  num_fgat_time = 7,</span> <span style="color:red"># The number of first guess times is 7 for this practice case, 3 before the analysis time and 3 after<span><br>
+                  <span class="stylecode">/<br>
+                  &amp;wrfvar16<br>
+                  use_4denvar = .true.</span> <span style="color:red"># hybrid mode is activated when ensdim_alpha is larger than zero.</span><br>
+                  <span class="stylecode">ensdim_alpha = 10<br>
+                  /</span>
+                </p>
+                <p></p>
+                <p class="stylecode">mpirun -np 6 /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe</p>
+              </blockquote>
+              <p>View the different output files to see how they differ from a 3DENVAR assimilation run. For example, in <em>cost_fn</em> and <em>grad_fn</em>, you will see the ensemble terms of the cost function and gradient, respectively.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <span class="bodyh2"><a name=advanced>Other practice</span>
               <blockquote>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                      <p>Do a pseudo-single obs test (PSOT) like we learned in <a href="psot.html">a previous exercise</a>. Edit the following namelist options to run the test:</p>
+                      <p>Do a pseudo-single obs test (PSOT) like we learned in <a href="psot.html">a previous exercise</a>. You can run this test on both the 3DENVAR and 4DENVAR case. Edit the following namelist options to run the test:</p>
                       <blockquote>
                         <p class="stylecode">&amp;wrfvar15<br>
                           num_pseudo = 1,<br>
@@ -235,9 +518,9 @@ a:active {
                       <p class="stylecode">ncdiff -v U,V,T,QVAPOR,MU,P,PSFC wrfvar_output fg increment.nc<br>
                         ncview increment.nc</p>
                       </blockquote>
-                      <p>To the right you can see what the lowest level pressure perturbation should look like. Notice the differences from the <a href="images/psot_ncview_u.P.png">basic 3dvar case</a> due to the BE contribution from the ensemble.</p>
+                      <p>To the right you can see what the lowest level pressure perturbation should look like. Notice the differences from the <a href="images/psot_ncview_u.P.png">basic 3dvar case</a> due to the BE contribution from the ensemble; instead of a featureless blob, the increment from a single observation can be quite complex!</p>
                     </td>
-                    <td class="bodytext"><a href="images/hybrid_psot_u.P.png"><img src="images/hybrid_psot_u.P.png" alt="Pressure perturbation from PSOT with the above settings." height="300"></a></td>
+                    <td class="bodytext"><a href="images/hybrid_psot_u.P.png"><img src="images/hybrid_psot_u.P.png" alt="Pressure perturbation from PSOT with the above settings." width="300"></a></td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
