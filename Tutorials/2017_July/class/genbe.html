@@ -49,7 +49,7 @@ a:active {
               <blockquote>
                 <p>Get the <a href="wrfda_code.html">pre-compiled code</a>, if you have not done so. </p>
                 <p><strong><span class="stylecode">WRFDA/var/scripts/gen_be/gen_be_wrapper.ksh</span></strong> is the main script that will be used in this practice.</p>
-                <p>GEN_BE consists of several stages. Quite a few executables and scripts are used for the process. They are listed below for reference. These executables and scripts will be called subsequently by <span class="stylecode">gen_be_wrapper.ksh</span>:</p>
+                <p>GEN_BE consists of several stages. Quite a few executables and scripts are used for the process. They are listed below for reference. These executables and scripts will be called by <span class="stylecode">gen_be_wrapper.ksh</span>, you should not need to run them directly:</p>
                 <blockquote>
                   <p class="stylecode">WRFDA/var/scripts/gen_be/gen_be.ksh<br>
                   WRFDA/var/scripts/gen_be/gen_be_stage0_wrf.ksh<br>
@@ -208,7 +208,7 @@ a:active {
                     export NUM_WE=89 # 1 point less than stagger points  90<br>
                     export NUM_SN=59 # 1 point less than stagger points  60<br>
                     export NUM_LEVELS=40 # 1 point less than stagger points 41<br>
-                    export RESOLUTION=60.0  # km<br>
+                    export RESOLUTION_KM=60.0  # km<br>
                     export REGION=tutorial     # only for naming output purpose<br>
                     export BE_DIR=/classroom/users/${USER}/DA/gen_be/gen_be5_cv5/working<br>
                     export BE_NROW=$NUM_LEVELS</p>

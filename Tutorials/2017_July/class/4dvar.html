@@ -177,7 +177,7 @@ a:active {
             <table align=center width="90%" border="1" cellpadding="10">
               <tr>
                 <td class="body"><span style="color:red">Helpful tip!</span><br>
-                  If you didn't include the "&amp;" at the end of your run command, you can still tell the program to run in the background. After submitting an MPI job like this, if you decide you don't want to sit around without being able to see the progress of your run hit control+z on your keyboard. This will suspend the job; to run it in the background, type "bg" and enter. Now, you can use the "tail" command to see the log files in real time!</td>
+                  If you didn't include the "&amp;" at the end of your run command, you can still tell the program to run in the background. After submitting an MPI job like this, if you decide you don't want to sit around without being able to see the progress of your run, hit control+z on your keyboard. This will suspend the job; to run it in the background, type "bg" and enter. Now, you can use the "tail" command to see the log files in real time!</td>
               </tr>
             </table>
             <blockquote>
@@ -219,10 +219,10 @@ a:active {
               </blockquote>
               <p>Radiance assimilation works in much the same way, since radiance data in GDAS BUFR files follows the same time window conventions.</p>
               <blockquote>
-                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2017070400/gdas.1bamua.t00z.20170704.bufr ./amsua01.bufr</span></p>
-                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2017070406/gdas.1bamua.t06z.20170704.bufr ./amsua02.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2017070400/gdas1.t00z.1bamua.tm00.bufr_d ./amsua01.bufr</span></p>
+                <p> <span class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/4dvar/ob/2017070406/gdas1.t06z.1bamua.tm00.bufr_d ./amsua02.bufr</span></p>
               </blockquote>
-              <p>Don't forget to change the appropriate namelist options for these new data types!<br><br></p>
+              <p><em>Don't forget to change the appropriate namelist options and link the necessary radiance files/directories!</em> Reference the <a href=3dvar.html#advanced>3DVAR</a> and <a href=radiance.html>radiance practice</a> if you forgot how, or you can check the <a href=../../../usersguide.html>Users Guide</a>.<br><br></p>
               <hr>
               <p><br>Try setting up a different 4D-VAR run using CONUS60 case (/classroom/wrfhelp/DATA/WRFDA/CONUS60) and compare the results with the 3D-VAR run. Use the same namelist from the 3dvar case, and modify the following settings:<br>
               <p><span class="stylecode">cp /classroom/users/${USER}/DA/3dvar/namelist.input .</span></p>

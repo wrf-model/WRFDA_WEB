@@ -87,7 +87,7 @@ a:active {
                   Copy and rename the namelist to "namelist.obsproc" under your working directory.</p>
                   <p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/obsproc/namelist.obsproc.3dvar.wrfvar-tut ./namelist.obsproc</p>
                   <p><span class="stylecode">namelist.obsproc</span> contains options to configure the little_r observation file location, domain, time window, etc.<br>
-                  For this tutorial case, you shouldn't need to change any settings in the namelist, but you should check the important settings to gain familiarity with the setup of OBSPROC. &amp;record1 specifies information about your input file names, &amp;record2 specifies date/time information, and &amp;record7 and &amp;record8 specify information about your domain.</p>
+                  For this tutorial case, you shouldn't need to change any settings in the namelist, but you should check the important settings to gain familiarity with the setup of OBSPROC. &amp;record1 specifies information about your input file names, &amp;record2 specifies date/time information, and &amp;record7 and &amp;record8 specify information about your domain. You can use emacs, vi, or nano for viewing and editing text files on the command line.</p>
                   <p class="stylecode">&gt; vi namelist.obsproc</p>
                   <p class="stylecode">&amp;record1<br>
                    obs_gts_filename = 'obs.2008020512',<br>
@@ -135,7 +135,7 @@ a:active {
                 <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
                 <p class="stylecode">./obsproc.exe</p>
               </blockquote>
-              <p>On the classroom computers, running this exercise should take about a minute.</p>
+              <p>On the classroom computers, running this step should take less than a minute.</p>
             </blockquote>
             <span class="bodyh1">Check output</span>
             <blockquote>
@@ -163,11 +163,11 @@ a:active {
             </blockquote>
 <span class="bodyh1">Graphics</span>
             <blockquote>
+              <p>You can use an NCL script, provided at <em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>, to see the locations of observations contained in <em>obs_gts_2008-02-05_12:00:00.3DVAR</em></p>
+              <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl .</p></blockquote>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
-                    <td>You can use an NCL script, provided at <em>/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl</em>, to see the locations of observations contained in <em>obs_gts_2008-02-05_12:00:00.3DVAR</em><br><br>
-              <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_ob_ascii_loc.ncl .</p></blockquote>
-              <p>Edit plot_ob_ascii_loc.ncl to provide the date, filenames and options of your case.</p>
+                    <td><p>Edit plot_ob_ascii_loc.ncl to provide the date, filenames and options of your case.</p>
               <blockquote>
                 <p class="stylecode">......<br>
                 date = &quot;2008020512&quot;<br>
@@ -263,7 +263,7 @@ a:active {
                   <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/var/obsproc/obsproc.exe .</p>
                   <p class="stylecode">./obsproc.exe</p>
                 </blockquote>
-              <p>On the classroom computers, running this exercise should take about a minute.</p>
+              <p>On the classroom computers, running this step should take less than a minute.</p>
               <table align=center width="90%" border="1" cellpadding="10">
                 <tr>
                   <td class="style8"><p><b>NOTE:</b> If you see messages stating "WARNING: ERROR in read_measurements", this is normal and can be safely ignored. This simply indicates that an observation in the input file is formatted incorrectly, and is being skipped.</p></td>
@@ -371,11 +371,6 @@ a:active {
                   <p class="stylecode">./obsproc.exe</p>
                 </blockquote>
               <p>On the classroom computers, running this exercise should take about a minute.</p>
-<!--              <table align=center width="90%" border="1" cellpadding="10">
-                <tr>
-                  <td class="style8"><p><b>NOTE:</b> If you see messages stating "WARNING: ERROR in read_measurements", this is normal and can be safely ignored. This simply indicates that an observation in the input file is formatted incorrectly, and is being skipped.</p></td>
-                </tr>
-              </table>-->
               <p><br>Just as with 4DVAR, you should see several observation files in your working directory:</p>
                 <blockquote>
                   <p class="stylecode">obs_gts_2016-01-22_21:00:00.FGAT<br>

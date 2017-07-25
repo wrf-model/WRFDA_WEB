@@ -69,7 +69,7 @@ a:active {
                       <p>A very basic namelist file for running the tutorial case is available at <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar</span></p>
                     </td>
                   </blockquote>
-                  <td class="bodytext"><a href="images/CONUS60.png"><img src="images/CONUS60.png" alt="Domain of this test case" height="300"></a></td>
+                  <td class="bodytext"><a href="images/CONUS60.png"><img src="images/CONUS60.png" alt="Domain of this test case" height="250"></a></td>
                 </tr>
               </table>
               <blockquote>
@@ -159,13 +159,13 @@ a:active {
                       <p>An example display of the ncview application can be seen at right. Use the dropdown menus to select different variables. You can also look at different vertical levels by clicking the box to the right of the label "bottom_top"</p>
                       <p>Since you ran in parallel with mpirun, you should have a number of files that begin with "rsl.out" and "rsl.error". These are the log files for regular output and error messages, respectively, and there should be one of each for the number of processors you ran WRFDA on. For example, rsl.out.0000 is the output from the first processor, rsl.out.0001 is the output from the second processor, etc. If your run was successful, your rsl.out.0000 (log file) should end with <span class="stylecode">*** WRF-Var completed successfully ***</span>. <a href="rsl.out.0000.txt">You can see an example rsl.out.0000 file here</a>.</p>
                       <p><span class="stylecode">statistics</span> is another diagnostic file that should be checked after each WRFDA run to make sure that the task was done correctly and successfully. It contains information about OI (the observation minus background, OMB) and AO (the observation minus analysis, OMA) for each observation type, in addition to statistics on the increment for each of the modified state variables (u, v, T, P, and q).</p>
-                <p><span class="stylecode">gts_omb_oma_01</span> contains information about observations and <em>innovation</em>, <span class="stylecode">qcstat_conv_01</span> (contains information about quality control), and <span class="stylecode">rej_obs_conv_01.####</span> (lists all conventional observations that were rejected by each processor) are other useful diagnostic files.</p>
                     </td>
                   </blockquote>
                   <td class="bodytext"><a href="images/ncview_wrfvar_output.png"><img src="images/ncview_wrfvar_output.png" alt="Viewing wrfvar_output with ncview" width=287></a></td>
                 </tr>
               </table>
               <blockquote>
+                <p><span class="stylecode">gts_omb_oma_01</span> contains information about observations and <em>innovation</em>, <span class="stylecode">qcstat_conv_01</span> (contains information about quality control), and <span class="stylecode">rej_obs_conv_01.####</span> (lists all conventional observations that were rejected by each processor) are other useful diagnostic files.</p>
                 <p>There are several tools available for viewing the analysis increments. A netCDF file containing the analysis increment fields can be created with either <strong>ncdiff</strong> or <strong>ncbo</strong>.</p>
                 <blockquote>
                   <p class="stylecode">ncdiff wrfvar_output fg increment.nc</p>
@@ -182,8 +182,8 @@ a:active {
                     <td>
                       <p>To create plots rather than a raw difference file, <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl</span> and <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test</span> can be used:<br>
                       <blockquote>
-                        <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl .<br>
-                        cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test .</p>
+                        <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl&nbsp;.<br>
+                        cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test&nbsp;.</p>
                       </blockquote>
                       <p>Edit <span class="stylecode">WRF-Var_plot.ncl</span> to provide the filenames, level index, field name, and what plot_data to plot for your case.</p>
                       <blockquote>
@@ -210,10 +210,10 @@ a:active {
                   </tr>
                 </table>
                 <p><br><span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl</span> can be used to plot the contents of <span class="stylecode">gts_omb_oma_01.</span> </p>
+                <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl .</p></blockquote>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                      <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl .</p></blockquote>
                       <p>Edit plot_gts_omb_oma.ncl to provide the date, filenames and options of your case.</p>
                       <blockquote>
                         <p class="stylecode">......<br>
@@ -226,11 +226,11 @@ a:active {
                       </blockquote>
                       <p>Now run the NCL script</p>
                         <blockquote><p class="stylecode">ncl plot_gts_omb_oma.ncl</p></blockquote>
-                      <p>This script may take a few minutes to complete; it will generate many plots depending on your settings. View the plots using <span class="stylecode">display</span>. An example of one of these plots, showing the OMA and OMB of sounding observations around 500 hPa, can be seen at right. Use spacebar and backspace to scroll through the different plots, showing OMB, OMA, and bias statistics for the observations at different pressure levels. There will be one output file per observation type; if you have time you can try plotting different observation types by editing the "proc_*" variables further down in the script.</p>
                     </td>
                     <td class="bodytext"><a href="images/my_plots_sound_2008020512-22.png"><img src="images/my_plots_sound_2008020512-22.png" height="300"></a></td>
                   </tr>
                 </table>
+                      <p>This script may take a few minutes to complete; it will generate many plots depending on your settings. View the plots using <span class="stylecode">display</span>. An example of one of these plots, showing the OMA and OMB of sounding observations around 500 hPa, can be seen at right. Use spacebar and backspace to scroll through the different plots, showing OMB, OMA, and bias statistics for the observations at different pressure levels. There will be one output file per observation type; if you have time you can try plotting different observation types by editing the "proc_*" variables further down in the script.</p>
                   <blockquote><p class="stylecode">display ncl_plot/my_plots_sound_2008020512.pdf</p></blockquote>
                 <p>There will be one output file per observation type: by default only SOUND and AIREP observations are plotted. If you have time you can try plotting different observation types. You can also edit the "plevs" variable to change the way observations are arranged by pressure level.</p>
                 <p><span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_cost_grad_fn.ncl</span> can be used to plot cost function evolution.</p>
