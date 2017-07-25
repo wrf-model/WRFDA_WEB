@@ -90,15 +90,15 @@ a:active {
                     export END_DATE=2008020912 &nbsp; # the last perturbation valid date<br>
                     export NUM_LEVELS=40 &nbsp; &nbsp; &nbsp; &nbsp; # e_vert -1<br>
                     export BE_METHOD=NMC<br>
-                    export FCST_RANGE=12<br>
+                    export FCST_RANGE=12 &nbsp; &nbsp; &nbsp; &nbsp; # No meaning for WRFDA<br>
                     export FC_DIR=/classroom/wrfhelp/DATA/WRFDA/CONUS60/fc<br>
                     export RUN_DIR=`pwd`/gen_be${BIN_TYPE}_cv${NL_CV_OPTIONS}<br>
-                    export DOMAIN=01<br>
-                    export FCST_RANGE1=24<br>
-                    export FCST_RANGE2=12<br>
-                    export INTERVAL=12<br>
-                    export STRIDE=1<br>
-                    export NOCOLONS=false</p>
+                    export DOMAIN=01 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # For nested domains, set to the appropriate domain number<br>
+                    export FCST_RANGE1=24 &nbsp; &nbsp; &nbsp; &nbsp;# 2nd forecast time for the NMC method (i.e. for 24-12 NMC, FCST_RANGE1=24, for 36-12 NMC, FCST_RANGE1=36)<br>
+                    export FCST_RANGE2=12 &nbsp; &nbsp; &nbsp; &nbsp;# No meaning for WRFDA<br>
+                    export INTERVAL=12 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # The interval between your forecast initial times<br>
+                    export STRIDE=1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# STRIDE=1 calculates correlation for every model grid point. STRIDE=2 calculates correlation every 2nd model gridpoint. 3 means every 3rd grid point, etc.<br>
+                    export NOCOLONS=false &nbsp; &nbsp; &nbsp; &nbsp;# Optional, for use if you set nocolons=true in your WRF namelists</p>
                 </blockquote>
                 <p>FC_DIR specifies the directory where the WRF forecast files (wrfout*) reside. Observe the directory structure and how the wrfout files are stored. To generate your own BE file for your own case and domain in the future, you will need to prepare and arrange your wrfout files in the same way (for example, 2008020512/wrfout_d01_2008-02-06_12:00:00; 2008020512 is the initial time, wrfout_d01_2008-02-06_12:00:00 is the 24-hour forecast valid at 2008020612).</p>
                 <p>NL_CV_OPTIONS specifies the control variable option. 5 is for the default wind control variables (psi and chi_u). 7 is for the CV7 option, which uses u and v as the wind control variables.</p> 

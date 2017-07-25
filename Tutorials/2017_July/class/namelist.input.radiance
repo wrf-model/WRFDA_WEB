@@ -41,6 +41,7 @@
  use_varbc = .true.
  use_crtm_kmatrix = .true.
  varbc_nbgerr = 5000
+ crtm_irland_coef="IGBP.IRland.EmisCoeff.bin"
 /
 &wrfvar15
 /
