@@ -139,9 +139,12 @@ a:active {
               <blockquote>
                 <blockquote>
                   <p>You may use the NCL script <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl</span> to make some plots.</p>
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr style="vertical-align: top;">
+                  <td>
                   <blockquote>
-                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl .<br>
-                      cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/WRF_contributed.ncl.test .</p>
+                    <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/ens_mean_std_dev.ncl&nbsp;.<br>
+                      cp /classroom/wrfhelp/DATA/WRFDA/hybrid/ncl/WRF_contributed.ncl.test&nbsp;.</p>
                   </blockquote>
                     Edit <span class="stylecode">ens_mean_std_dev.ncl</span> to set the proper date and path path<br>
                   <blockquote>
@@ -154,8 +157,13 @@ a:active {
                     <p class="stylecode">var = "U"<br>
                     kl = 24</p>
                   </blockquote>
-                  <p>V, W, T, P, and QVAPOR are some other interesting fields to look at.</p>
+                  <p>U, V, W, P, and QVAPOR are some other interesting fields to look at. The plot at right uses var = "T" and kl = 4.</p>
                 </blockquote>
+                    </td>
+                  </blockquote>
+                  <td class="bodytext"><a href="images/mean_std_dev_3denvar.png"><img src="images/mean_std_dev_3denvar.png" alt="Output from ens_mean_std_dev.ncl" height="300"></a></td>
+                </tr>
+              </table>
               </blockquote>
               <ul>
                 <li>ensemble perturbations</li>
@@ -300,6 +308,7 @@ a:active {
                   <blockquote>
                     <p class="stylecode">cp -r /classroom/wrfhelp/DATA/WRFDA/hybrid/fc/2016012* . </p>
                   </blockquote>
+                  <p>The copy process may take a few minutes due to the large amount of data.</p>
                   
                   <p>Edit gen_be_ensmean_nl.nl (or copy it from /classroom/wrfhelp/DATA/WRFDA/hybrid/gen_be_ensmean_nl.nl).</p>
                   <blockquote>
@@ -337,7 +346,7 @@ a:active {
                 <blockquote>
                   <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
                   <p class="stylecode">&amp;gen_be_ensmean_nl<br>
-                    directory = './2016012221'<br>
+                    directory = './2016012222'<br>
                     filename = 'wrfout_d01_2016-01-22_22:00:00'<br>
                     num_members = 10<br>
                     nv = 7<br>
@@ -346,7 +355,7 @@ a:active {
                     <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/gen_be_ensmean.exe</p>
                   <p class="stylecode">vi gen_be_ensmean_nl.nl</p>
                   <p class="stylecode">&amp;gen_be_ensmean_nl<br>
-                    directory = './2016012221'<br>
+                    directory = './2016012223'<br>
                     filename = 'wrfout_d01_2016-01-22_23:00:00'<br>
                     num_members = 10<br>
                     nv = 7<br>
