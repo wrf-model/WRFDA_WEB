@@ -183,7 +183,7 @@ PlainStyle,
 ,"Publications &<br>Documentation","show-menu=Pub",,,1
 ,"<div style='margin-top:6px'>Links</div>","show-menu=Links",,,1
 ,"<div style='margin-top:6px'>Internal</div>","http://www2.mmm.ucar.edu/wrf/users/wrfda/internal.html",,,1
-,"WRFDA<br>Testbeds","show-menu=Testbeds",,,1
+,"Beta<br>Releases","http://www2.mmm.ucar.edu/wrf/users/wrfda/beta.html",,,1
 ])
 
 
