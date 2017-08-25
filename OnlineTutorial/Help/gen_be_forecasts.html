@@ -18,7 +18,7 @@
 
 <meta http-equiv="expires" content="0">
 
-<meta name="copyright" content="Copyright (c) 2016 by UCAR">
+<meta name="copyright" content="Copyright (c) 2017 by UCAR">
 
 <meta name="revisit-after" content="1 days">
 
@@ -126,9 +126,64 @@ body {
 <a name="what"></a>
       <p class="style5" id="Font16">What is GEN_BE?</p>
       <p class="bodytext">GEN_BE is the WRFDA utility for <b>gen</b>erating <b>b</b>ackground <b>e</b>rrors. Background error is the  one of the several inputs needed for successful data assimilation, as</p> 
-      <p class="style5" id="Font16">Why does it matter?</p>
-      <p class="bodytext">In the WRFDA package, there is a script <kbd>var/scripts/gen_be/gen_be_wrapper.ksh</kbd>, which is used to run the GEN_BE utility as described in the <a href=../../../usersguide.html>user's guide</a>. In that script, you are instructed to set a variable "FC_DIR", which is labelled as "where wrf forecasts are". Some common questions we get ahout this are
+      <p class="style5" id="Font16">What is my input data, and how do I format it?</p>
+      <p class="bodytext">Ultimately, GEN_BE takes WRF forecast files as input. By looking at the differences between two or more WRF output files that are valid at the same time, GEN_BE can develop some statistics on the background error of the model, which is ultimately the combination of the errors in the first guess and in the model itself.</p>
+      <p class="bodytext">There are two modes by which this could be achieved. The first and most common is the so-called NMC method as described by <a href=http://journals.ametsoc.org/doi/abs/10.1175/1520-0493%281992%29120%3C1747%3ATNMCSS%3E2.0.CO%3B2>Parrish and Derber (1992)</a>. This method uses a series of forecasts initialized at regular intervals, and compares forecasts which are valid at the same time for different initialization times. For example, NMC 24-12 compares a 12-hour forecast to a 24-hour forecast initialized 12 hours earlier, a NMC 36-24 setup compares a 24-hour forecast to a 36-hour forecast initialized 12 hours earlier, and so on. This is done for many different dates to build up a large sample size for calculating statistics. The second method is by using a pre-existing ensemble to calculate background error statistics. This is typically done for a single time.
+      <p class="bodytext">In the WRFDA package, there is a script <kbd>var/scripts/gen_be/gen_be_wrapper.ksh</kbd>, which is used to run the GEN_BE utility as described in the <a href=../../../usersguide.html>user's guide</a>. In that script, you are instructed to set a variable "FC_DIR", which is labelled as "where wrf forecasts are". However, there is no instruction on how these forecasts should be provided. Have no fear, we will teach you in the following sections!
 </p>
+      <a name="NMC"></a>
+      <p class="style5" id="Font16">Setting up GEN_BE forecasts for the NMC method</p>
+      <p class="bodytext">Let's say that we use <kbd>/user/home/genbe/forecasts/</kbd> as our FC_DIR. If we are running from START_DATE=2012091200 to END_DATE=2012091900, we will need to have the following subdirectories within that directory:<br><br>
+                  <code>&nbsp; $ ls /user/home/genbe/forecasts/<br>
+                    &nbsp; 2012091100  2012091300  2012091500  2012091700  2012091900<br>
+                    &nbsp; 2012091112  2012091312  2012091512  2012091712  2012091912<br>
+                    &nbsp; 2012091200  2012091400  2012091600  2012091800<br>
+                    &nbsp; 2012091212  2012091412  2012091612  2012091812</code></p>
+      <p class="bodytext">Within each of those directories should be the WRF output files from a forecast initialized <b>at that time</b>. In other words, <em>each directory should have the output from a different forecast: you can not use one single, long forecast split into different directories</em>. So the directory /user/home/genbe/forecasts/2012091200/ should have the 12-hour and 24-hour forecast files like this:<br><br>
+                  <code>&nbsp; $ ls /user/home/genbe/forecasts/2012091200<br>
+                    &nbsp; wrfout_d01_2012-09-12_12:00:00  wrfout_d01_2012-09-13_00:00:00<br><br></code>
+                  and the directory /user/home/genbe/forecasts/2012091212/should have the 12-hour and 24-hour forecast files like this:<br>
+                  <code>&nbsp; $ ls /user/home/genbe/forecasts/2012091212<br><br>
+                    &nbsp; wrfout_d01_2012-09-13_00:00:00  wrfout_d01_2012-09-13_12:00:00<br><br></code>
+                  and so on. GEN_BE will be comparing 2012091200/wrfout_d01_2012-09-13_00:00:00 to 2012091212/wrfout_d01_2012-09-13_00:00:00, 2012091212/wrfout_d01_2012-09-13_12:00:00 to 2012091300/wrfout_d01_2012-09-13_12:00:00, 2012091200/wrfout_d01_2012-09-13_00:00:00 to 2012091212/wrfout_d01_2012-09-13_00:00:00, and so on.<br><br>
+                  The one-week period above is just an example: in general you should use at least ~25 forecast periods for calculating your statistics (two weeks for the 24-12 NMC method, one month for 48-24).<br>
+      <a name="ensemble"></a>
+      <p class="style5" id="Font16">Setting up GEN_BE forecasts for the ensemble method</p>
+      <table width="90%" border="0" cellpadding="3" cellspacing="7">
+        <tr>
+          <td width="5%" valign="top"><img src="../images/exclamation.svg" alt="Tip" width="50" height="50"></td>
+          <td width="95%" bgcolor="#DDAA55" class="bodytext">
+            <b>NOTE:</b> This capability is not tested very often or extensively, so caution is advised.
+          </td>
+        </tr>
+      </table>
+
+      <p class="bodytext">As before, let's say that we use <kbd>/user/home/genbe/forecasts/</kbd> as our FC_DIR. If our ensemble data is valid for the date 2007091500, we will need to have a subdirectory for each ensemble member within that directory:<br><br>
+                  <code>&nbsp; $ ls /glade/p/work/wrfhelp/WRFDA_DATA/fc<br>
+                    &nbsp; 2007091500.e001<br>
+                    &nbsp; 2007091500.e002<br>
+                    &nbsp; 2007091500.e003<br>
+                    &nbsp; 2007091500.e004<br>
+                    &nbsp; ... etc.</code></p>
+
+      <p class="bodytext">Within each of these subdirectories, there should be a single WRF output file, which should be the ensemble forecast output.<br><br>
+                  <code>&nbsp; $ ls /glade/p/work/wrfhelp/WRFDA_DATA/fc/2007091500.e001
+                    &nbsp; wrfout_d01_2007-09-15_00:00:00
+                    &nbsp; $ ls /glade/p/work/wrfhelp/WRFDA_DATA/fc/2007091500.e002
+                    &nbsp; wrfout_d01_2007-09-15_00:00:00
+                    &nbsp; ... etc.</code></p>
+
+      <p class="bodytext">All these files should just have their original names in the WRF date naming scheme.</p>
+      <p class="bodytext"> There are also some settings within the wrapper script that you will need to change from their default values:<br><br>
+                  <code>&nbsp; export START_DATE=2007091500 # the start and end date should be the same for ensemble GEN_BE<br>
+                    &nbsp; export END_DATE=2007091500<br>
+                    &nbsp; export BE_METHOD=ENS<br>
+                    &nbsp; export NE=10 # However many ensemble members you have<br>
+                    &nbsp; <br>
+                    &nbsp; export FCST_RANGE1=00</code></p>
+
+      <p class="bodytext">The rest of the settings you should be able to leave alone.</p>
+
 <!--      <p class="style5" id="Font16">Setting an environment variable:</p>
       <p style="padding-left: 45px"><table width="50%" border="1" class="bodytable">
         <tr>
