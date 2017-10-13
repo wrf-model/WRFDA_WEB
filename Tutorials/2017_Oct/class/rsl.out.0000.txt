@@ -1,0 +1,147 @@
+taskid: 0 hostname: lab105.mmm.ucar.edu
+ Namelist logging not found in namelist.input. Using registry defaults for variables in logging.
+
+*** VARIATIONAL ANALYSIS ***
+    WRFDA V3.9                                                                      
+
+ Ntasks in X            2 , ntasks in Y            3
+ *************************************
+ Parent domain
+ ids,ide,jds,jde            1          90           1          60
+ ims,ime,jms,jme           -4          52          -4          27
+ ips,ipe,jps,jpe            1          45           1          20
+ *************************************
+DYNAMICS OPTION: Eulerian Mass Coordinate
+   alloc_space_field: domain            1 ,             138628432  bytes allocated
+hybrid_opt = -1
+  
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS      1 IE     45 JS      1 JE     20
+WRF NUMBER OF TILES =   1
+Domain mapping info:
+map_proj =     1
+cen_lat   =    0.400000E+02
+cen_lon   =   -0.950000E+02
+truelat1  =    0.300000E+02
+truelat2  =    0.600000E+02
+start_lat =    0.207406E+02
+start_lon =   -0.119501E+03
+pole_lat  =    0.900000E+02
+dsm       =    0.600000E+02
+  
+Set up observations (ob)
+  
+Using ASCII format observation input
+  
+Observation summary
+   ob time  1
+      sound                 86 global,       9 local
+      synop                750 global,      38 local
+      pilot                 85 global,       8 local
+      satem                105 global,      28 local
+      geoamv              2499 global,     456 local
+      airep                216 global,       0 local
+      gpspw                187 global,      33 local
+      gpsrf                  3 global,       0 local
+      metar               2408 global,     206 local
+      ships                 51 global,       5 local
+      qscat               2126 global,       0 local
+      profiler              61 global,      13 local
+      buoy                 336 global,      17 local
+      sonde_sfc             86 global,       9 local
+ 
+Set up background errors for regional application for cv_options =   5
+
+  
+
+   Using the averaged regression coefficients for unbalanced part
+  
+   cloud_cv_options =  0
+   WRFDA dry control variables are: psi, chi_u, t_u and ps_u
+   WRFDA Humidity control variable is rh
+
+
+  
+Vertical truncation for psi    =  16(  99.00%)
+ 
+Vertical truncation for chi_u  =  21(  99.00%)
+ 
+Vertical truncation for t_u    =  29(  99.00%)
+ 
+Vertical truncation for rh     =  22(  99.00%)
+ 
+  
+   Scaling: var, len, ds:   0.100000E+01   0.100000E+01   0.600000E+05
+   Scaling: var, len, ds:   0.100000E+01   0.100000E+01   0.600000E+05
+   Scaling: var, len, ds:   0.100000E+01   0.100000E+01   0.600000E+05
+   Scaling: var, len, ds:   0.100000E+01   0.100000E+01   0.600000E+05
+   Scaling: var, len, ds:   0.100000E+01   0.100000E+01   0.600000E+05
+Calculate innovation vector(iv)
+  
+Minimize cost function using CG method
+  
+Starting outer iteration :   1
+Starting cost function:  2.970707964520471D+04, Gradient=  4.231011772682003D+02
+For this outer iteration gradient target is:        4.231011772682002D+00
+----------------------------------------------------------------------
+              Loop Iter     Cost Function              Gradient                   Step
+ minimize_cg    1    0      2.970707964520471D+04      4.231011772682003D+02      0.000000000000000D+00
+ minimize_cg    1    1      2.844819188068460D+04      4.186159225617699D+02      1.406463741928754D-02
+ minimize_cg    1    2      2.672996098522879D+04      4.071643915883252D+02      1.961011014544407D-02
+ minimize_cg    1    3      2.542728235986688D+04      3.632885800561310D+02      1.571548190868097D-02
+ minimize_cg    1    4      2.454587793232214D+04      2.983022574469935D+02      1.335677872482077D-02
+ minimize_cg    1    5      2.399167553692733D+04      2.581541195216958D+02      1.245619258730152D-02
+ minimize_cg    1    6      2.349072430676615D+04      2.045760984203046D+02      1.503374998707902D-02
+ minimize_cg    1    7      2.312477061107665D+04      1.902846710958393D+02      1.748824986402518D-02
+ minimize_cg    1    8      2.273335561506907D+04      1.744682225908860D+02      2.162020702809978D-02
+ minimize_cg    1    9      2.241724376124980D+04      1.531791176865080D+02      2.077007687543785D-02
+ minimize_cg    1   10      2.223439929480472D+04      1.243259988434923D+02      1.558521112638867D-02
+ minimize_cg    1   11      2.207971997903262D+04      1.132446071874018D+02      2.001420407770346D-02
+ minimize_cg    1   12      2.198023898335448D+04      1.029856842270758D+02      1.551440268716416D-02
+ minimize_cg    1   13      2.190054685754829D+04      6.619163424057137D+01      1.502767139929569D-02
+ minimize_cg    1   14      2.183123223439783D+04      6.644526647851707D+01      3.164088735347127D-02
+ minimize_cg    1   15      2.178746237270287D+04      5.311740296106928D+01      1.982791621084609D-02
+ minimize_cg    1   16      2.175016797829054D+04      4.441956168681487D+01      2.643625234801793D-02
+ minimize_cg    1   17      2.172160745219752D+04      3.841384974884384D+01      2.894993953966146D-02
+ minimize_cg    1   18      2.170485488075698D+04      3.137389746731455D+01      2.270574769029911D-02
+ minimize_cg    1   19      2.168937274054353D+04      2.515209943103664D+01      3.145748847525678D-02
+ minimize_cg    1   20      2.168222703138558D+04      2.232932077056211D+01      2.259055230907335D-02
+ minimize_cg    1   21      2.167586142065089D+04      1.909986976307398D+01      2.553401139803553D-02
+ minimize_cg    1   22      2.167198886563019D+04      1.443221392443357D+01      2.123082060699985D-02
+ minimize_cg    1   23      2.166832149750933D+04      1.233541736619970D+01      3.521426157002322D-02
+ minimize_cg    1   24      2.166615329765638D+04      1.039672431171685D+01      2.849847426529822D-02
+ minimize_cg    1   25      2.166431192359360D+04      7.733363483013381D+00      3.407053561920085D-02
+ minimize_cg    1   26      2.166332509333286D+04      6.195250968226721D+00      3.300164646066306D-02
+ minimize_cg    1   27      2.166253837403225D+04      5.527218064540018D+00      4.099510395331228D-02
+ minimize_cg    1   28      2.166211993525677D+04      4.396245852198469D+00      2.739357540696919D-02
+ minimize_cg    1   29      2.166174609845293D+04      3.239367799616883D+00      3.868549048028375D-02
+----------------------------------------------------------------------
+ 
+Inner iteration stopped after   29 iterations
+ 
+Final:  29 iter, J= 2.166174609845290D+04, g= 3.239367799616836D+00
+----------------------------------------------------------------------
+  
+Diagnostics
+   Final cost function J       =     21661.75
+  
+   Total number of obs.        =    41851
+   Final value of J            =     21661.74610
+   Final value of Jo           =     18972.99944
+   Final value of Jd           =         0.00000
+   Final value of Jb           =      2688.74666
+   Final value of Jc           =         0.00000
+   Final value of Je           =         0.00000
+   Final value of Jp           =         0.00000
+   Final value of Jl           =         0.00000
+   Final J / total num_obs     =         0.51759
+   Jb factor used(1)           =         1.00000
+   Jb factor used(2)           =         1.00000
+   Jb factor used(3)           =         1.00000
+   Jb factor used(4)           =         1.00000
+   Jb factor used(5)           =         1.00000
+   Jb factor used              =         1.00000
+   Je factor used              =         1.00000
+   VarBC factor used           =         1.00000
+  
+*** WRF-Var completed successfully ***
