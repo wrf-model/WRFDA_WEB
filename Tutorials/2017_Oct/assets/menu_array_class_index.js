@@ -303,7 +303,7 @@ PlainStyle2,
 0,
 ,
 ,"OBSPROC ","class/obsproc.html",,,1
-,"3DVAR","../class/3dvar.html",,,1
+,"3DVAR","class/3dvar.html",,,1
 ])
 
 addmenu(menu=[
@@ -328,9 +328,9 @@ PlainStyle2,
 ,
 0,
 ,
-,"GEN_BE ","../class/genbe.html",,,1
-,"Hybrid","../class/hybrid.html",,,1
-,"PSOT ","../class/psot.html",,,0
+,"GEN_BE ","class/genbe.html",,,1
+,"Hybrid","class/hybrid.html",,,1
+,"PSOT ","class/psot.html",,,0
 ])
 
 addmenu(menu=[
