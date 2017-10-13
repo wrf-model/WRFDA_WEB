@@ -52,10 +52,10 @@ a:active {
               </blockquote>
               <span class="bodyh1">Create your working directory</span>
               <blockquote>
-                <p>You should create <span class="stylecode">/classroom/users/${USER}/DA/3dvar</span> and use this as your working directory for this lesson.</p>
+                <p>You should create <span class="stylecode">/wrf2017/groups/${USER}/DA/3dvar</span> and use this as your working directory for this lesson.</p>
                 <blockquote>
-                  <p class="stylecode">mkdir /classroom/users/${USER}/DA/3dvar<br>
-                                       cd /classroom/users/${USER}/DA/3dvar</p>
+                  <p class="stylecode">mkdir /wrf2017/groups/${USER}/DA/3dvar<br>
+                                       cd /wrf2017/groups/${USER}/DA/3dvar</p>
                 </blockquote>
               </blockquote>
               <p><span class="bodyh1">Input data</span>
@@ -64,9 +64,9 @@ a:active {
                 <tr style="vertical-align: top;">
                   <td>
                     <blockquote>
-                      <p>This case utilizes a continental USA domain, 90x60 gridpoints, 41 vertical levels, and 60km resolution (it can be found at /classroom/wrfhelp/DATA/WRFDA/CONUS60). The exact area of the domain is shown at right. A number of the exercises in this tutorial (OBSPROC, 3DVAR, PSOT, GENBE) will use this case.</a>
+                      <p>This case utilizes a continental USA domain, 90x60 gridpoints, 41 vertical levels, and 60km resolution (it can be found at /wrf2017/DATA/WRFDA/CONUS60). The exact area of the domain is shown at right. A number of the exercises in this tutorial (OBSPROC, 3DVAR, PSOT, GENBE) will use this case.</a>
                       <p>It features a storm system which produced a <a href="https://en.wikipedia.org/wiki/2008_Super_Tuesday_tornado_outbreak">deadly tornado outbreak</a> across the Central/Southern USA on February 5, 2008.</p> 
-                      <p>A very basic namelist file for running the tutorial case is available at <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar</span></p>
+                      <p>A very basic namelist file for running the tutorial case is available at <span class="stylecode">/wrf2017/DATA/WRFDA/CONUS60/namelist.input.3dvar</span></p>
                     </td>
                   </blockquote>
                   <td class="bodytext"><a href="images/CONUS60.png"><img src="images/CONUS60.png" alt="Domain of this test case" height="250"></a></td>
@@ -74,28 +74,28 @@ a:active {
               </table>
               <blockquote>
                 <blockquote>
-                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/CONUS60/namelist.input.3dvar ./namelist.input</p>
+                  <p class="stylecode">cp /wrf2017/DATA/WRFDA/CONUS60/namelist.input.3dvar ./namelist.input</p>
                 </blockquote>
                 <p>A land-use table is needed as well (provided in the WRFDA package)</p>
                 <blockquote>
-                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL</p>
+                  <p class="stylecode">ln -fs /wrf2017/groups/${USER}/DA/WRFDA/run/LANDUSE.TBL ./LANDUSE.TBL</p>
                 </blockquote>
                 <p>Besides namelist.input and LANDUSE.TBL, the other three major input files to WRFDA-3DVAR are observations (ob.ascii), background error statistics (be.dat), and first guess (fg).</p>
               </blockquote>
               <ul>
                 <li><strong>ob.ascii</strong> is in plain-text format and is the output from OBSPROC that you created in the previous lesson.
                 <blockquote>
-                  <p class="stylecode">ln -fs /classroom/users/${USER}/DA/obsproc/obs_gts_2008-02-05_12:00:00.3DVAR ./ob.ascii</p>
+                  <p class="stylecode">ln -fs /wrf2017/groups/${USER}/DA/obsproc/obs_gts_2008-02-05_12:00:00.3DVAR ./ob.ascii</p>
                 </blockquote>
                 </li>
                 <li><strong>be.dat</strong> is in binary format and contains background error information. For this lesson, just use the supplied pre-generated be.dat (you will learn to create your own in a later exercise)
                 <blockquote>
-                  <p class="stylecode">ln -fs /classroom/wrfhelp/DATA/WRFDA/CONUS60/be/be.dat ./be.dat</p>
+                  <p class="stylecode">ln -fs /wrf2017/DATA/WRFDA/CONUS60/be/be.dat ./be.dat</p>
                 </blockquote>
                 </li>
                 <li><strong>fg</strong> is the first guess (background) in netCDF format and can be either a "wrfinput" file from WPS/real.exe or a "wrfout" file from a WRF forecast.
                 <blockquote>
-                  <p class="stylecode">cp -p /classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01 ./fg</p>
+                  <p class="stylecode">cp -p /wrf2017/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01 ./fg</p>
                 </blockquote>
                 </li>
               </ul>
@@ -128,25 +128,19 @@ a:active {
               <blockquote>
                 <p>For convenience, link the main WRFDA executable (da_wrfvar.exe) to your current working directory. Then run the executable</p>
                 <blockquote>
-                  <p class="stylecode">ln -sf /classroom/users/${USER}/DA/WRFDA/var/build/da_wrfvar.exe ./da_wrfvar.exe</p>
-                  <p class="stylecode">mpirun -np 6 ./da_wrfvar.exe</p>
+                  <p class="stylecode">ln -sf /wrf2017/groups/${USER}/DA/WRFDA/var/build/da_wrfvar.exe ./da_wrfvar.exe</p>
+                  <p class="stylecode">mpirun -np 2 ./da_wrfvar.exe</p>
                 </blockquote>
                 <p>Running this case should take less than a minute on the classroom computers.</p>
               </blockquote>
               <span class="bodyh1">Check output</span>
               <blockquote>
                 <p>When WRFDA is completed, you should see a number of files in your working directory. Use the <span class="stylecode">ls</span> command to view them:</p>
-                <blockquote>
-                  <p class="stylecode">lab105.mmm.ucar.edu:/classroom/users/class105/DA/3dvar>ls<br>
-                  be.dat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gts_omb_oma_01.0000 &nbsp;namelist.input &nbsp; &nbsp; &nbsp; &nbsp;rej_obs_conv_01.0004 &nbsp;rsl.out.0000 &nbsp;unpert_obs.0000<br>
-                  buddy_check &nbsp; &nbsp; gts_omb_oma_01.0001 &nbsp;namelist.output.da &nbsp; &nbsp;rej_obs_conv_01.0005 &nbsp;rsl.out.0001 &nbsp;unpert_obs.0001<br>
-                  check_max_iv &nbsp; &nbsp;gts_omb_oma_01.0002 &nbsp;ob.ascii &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rsl.error.0000 &nbsp; &nbsp; &nbsp; &nbsp;rsl.out.0002 &nbsp;unpert_obs.0002<br>
-                  cost_fn &nbsp; &nbsp; &nbsp; &nbsp; gts_omb_oma_01.0003 &nbsp;qcstat_conv_01 &nbsp; &nbsp; &nbsp; &nbsp;rsl.error.0001 &nbsp; &nbsp; &nbsp; &nbsp;rsl.out.0003 &nbsp;unpert_obs.0003<br>
-                  da_wrfvar.exe &nbsp; gts_omb_oma_01.0004 &nbsp;rej_obs_conv_01.0000 &nbsp;rsl.error.0002 &nbsp; &nbsp; &nbsp; &nbsp;rsl.out.0004 &nbsp;unpert_obs.0004<br>
-                  fg &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gts_omb_oma_01.0005 &nbsp;rej_obs_conv_01.0001 &nbsp;rsl.error.0003 &nbsp; &nbsp; &nbsp; &nbsp;rsl.out.0005 &nbsp;unpert_obs.0005<br>
-                  grad_fn &nbsp; &nbsp; &nbsp; &nbsp; jo &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rej_obs_conv_01.0002 &nbsp;rsl.error.0004 &nbsp; &nbsp; &nbsp; &nbsp;statistics &nbsp; &nbsp;wrfvar_output<br>
-                  gts_omb_oma_01 &nbsp;LANDUSE.TBL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rej_obs_conv_01.0003 &nbsp;rsl.error.0005 &nbsp; &nbsp; &nbsp; &nbsp;unpert_obs<br>
-                </blockquote>
+                  <p class="stylecode">> ls<br>
+be.dat &nbsp; &nbsp; &nbsp; da_wrfvar.exe &nbsp;gts_omb_oma_01.0000 namelist.input &nbsp; &nbsp; rej_obs_conv_01.0000 rsl.out.0000 unpert_obs.0000<br>
+buddy_check &nbsp;fg &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gts_omb_oma_01.0001 namelist.output.da rej_obs_conv_01.0001 rsl.out.0001 unpert_obs.0001<br>
+check_max_iv grad_fn &nbsp; &nbsp; &nbsp; &nbsp;jo &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ob.ascii &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rsl.error.0000 &nbsp; &nbsp; &nbsp; statistics &nbsp; wrfvar_output<br>
+cost_fn &nbsp; &nbsp; &nbsp;gts_omb_oma_01 LANDUSE.TBL &nbsp; &nbsp; &nbsp; &nbsp; qcstat_conv_01 &nbsp; &nbsp; rsl.error.0001 &nbsp; &nbsp; &nbsp; unpert_obs <br>
               </blockquote>
               <table border="0" cellpadding="0" cellspacing="0">
                 <tr style="vertical-align: top;">
@@ -180,10 +174,10 @@ a:active {
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
-                      <p>To create plots rather than a raw difference file, <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl</span> and <span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test</span> can be used:<br>
+                      <p>To create plots rather than a raw difference file, <span class="stylecode">/wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl</span> and <span class="stylecode">/wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test</span> can be used:<br>
                       <blockquote>
-                        <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl&nbsp;.<br>
-                        cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test&nbsp;.</p>
+                        <p class="stylecode">cp /wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/WRF-Var_plot.ncl&nbsp;.<br>
+                        cp /wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/WRF_contributed.ncl.test&nbsp;.</p>
                       </blockquote>
                       <p>Edit <span class="stylecode">WRF-Var_plot.ncl</span> to provide the filenames, level index, field name, and what plot_data to plot for your case.</p>
                       <blockquote>
@@ -209,8 +203,8 @@ a:active {
                     <td class="bodytext"><a href="images/WRF-VAR_U_level_18.png"><img src="images/WRF-VAR_U_level_18.png"></a></td>
                   </tr>
                 </table>
-                <p><br><span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl</span> can be used to plot the contents of <span class="stylecode">gts_omb_oma_01.</span> </p>
-                <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl .</p></blockquote>
+                <p><br><span class="stylecode">/wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl</span> can be used to plot the contents of <span class="stylecode">gts_omb_oma_01.</span> </p>
+                <blockquote><p class="stylecode">cp /wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/plot_gts_omb_oma.ncl .</p></blockquote>
                 <table border="0" cellpadding="0" cellspacing="0">
                   <tr style="vertical-align: top;">
                     <td>
@@ -219,7 +213,7 @@ a:active {
                         <p class="stylecode">......<br>
                         plotdir = &quot;ncl_plot/&quot; ;where plot files will be created<br>
                         expt = "my_plots" ; for output naming purposes, spaces are not allowed<br>
-                        datdir = "/classroom/users/$USER/DA/3dvar/" ; the path of the working directory<br>
+                        datdir = "/wrf2017/groups/$USER/DA/3dvar/" ; the path of the working directory<br>
                         ......              <br>
                         fgname = "fg"  ; for retrieving mapping info<br>
                         ......              </p>
@@ -233,12 +227,12 @@ a:active {
                       <p>This script may take a few minutes to complete; it will generate many plots depending on your settings. View the plots using <span class="stylecode">display</span>. An example of one of these plots, showing the OMA and OMB of sounding observations around 500 hPa, can be seen at right. Use spacebar and backspace to scroll through the different plots, showing OMB, OMA, and bias statistics for the observations at different pressure levels. There will be one output file per observation type; if you have time you can try plotting different observation types by editing the "proc_*" variables further down in the script.</p>
                   <blockquote><p class="stylecode">display ncl_plot/my_plots_sound_2008020512.pdf</p></blockquote>
                 <p>There will be one output file per observation type: by default only SOUND and AIREP observations are plotted. If you have time you can try plotting different observation types. You can also edit the "plevs" variable to change the way observations are arranged by pressure level.</p>
-                <p><span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_cost_grad_fn.ncl</span> can be used to plot cost function evolution.</p>
-                  <blockquote><p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/TOOLS/graphics/ncl/plot_cost_grad_fn.ncl .</p></blockquote>
+                <p><span class="stylecode">/wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/plot_cost_grad_fn.ncl</span> can be used to plot cost function evolution.</p>
+                  <blockquote><p class="stylecode">cp /wrf2017/DATA/WRFDA/TOOLS/graphics/ncl/plot_cost_grad_fn.ncl .</p></blockquote>
                 <p>Edit plot_cost_grad_fn.ncl to provide the current working directory. You can also edit "domain_name" to change the plot captions.</p>
                 <blockquote>
                   <p class="stylecode">......<br>
-                  dir = "/classroom/users/$USER/DA/3dvar/"<br>
+                  dir = "/wrf2017/groups/$USER/DA/3dvar/"<br>
                   domain_name = &quot;my test case&quot;<br>
                   ......              </p>
                 </blockquote>
@@ -257,16 +251,16 @@ a:active {
                 </tr>
               </table>
                 <blockquote>
-                  <p class="stylecode">cp /classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01 ./wrfbdy_d01</p>
+                  <p class="stylecode">cp /wrf2017/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01 ./wrfbdy_d01</p>
                 </blockquote>
                 <p>Also, copy the sample da_update_bc namelist (parame.in) and make sure all the variables are set correctly for this experiment:</p>
                 <blockquote>
-                  <p class="stylecode">cp /classroom/users/${USER}/DA/WRFDA/var/test/update_bc/parame.in .<br>
+                  <p class="stylecode">cp /wrf2017/groups/${USER}/DA/WRFDA/var/test/update_bc/parame.in .<br>
                   vi parame.in <br><br>
                   &amp;control_param<br>
                   da_file            = './wrfvar_output'<br>
                   wrf_bdy_file       = './wrfbdy_d01' <br>
-                  wrf_input          = '/classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01' <br>
+                  wrf_input          = '/wrf2017/DATA/WRFDA/CONUS60/rc/2008020512/wrfinput_d01' <br>
                   domain_id          = 1 <br>
                   cycling            = .false. <br>
                   debug   = .true. <br>
@@ -278,11 +272,11 @@ a:active {
                 </blockquote>
                 <p>Run da_update_bc.exe</p>
                 <blockquote>
-                  <p class="stylecode">/classroom/users/${USER}/DA/WRFDA/var/build/da_update_bc.exe</p>
+                  <p class="stylecode">/wrf2017/groups/${USER}/DA/WRFDA/var/build/da_update_bc.exe</p>
                 </blockquote>
-                <p>Finally, check the output. Use <em><strong><a href="http://www2.mmm.ucar.edu/wrf/users/utilities/diffwrf.htm">diffwrf</a></strong></em> (available in compiled WRFV3 code at WRFV3/external/io_netcdf/diffwrf, you can find a copy in /classroom/wrfhelp/DATA/WRFDA/diffwrf), <strong><em>ncdiff</em></strong>, <em><strong>ncview</strong></em><strong></strong>, or other <a href="http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_July2017/graphics/ncl.php">WRF NCL graphic tools</a> to check what fields have been updated.</p>
+                <p>Finally, check the output. Use <em><strong><a href="http://www2.mmm.ucar.edu/wrf/users/utilities/diffwrf.htm">diffwrf</a></strong></em> (available in compiled WRFV3 code at WRFV3/external/io_netcdf/diffwrf, you can find a copy in /wrf2017/DATA/WRFDA/diffwrf), <strong><em>ncdiff</em></strong>, <em><strong>ncview</strong></em><strong></strong>, or other <a href="http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_July2017/graphics/ncl.php">WRF NCL graphic tools</a> to check what fields have been updated.</p>
                 <blockquote>
-                  <p class="stylecode">/classroom/wrfhelp/DATA/WRFDA/diffwrf /classroom/wrfhelp/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01 wrfbdy_d01</p>
+                  <p class="stylecode">/wrf2017/DATA/WRFDA/diffwrf /wrf2017/DATA/WRFDA/CONUS60/rc/2008020512/wrfbdy_d01 wrfbdy_d01</p>
                 </blockquote>
                 <p>The <span class="stylecode"><strong>wrfvar_output</strong></span> and <span class="stylecode"><strong>wrfbdy_d01</strong></span> are the data-assimilated initial condition and tendency-updated boundary condition for your subsequent WRF model run. You will learn more about this in the cycling exercises later this week.</p>
                 <p class="body">You are now finished with the basic exercise for WRFDA-3DVAR. You can now move on to <a href=genbe.html>the next exercise (GEN_BE)</a>, or try the additional practice cases below.</p>
@@ -301,9 +295,9 @@ a:active {
                   </p>
                 </li>
               
-                <li>Try running WRFDA using NCEP PREPBUFR data (<span class="stylecode">/classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/gdas1.t12z.prepbufr.nr</span>) as the observation input
+                <li>Try running WRFDA using NCEP PREPBUFR data (<span class="stylecode">/wrf2017/DATA/WRFDA/CONUS60/ob/2008020512/gdas1.t12z.prepbufr.nr</span>) as the observation input
                   <blockquote>
-                    <p class="stylecode">ln -fs  /classroom/wrfhelp/DATA/WRFDA/CONUS60/ob/2008020512/gdas1.t12z.prepbufr.nr ob.bufr</p>
+                    <p class="stylecode">ln -fs  /wrf2017/DATA/WRFDA/CONUS60/ob/2008020512/gdas1.t12z.prepbufr.nr ob.bufr</p>
                     <p class="stylecode">vi namelist.input</p>
                     <p class="stylecode">&amp;wrfvar3<br>
                       ob_format=1<br>
@@ -314,7 +308,7 @@ a:active {
                 
                 <li>Try running WRFDA with a different BE option (cv_options=3) using a pre-supplied be.dat available in the WRFDA package <em>WRFDA/var/run/be.dat.cv3</em>. Compare the results with previous cv_options=5 runs.
                   <blockquote>
-                    <p class="stylecode">ln -fs /classroom/users/${USER}/DA/WRFDA/var/run/be.dat.cv3 ./be.dat</p>
+                    <p class="stylecode">ln -fs /wrf2017/groups/${USER}/DA/WRFDA/var/run/be.dat.cv3 ./be.dat</p>
                     <p class="stylecode">vi namelist.input</p>
                     <p class="stylecode">&amp;wrfvar7<br>
                       cv_options = 3<br>

@@ -160,7 +160,7 @@ PlainStyle,
 ,"Exercises","show-menu=Exercises",,,0
 ,"Data&Code","show-menu=Data&Code",,,0
 ,"Feedback ","survey.html",,,0
-,"WRF Basic","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_July2017/index.php",,,0
+,"WRF Basic","http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Class_UK_2017/index.php",,,0
 ])
 
 
@@ -187,7 +187,7 @@ PlainStyle2,
 0,
 ,
 ,"Home","index.html",,,0
-,"Lectures","lectures.html",,,0
+,"Lectures","https://sites.google.com/ncas.ac.uk/wrf/tutorial-lectures",,,0
 ,"WRFDA Home Page","../..",,,0
 ,"WRFDA User's Guide","../../usersguide.html",,,0
 ,"Tutorial schedule","Tutorial_Agenda.html",,,1
@@ -277,9 +277,6 @@ PlainStyle2,
 ,"Overview ","class/lessons.html",,,1
 ,"Practice Session 1 ","show-menu=wrfda-practice-1","class/lessons.html#session_1",,1
 ,"Practice Session 2 ","show-menu=wrfda-practice-2","class/lessons.html#session_2",,1
-,"Practice Session 3 ","show-menu=wrfda-practice-3","class/lessons.html#session_3",,1
-,"Practice Session 4 ","show-menu=wrfda-practice-4","class/lessons.html#session_4",,1
-,"Practice Session 5 ","show-menu=wrfda-practice-5","class/lessons.html#session_5",,1
 ,"Code compilation ","class/compile.html",,,1
 ])
 
@@ -306,7 +303,7 @@ PlainStyle2,
 0,
 ,
 ,"OBSPROC ","class/obsproc.html",,,1
-,"Compiling for 3DVAR","class/compile.html#compile_3dvar",,,0
+,"3DVAR","../class/3dvar.html",,,1
 ])
 
 addmenu(menu=[
@@ -331,9 +328,9 @@ PlainStyle2,
 ,
 0,
 ,
-,"3DVAR","class/3dvar.html",,,1
-,"GEN_BE ","class/genbe.html",,,1
-,"PSOT ","class/psot.html",,,0
+,"GEN_BE ","../class/genbe.html",,,1
+,"Hybrid","../class/hybrid.html",,,1
+,"PSOT ","../class/psot.html",,,0
 ])
 
 addmenu(menu=[
