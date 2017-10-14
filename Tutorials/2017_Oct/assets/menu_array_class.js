@@ -276,8 +276,7 @@ PlainStyle2,
 , 
 ,"Overview ","../class/lessons.html",,,1
 ,"Practice Session 1 ","show-menu=wrfda-practice-1","../class/lessons.html#session_1",,1
-,"Practice Session 2 ","show-menu=wrfda-practice-2","../class/lessons.html#session_2",,1
-,"Code compilation ","../class/compile.html",,,1
+,"Practice Session 2 ","show-menu=wrfda-practice-2","../class/lessons.html#session_2",,0
 ])
 
 addmenu(menu=[
@@ -329,8 +328,8 @@ PlainStyle2,
 0,
 ,
 ,"GEN_BE ","../class/genbe.html",,,1
-,"Hybrid","../class/hybrid.html",,,1
-,"PSOT ","../class/psot.html",,,0
+,"PSOT ","../class/psot.html",,,1
+,"Hybrid","../class/hybrid.html",,,0
 ])
 
 addmenu(menu=[
