@@ -70,7 +70,8 @@ a:active {
                   <p>The first step of observation preprocessing is to prepare observations in little_r format.<br>
                     For this tutorial, an observation file in little_r format is provided.</p>
                   <p class="stylecode">cp /wrf2017/DATA/WRFDA/CONUS60/ob/2008020512/obs.2008020512 .</p>
-                  <p><span class="stylecode">obs.2008020512</span> is the observation file for this exercise in little_r format. It is a text file; you can use <span class="stylecode">emacs</span>, <span class="stylecode">vi</span>, or another text editor to see its contents. <strong>For your own applications, you will have to prepare your own observation file.</strong></p>
+                  <p><span class="stylecode">obs.2008020512</span> is the observation file for this exercise in little_r format. It is a text file; you can use <span class="stylecode">emacs</span>, <span class="stylecode">vi</span>, or another text editor to see its contents. You can find more information about this format on <a href=http://www2.mmm.ucar.edu/wrf/users/wrfda/OnlineTutorial/Help/littler.html 
+>the little_r help page</a>. <strong>For your own applications, you will have to prepare your own observation file.</strong></p>
                 </blockquote>
               </li>
               <li>observation error table
@@ -186,20 +187,19 @@ a:active {
                 </table>
             </blockquote>
 
-            <p class="bodyh2"><a name="fgat">Advanced exercises</a></p>
-            <p class="bodyh3"><a name="fgat">OBSPROC for FGAT (First Guess at Appropriate Time)</a></p>
+            <p class="bodyh2">Advanced exercises</a></p>
+            <p class="bodyh1"><a name="fgat">OBSPROC for FGAT (First Guess at Appropriate Time)</a></p>
             <blockquote>
               <p>If you have time, let's look at a case where we prepare observations for FGAT, which stands for First Guess at Appropriate Time. This is a cheap method of 4D data assimilation, which gains some of the benefits of assimilating observations at their actual time without the expense of running full 4DVAR assimilation. </p>
 
               <span class="bodyh1">Prepare observations for FGAT</span></p>
-              <p>If you have time, let's look at a case where we prepare observations for FGAT, which stands for First Guess at Appropriate Time. This is a cheap method of 4D data assimilation, which gains some of the benefits of assimilating observations at their actual time without the expense of running full 4DVAR assimilation. </p>
               <p>Create <em>/wrf2017/groups/${USER}/DA/obsproc_fgat</em> and use this as your working directory.</p>
               <blockquote>
                 <p class="stylecode">mkdir /wrf2017/groups/${USER}/DA/obsproc_fgat<br>
                                      cd /wrf2017/groups/${USER}/DA/obsproc_fgat</p>
               </blockquote>
               <p>As before, you will need an observation file in little_r format, an observation error table, and a namelist file. This process is similar to the process for creating observation files for 4DVAR.<br>
-              <p>Again, try creating your own "namelist.obsproc" from scratch. You'll need to set the following settings for this test case:<br>
+              <p>This time, try creating your own "namelist.obsproc" from scratch. You'll need to set the following settings for this test case:<br>
                 <blockquote>
                   <p class="stylecode">&gt; vi namelist.obsproc</p>
                   <p class="stylecode">&amp;record1<br>
